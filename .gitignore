@@ -1,3 +1,21 @@
-# Godot 4+ specific ignores
+# Godot 4 cache
 .godot/
+
+# Godot 3 cache (harmless to include)
+.import/
+
+# Export folders
 /android/
+/build/
+/exports/
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Editor configs (optional, but avoids noise)
+.vscode/
+.idea/
+
+# Logs
+*.log
