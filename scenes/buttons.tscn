@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bi4747sfo5gjc"]
+
+[ext_resource type="Script" uid="uid://bf4jpebb5fy3d" path="res://scripts/buttons.gd" id="1_ew542"]
+
+[node name="Buttons" type="Node2D" unique_id=608108710]
+position = Vector2(98, 63)
+script = ExtResource("1_ew542")
+
+[node name="Button" type="Button" parent="." unique_id=1104281975]
+offset_right = 80.0
+offset_bottom = 48.0
+text = "Upgrade
+"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
