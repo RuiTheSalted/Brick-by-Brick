@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://lgiaqtphy6qd"
-path="res://.godot/imported/Silver Gray Border.png-aef1b1cfb7ed50d46b9fd273a1167b9c.ctex"
+uid="uid://kcyly5da5b7e"
+path="res://.godot/imported/placeholderBackground.png-848d6fbb129f3b7da6a3cab177404d98.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/spritesArt/menuArtOutGame/Silver Gray Border.png"
-dest_files=["res://.godot/imported/Silver Gray Border.png-aef1b1cfb7ed50d46b9fd273a1167b9c.ctex"]
+source_file="res://assets/spritesArt/menuArtOutGame/placeholderBackground.png"
+dest_files=["res://.godot/imported/placeholderBackground.png-848d6fbb129f3b7da6a3cab177404d98.ctex"]
 
 [params]
 
