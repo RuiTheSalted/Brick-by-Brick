@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://hppu1j2rywla"]
 
 [ext_resource type="PackedScene" uid="uid://d1qf34fyylxqi" path="res://scenes/paddle.tscn" id="1_2q6dc"]
+[ext_resource type="PackedScene" uid="uid://dtlu1ys4mvur7" path="res://scenes/ball_spawner.tscn" id="1_mx8sn"]
 [ext_resource type="PackedScene" uid="uid://dj35vrqtmjv7k" path="res://scenes/ball.tscn" id="2_w7c3h"]
 [ext_resource type="PackedScene" uid="uid://bi4747sfo5gjc" path="res://scenes/buttons.tscn" id="3_w8frs"]
 
@@ -17,6 +18,9 @@ size = Vector2(1300, 20)
 size = Vector2(1280.5, 22)
 
 [node name="Level" type="Node2D" unique_id=1648176846]
+
+[node name="BallSpawner" parent="." unique_id=478855960 instance=ExtResource("1_mx8sn")]
+position = Vector2(430, 201)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1827269418]
 position = Vector2(639, 360)
