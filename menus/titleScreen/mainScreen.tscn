@@ -1,11 +1,14 @@
 [gd_scene format=3 uid="uid://mkpkvd5s2s23"]
 
 [ext_resource type="Texture2D" uid="uid://dyhq0u1yyb23e" path="res://assets/spritesArt/menuArtOutGame/silverExitBorder.png" id="1_4nx6i"]
+[ext_resource type="Script" uid="uid://jd5ccyud5oqx" path="res://menus/titleScreen/titleScreenScript.gd" id="1_le1a6"]
 [ext_resource type="Texture2D" uid="uid://k4ns0qk6i5wo" path="res://assets/spritesArt/menuArtOutGame/silverSettingsBorder.png" id="2_xngkm"]
 [ext_resource type="Texture2D" uid="uid://bmd3ys38mbwux" path="res://assets/spritesArt/menuArtOutGame/silverHelpBorder.png" id="3_asgw7"]
 [ext_resource type="Texture2D" uid="uid://di4o67btmv78g" path="res://assets/spritesArt/menuArtOutGame/silverAchieveBorder.png" id="4_tsf8v"]
 [ext_resource type="Texture2D" uid="uid://bt4476kiwlidg" path="res://assets/spritesArt/menuArtOutGame/silverPlayBorder.png" id="5_xngkm"]
 [ext_resource type="Texture2D" uid="uid://cmfven7xw3e3k" path="res://assets/spritesArt/menuArtOutGame/silverBallBorder.png" id="6_asgw7"]
+[ext_resource type="FontFile" uid="uid://c3eqo4rgsja0k" path="res://assets/fonts/Stepalange-x3BLm.otf" id="6_vij7s"]
+[ext_resource type="PackedScene" uid="uid://qyxtqtygp5k5" path="res://menus/exitScreen/exitConfirm.tscn" id="7_tsf8v"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_f22qm"]
 load_path = "res://.godot/imported/reference.png-7087b5384dff32f59ae77cf4a61aac49.ctex"
@@ -17,6 +20,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_le1a6")
 
 [node name="background" type="TextureRect" parent="." unique_id=1083352673]
 modulate = Color(0.40146014, 0.40146014, 0.40146014, 1)
@@ -87,7 +91,8 @@ theme_override_constants/shadow_offset_x = 8
 theme_override_constants/shadow_offset_y = 4
 theme_override_constants/outline_size = 10
 theme_override_constants/shadow_outline_size = 10
-theme_override_font_sizes/font_size = 48
+theme_override_fonts/font = ExtResource("6_vij7s")
+theme_override_font_sizes/font_size = 80
 text = "Brick - By - Brick"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -136,6 +141,7 @@ theme_override_constants/shadow_offset_x = 4
 theme_override_constants/shadow_offset_y = 4
 theme_override_constants/outline_size = 10
 theme_override_constants/shadow_outline_size = 10
+theme_override_fonts/font = ExtResource("6_vij7s")
 theme_override_font_sizes/font_size = 30
 text = "PLAY "
 horizontal_alignment = 1
@@ -181,7 +187,14 @@ theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
 theme_override_constants/outline_size = 10
 theme_override_constants/shadow_outline_size = 2
+theme_override_fonts/font = ExtResource("6_vij7s")
 theme_override_font_sizes/font_size = 20
 text = "BALLS"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="exitConfirm" parent="." unique_id=519139329 instance=ExtResource("7_tsf8v")]
+visible = false
+layout_mode = 1
+
+[connection signal="pressed" from="safeArea/overlay/leftButtons/buttonExit" to="." method="_on_button_exit_pressed"]
