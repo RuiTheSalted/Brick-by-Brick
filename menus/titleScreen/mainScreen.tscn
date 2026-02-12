@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cmfven7xw3e3k" path="res://assets/spritesArt/menuArtOutGame/silverBallBorder.png" id="6_asgw7"]
 [ext_resource type="FontFile" uid="uid://c3eqo4rgsja0k" path="res://assets/fonts/Stepalange-x3BLm.otf" id="6_vij7s"]
 [ext_resource type="PackedScene" uid="uid://qyxtqtygp5k5" path="res://menus/exitScreen/exitConfirm.tscn" id="7_tsf8v"]
+[ext_resource type="PackedScene" uid="uid://c0stkw1ilssuy" path="res://menus/settingsScreen/settingsScreen.tscn" id="11_b8e46"]
 
 [node name="MainScreen" type="Control" unique_id=2002765537]
 layout_mode = 3
@@ -195,4 +196,9 @@ vertical_alignment = 1
 visible = false
 layout_mode = 1
 
+[node name="settingsPopUp" parent="." unique_id=1876059533 instance=ExtResource("11_b8e46")]
+visible = false
+layout_mode = 1
+
 [connection signal="pressed" from="safeArea/overlay/leftButtons/buttonExit" to="." method="_on_button_exit_pressed"]
+[connection signal="pressed" from="safeArea/overlay/leftButtons/buttonSettings" to="." method="_on_button_settings_pressed"]

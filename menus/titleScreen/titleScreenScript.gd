@@ -1,5 +1,10 @@
 extends Control
+
+#SCREENS VARIABLES
 @onready var exitScreen = $exitConfirm
+@onready var settingsScreen = $settingsPopUp
+
+#BUTTON VARIABLES
 @onready var yesButton = $exitConfirm/center/Panel/content/buttons/yesButton
 @onready var noButton = $exitConfirm/center/Panel/content/buttons/noButton
 
@@ -15,3 +20,7 @@ func _process(delta: float) -> void:
 
 func _on_button_exit_pressed() -> void:
 	exitScreen.show()
+
+
+func _on_button_settings_pressed() -> void:
+	settingsScreen.show()
