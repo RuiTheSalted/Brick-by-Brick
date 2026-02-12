@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://ctlh6bmekss85"]
+
+[node name="AchievementScreen" type="Control" unique_id=1552765548]
+layout_mode = 3
+anchors_preset = 0
