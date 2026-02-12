@@ -7,7 +7,7 @@ var upgrade_level = 0
 
 # Array of textures for different upgrade levels
 var ball_textures = [
-	"res://assets/spritesArt/ball/ball.png",
+	"res://assets/spritesArt/ball/tennisBall.png",
 	"res://assets/spritesArt/ball/iceball.png",
 ]
 
