@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://cssvucwpsy2c8"]
+
+[node name="BallsScreen" type="Control" unique_id=901876940]
+layout_mode = 3
+anchors_preset = 0

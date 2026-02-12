@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://c40enmwdy83v5"]
+
+[node name="MapSelectScreen" type="Control" unique_id=1168657682]
+layout_mode = 3
+anchors_preset = 0

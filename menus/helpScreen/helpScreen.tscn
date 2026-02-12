@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://bh51vq1cwyk8a"]
+
+[node name="HelpScreen" type="Control" unique_id=671634666]
+layout_mode = 3
+anchors_preset = 0
