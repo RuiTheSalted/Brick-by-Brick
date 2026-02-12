@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://dtlu1ys4mvur7"]
+
+[ext_resource type="Script" uid="uid://dmw78m1tp2fq7" path="res://scripts/ball_spawner.gd" id="1_vml06"]
+
+[node name="BallSpawner" type="Node2D" unique_id=478855960]
+position = Vector2(247, 165)
+script = ExtResource("1_vml06")
+
+[node name="Button" type="Button" parent="." unique_id=412995413]
+offset_left = -1.0
+offset_top = 3.0
+offset_right = 87.0
+offset_bottom = 76.0
+text = "SPAWN"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
