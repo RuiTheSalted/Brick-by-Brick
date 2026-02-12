@@ -47,7 +47,7 @@ func upgrade() -> void:
 		sprite.texture = new_texture
 	
 	# Optionally increase ball size with upgrades
-	var scale_increase = 1.0 + (upgrade_level * 0.05)
+	var scale_increase = 1.5 + (upgrade_level * 0.05)
 	var base_scale = ball_scales[texture_index] if texture_index < ball_scales.size() else Vector2(0.1, 0.1)
 	sprite.scale = base_scale * scale_increase
 	
