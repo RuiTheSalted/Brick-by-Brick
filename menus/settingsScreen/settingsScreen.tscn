@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://c0stkw1ilssuy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hay4x"]
+bg_color = Color(1, 0.88581574, 0.6971606, 1)
+
+[node name="settingsPopUp" type="Control" unique_id=1876059533]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="dim" type="ColorRect" parent="." unique_id=1732320856]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5019608)
+
+[node name="center" type="CenterContainer" parent="." unique_id=1920459093]
+custom_minimum_size = Vector2(1000, 400)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -6.5
+offset_top = -65.5
+offset_right = 6.5
+offset_bottom = 65.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="panel" type="PanelContainer" parent="center" unique_id=833418328]
+custom_minimum_size = Vector2(750, 450)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hay4x")
+
+[node name="content" type="VBoxContainer" parent="center/panel" unique_id=848614186]
+layout_mode = 2
+theme_override_constants/separation = 60
+
+[node name="titleRow" type="HBoxContainer" parent="center/panel/content" unique_id=1119685549]
+layout_mode = 2
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="settingsText" type="Label" parent="center/panel/content/titleRow" unique_id=1534008438]
+layout_mode = 2
+text = "SETTINGS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="exitButton" type="TextureButton" parent="center/panel/content/titleRow" unique_id=415878101]
+layout_mode = 2
+
+[node name="sfxRow" type="HBoxContainer" parent="center/panel/content" unique_id=1695985534]
+layout_mode = 2
+
+[node name="sfxText" type="Label" parent="center/panel/content/sfxRow" unique_id=1056006067]
+layout_mode = 2
+
+[node name="sfxSlider" type="HSlider" parent="center/panel/content/sfxRow" unique_id=674952284]
+layout_mode = 2
+
+[node name="musicRow" type="HBoxContainer" parent="center/panel/content" unique_id=1800903147]
+layout_mode = 2
+
+[node name="musicText" type="Label" parent="center/panel/content/musicRow" unique_id=847468847]
+layout_mode = 2
+
+[node name="musicSlider" type="HSlider" parent="center/panel/content/musicRow" unique_id=1873978005]
+layout_mode = 2
+
+[node name="languageRow" type="HBoxContainer" parent="center/panel/content" unique_id=1484405552]
+layout_mode = 2
+
+[node name="languageText" type="Label" parent="center/panel/content/languageRow" unique_id=843601194]
+layout_mode = 2
+
+[node name="languageButton" type="TextureButton" parent="center/panel/content/languageRow" unique_id=1677803899]
+layout_mode = 2
+
+[node name="accessibilityRow" type="HBoxContainer" parent="center/panel/content" unique_id=289465074]
+layout_mode = 2
+
+[node name="accessibilityTest" type="Label" parent="center/panel/content/accessibilityRow" unique_id=1140398163]
+layout_mode = 2
+
+[node name="accessibilityButton" type="TextureButton" parent="center/panel/content/accessibilityRow" unique_id=1810962121]
+layout_mode = 2

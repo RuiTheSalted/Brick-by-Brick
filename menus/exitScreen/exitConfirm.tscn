@@ -47,13 +47,14 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 24
 
-[node name="message" type="Label" parent="center/Panel/content" unique_id=620761485]
+[node name="topText" type="Label" parent="center/Panel/content" unique_id=620761485]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_m1kvp")
 theme_override_font_sizes/font_size = 32
-text = "Are You Sure You
+text = "
+Are You Sure You
 Want To Exit?"
 horizontal_alignment = 1
 vertical_alignment = 1

@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dyhq0u1yyb23e" path="res://assets/spritesArt/menuArtOutGame/silverExitBorder.png" id="1_4nx6i"]
 [ext_resource type="Script" uid="uid://jd5ccyud5oqx" path="res://menus/titleScreen/titleScreenScript.gd" id="1_le1a6"]
+[ext_resource type="Texture2D" uid="uid://kcyly5da5b7e" path="res://assets/spritesArt/menuArtOutGame/placeholderBackground.png" id="2_a4p5y"]
 [ext_resource type="Texture2D" uid="uid://k4ns0qk6i5wo" path="res://assets/spritesArt/menuArtOutGame/silverSettingsBorder.png" id="2_xngkm"]
 [ext_resource type="Texture2D" uid="uid://bmd3ys38mbwux" path="res://assets/spritesArt/menuArtOutGame/silverHelpBorder.png" id="3_asgw7"]
 [ext_resource type="Texture2D" uid="uid://di4o67btmv78g" path="res://assets/spritesArt/menuArtOutGame/silverAchieveBorder.png" id="4_tsf8v"]
@@ -9,9 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://cmfven7xw3e3k" path="res://assets/spritesArt/menuArtOutGame/silverBallBorder.png" id="6_asgw7"]
 [ext_resource type="FontFile" uid="uid://c3eqo4rgsja0k" path="res://assets/fonts/Stepalange-x3BLm.otf" id="6_vij7s"]
 [ext_resource type="PackedScene" uid="uid://qyxtqtygp5k5" path="res://menus/exitScreen/exitConfirm.tscn" id="7_tsf8v"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_f22qm"]
-load_path = "res://.godot/imported/reference.png-7087b5384dff32f59ae77cf4a61aac49.ctex"
 
 [node name="MainScreen" type="Control" unique_id=2002765537]
 layout_mode = 3
@@ -31,7 +29,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = SubResource("CompressedTexture2D_f22qm")
+texture = ExtResource("2_a4p5y")
 expand_mode = 1
 stretch_mode = 6
 
