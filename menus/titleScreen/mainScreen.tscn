@@ -1,31 +1,204 @@
 [gd_scene format=3 uid="uid://mkpkvd5s2s23"]
 
+[ext_resource type="Texture2D" uid="uid://dyhq0u1yyb23e" path="res://assets/spritesArt/menuArtOutGame/silverExitBorder.png" id="1_4nx6i"]
+[ext_resource type="Script" uid="uid://jd5ccyud5oqx" path="res://menus/titleScreen/titleScreenScript.gd" id="1_le1a6"]
+[ext_resource type="Texture2D" uid="uid://kcyly5da5b7e" path="res://assets/spritesArt/menuArtOutGame/placeholderBackground.png" id="2_a4p5y"]
+[ext_resource type="Texture2D" uid="uid://k4ns0qk6i5wo" path="res://assets/spritesArt/menuArtOutGame/silverSettingsBorder.png" id="2_xngkm"]
+[ext_resource type="Texture2D" uid="uid://bmd3ys38mbwux" path="res://assets/spritesArt/menuArtOutGame/silverHelpBorder.png" id="3_asgw7"]
+[ext_resource type="Texture2D" uid="uid://di4o67btmv78g" path="res://assets/spritesArt/menuArtOutGame/silverAchieveBorder.png" id="4_tsf8v"]
+[ext_resource type="Texture2D" uid="uid://bt4476kiwlidg" path="res://assets/spritesArt/menuArtOutGame/silverPlayBorder.png" id="5_xngkm"]
+[ext_resource type="Texture2D" uid="uid://cmfven7xw3e3k" path="res://assets/spritesArt/menuArtOutGame/silverBallBorder.png" id="6_asgw7"]
+[ext_resource type="FontFile" uid="uid://c3eqo4rgsja0k" path="res://assets/fonts/Stepalange-x3BLm.otf" id="6_vij7s"]
+[ext_resource type="PackedScene" uid="uid://qyxtqtygp5k5" path="res://menus/exitScreen/exitConfirm.tscn" id="7_tsf8v"]
+[ext_resource type="PackedScene" uid="uid://c0stkw1ilssuy" path="res://menus/settingsScreen/settingsScreen.tscn" id="11_b8e46"]
+
 [node name="MainScreen" type="Control" unique_id=2002765537]
 layout_mode = 3
-anchors_preset = 0
-
-[node name="backgroundTitleScreen" type="ColorRect" parent="." unique_id=44090461]
-layout_mode = 0
-offset_right = 1280.0
-offset_bottom = 720.0
-
-[node name="mainTitle" type="Label" parent="." unique_id=1711760098]
-modulate = Color(0, 0, 0, 1)
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = 540.0
-offset_right = 727.0
-offset_bottom = 34.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 24
-text = "Brick - By - Brick"
+grow_vertical = 2
+script = ExtResource("1_le1a6")
 
-[node name="buttons" type="VBoxContainer" parent="." unique_id=1933694408]
-layout_mode = 0
-offset_left = 95.0
-offset_top = 80.0
-offset_right = 135.0
-offset_bottom = 120.0
+[node name="background" type="TextureRect" parent="." unique_id=1083352673]
+modulate = Color(0.40146014, 0.40146014, 0.40146014, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_a4p5y")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="safeArea" type="MarginContainer" parent="." unique_id=2053708971]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="overlay" type="Control" parent="safeArea" unique_id=1920129290]
+layout_mode = 2
+
+[node name="leftButtons" type="VBoxContainer" parent="safeArea/overlay" unique_id=777432230]
+layout_mode = 1
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 20
+
+[node name="buttonExit" type="TextureButton" parent="safeArea/overlay/leftButtons" unique_id=3143082]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+texture_normal = ExtResource("1_4nx6i")
+
+[node name="buttonSettings" type="TextureButton" parent="safeArea/overlay/leftButtons" unique_id=1183440855]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+texture_normal = ExtResource("2_xngkm")
+
+[node name="buttonHelp" type="TextureButton" parent="safeArea/overlay/leftButtons" unique_id=269487369]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+texture_normal = ExtResource("3_asgw7")
+
+[node name="buttonAchievements" type="TextureButton" parent="safeArea/overlay/leftButtons" unique_id=16663937]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+texture_normal = ExtResource("4_tsf8v")
+
+[node name="gameTitle" type="Label" parent="safeArea/overlay" unique_id=1322181758]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.25
+anchor_right = 1.0
+anchor_bottom = 0.25
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.34492415, 0.16442427, 0.057332985, 1)
+theme_override_constants/shadow_offset_x = 8
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 10
+theme_override_constants/shadow_outline_size = 10
+theme_override_fonts/font = ExtResource("6_vij7s")
+theme_override_font_sizes/font_size = 80
+text = "Brick - By - Brick"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="contentPlay" type="VBoxContainer" parent="safeArea/overlay" unique_id=910340898]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -191.0
+offset_right = 64.0
+offset_bottom = -63.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 48
+alignment = 1
+
+[node name="playButton" type="TextureButton" parent="safeArea/overlay/contentPlay" unique_id=1523091168]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture_normal = ExtResource("5_xngkm")
+stretch_mode = 6
+
+[node name="playText" type="Label" parent="safeArea/overlay/contentPlay/playButton" unique_id=77010288]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -26.0
+offset_right = 64.0
+offset_bottom = 70.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 10
+theme_override_constants/shadow_outline_size = 10
+theme_override_fonts/font = ExtResource("6_vij7s")
+theme_override_font_sizes/font_size = 30
+text = "PLAY "
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="bottomLeftButtons" type="HBoxContainer" parent="safeArea/overlay" unique_id=2046278484]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 35.0
+offset_top = -136.0
+offset_right = 507.0
+offset_bottom = -36.0
+grow_vertical = 0
+theme_override_constants/separation = 24
+alignment = 2
+
+[node name="ballsButton" type="TextureButton" parent="safeArea/overlay/bottomLeftButtons" unique_id=160588387]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("6_asgw7")
+
+[node name="ballsText" type="Label" parent="safeArea/overlay/bottomLeftButtons/ballsButton" unique_id=1050791966]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -24.0
+offset_right = 24.0
+offset_bottom = 23.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 10
+theme_override_constants/shadow_outline_size = 2
+theme_override_fonts/font = ExtResource("6_vij7s")
+theme_override_font_sizes/font_size = 20
+text = "BALLS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="exitConfirm" parent="." unique_id=519139329 instance=ExtResource("7_tsf8v")]
+visible = false
+layout_mode = 1
+
+[node name="settingsPopUp" parent="." unique_id=1876059533 instance=ExtResource("11_b8e46")]
+visible = false
+layout_mode = 1
+
+[connection signal="pressed" from="safeArea/overlay/leftButtons/buttonExit" to="." method="_on_button_exit_pressed"]
+[connection signal="pressed" from="safeArea/overlay/leftButtons/buttonSettings" to="." method="_on_button_settings_pressed"]

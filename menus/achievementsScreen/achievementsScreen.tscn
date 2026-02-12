@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://bh51vq1cwyk8a"]
+[gd_scene format=3 uid="uid://dno8vqgflj0qr"]
 
-[node name="HelpScreen" type="Control" unique_id=2077809931]
+[node name="AchievementsScreen" type="Control" unique_id=272239464]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

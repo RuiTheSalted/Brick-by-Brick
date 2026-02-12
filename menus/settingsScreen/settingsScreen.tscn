@@ -1,0 +1,278 @@
+[gd_scene format=3 uid="uid://c0stkw1ilssuy"]
+
+[ext_resource type="Texture2D" uid="uid://bb3fluwqgpvxf" path="res://assets/spritesArt/bricks/brick.png" id="1_ai1nm"]
+[ext_resource type="Script" uid="uid://dipaoaenjmvup" path="res://menus/settingsScreen/settingsScreenScript.gd" id="1_bjpso"]
+[ext_resource type="FontFile" uid="uid://c3eqo4rgsja0k" path="res://assets/fonts/Stepalange-x3BLm.otf" id="2_bjpso"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hay4x"]
+bg_color = Color(1, 0.88581574, 0.6971606, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ai1nm"]
+content_margin_left = 6.0
+content_margin_top = 6.0
+content_margin_right = 6.0
+content_margin_bottom = 6.0
+bg_color = Color(0.6456832, 0.44625884, 0.3150827, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yn15q"]
+content_margin_left = 6.0
+content_margin_top = 6.0
+content_margin_right = 6.0
+content_margin_bottom = 6.0
+bg_color = Color(0, 0.7411765, 0.74509805, 1)
+border_color = Color(0.44705883, 0.80784315, 0.91764706, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b6exh"]
+content_margin_left = 6.0
+content_margin_top = 6.0
+content_margin_right = 6.0
+content_margin_bottom = 6.0
+bg_color = Color(0.5058824, 1, 1, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bjpso"]
+content_margin_left = 6.0
+content_margin_top = 6.0
+content_margin_right = 6.0
+content_margin_bottom = 6.0
+bg_color = Color(0.64705884, 0.44705883, 0.3137255, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lfp82"]
+content_margin_left = 6.0
+content_margin_top = 6.0
+content_margin_right = 6.0
+content_margin_bottom = 6.0
+bg_color = Color(0, 0.7411765, 0.74509805, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4mws6"]
+content_margin_left = 6.0
+content_margin_top = 6.0
+content_margin_right = 6.0
+content_margin_bottom = 6.0
+bg_color = Color(0.5058824, 1, 1, 1)
+border_color = Color(0, 0.7411765, 0.74509805, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[node name="settingsPopUp" type="Control" unique_id=1876059533]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bjpso")
+
+[node name="dim" type="ColorRect" parent="." unique_id=1732320856]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5019608)
+
+[node name="centerSettings" type="CenterContainer" parent="." unique_id=1920459093]
+custom_minimum_size = Vector2(1000, 400)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -6.5
+offset_top = -65.5
+offset_right = 6.5
+offset_bottom = 65.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="backgroundPanel" type="PanelContainer" parent="centerSettings" unique_id=833418328]
+custom_minimum_size = Vector2(750, 450)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hay4x")
+
+[node name="content" type="VBoxContainer" parent="centerSettings/backgroundPanel" unique_id=848614186]
+layout_mode = 2
+
+[node name="marginExitButton" type="MarginContainer" parent="centerSettings/backgroundPanel/content" unique_id=163122741]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+
+[node name="exitButton" type="TextureButton" parent="centerSettings/backgroundPanel/content/marginExitButton" unique_id=415878101]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture_normal = ExtResource("1_ai1nm")
+ignore_texture_size = true
+stretch_mode = 6
+
+[node name="settingsVbox" type="VBoxContainer" parent="centerSettings/backgroundPanel/content" unique_id=1641408129]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="settingsText" type="Label" parent="centerSettings/backgroundPanel/content/settingsVbox" unique_id=1534008438]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_bjpso")
+theme_override_font_sizes/font_size = 32
+text = "SETTINGS"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="musicRow" type="HBoxContainer" parent="centerSettings/backgroundPanel/content/settingsVbox" unique_id=1800903147]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="musicText" type="Label" parent="centerSettings/backgroundPanel/content/settingsVbox/musicRow" unique_id=847468847]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_bjpso")
+theme_override_font_sizes/font_size = 24
+text = "MUSIC"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="musicSlider" type="HSlider" parent="centerSettings/backgroundPanel/content/settingsVbox/musicRow" unique_id=1873978005]
+custom_minimum_size = Vector2(350, 50)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/center_grabber = -1
+theme_override_styles/slider = SubResource("StyleBoxFlat_ai1nm")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_yn15q")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_b6exh")
+rounded = true
+ticks_on_borders = true
+ticks_position = 3
+
+[node name="sfxRow" type="HBoxContainer" parent="centerSettings/backgroundPanel/content/settingsVbox" unique_id=1695985534]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="sfxText" type="Label" parent="centerSettings/backgroundPanel/content/settingsVbox/sfxRow" unique_id=1056006067]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_bjpso")
+theme_override_font_sizes/font_size = 24
+text = "SFX"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="sfxSlider" type="HSlider" parent="centerSettings/backgroundPanel/content/settingsVbox/sfxRow" unique_id=674952284]
+custom_minimum_size = Vector2(350, 50)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/center_grabber = -1
+theme_override_styles/slider = SubResource("StyleBoxFlat_bjpso")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_lfp82")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_4mws6")
+rounded = true
+ticks_on_borders = true
+ticks_position = 3
+
+[node name="buttonsRow" type="HBoxContainer" parent="centerSettings/backgroundPanel/content/settingsVbox" unique_id=1198125986]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/separation = 80
+alignment = 1
+
+[node name="languageRow" type="VBoxContainer" parent="centerSettings/backgroundPanel/content/settingsVbox/buttonsRow" unique_id=1291499257]
+layout_mode = 2
+alignment = 1
+
+[node name="languageText" type="Label" parent="centerSettings/backgroundPanel/content/settingsVbox/buttonsRow/languageRow" unique_id=843601194]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_bjpso")
+theme_override_font_sizes/font_size = 24
+text = "LANGUAGE"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="languageButton" type="TextureButton" parent="centerSettings/backgroundPanel/content/settingsVbox/buttonsRow/languageRow" unique_id=1677803899]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture_normal = ExtResource("1_ai1nm")
+stretch_mode = 6
+
+[node name="accessibilityRow" type="VBoxContainer" parent="centerSettings/backgroundPanel/content/settingsVbox/buttonsRow" unique_id=442666997]
+layout_mode = 2
+
+[node name="accessibilityTest" type="Label" parent="centerSettings/backgroundPanel/content/settingsVbox/buttonsRow/accessibilityRow" unique_id=1140398163]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_bjpso")
+theme_override_font_sizes/font_size = 24
+text = "Accessibility"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="accessibilityButton" type="TextureButton" parent="centerSettings/backgroundPanel/content/settingsVbox/buttonsRow/accessibilityRow" unique_id=1810962121]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture_normal = ExtResource("1_ai1nm")
+stretch_mode = 6
+
+[node name="HBoxContainer" type="VBoxContainer" parent="centerSettings/backgroundPanel/content/settingsVbox/buttonsRow" unique_id=1079914945]
+layout_mode = 2
+
+[node name="keybindText" type="Label" parent="centerSettings/backgroundPanel/content/settingsVbox/buttonsRow/HBoxContainer" unique_id=1231050243]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_bjpso")
+theme_override_font_sizes/font_size = 24
+text = "KEYBINDS"
+vertical_alignment = 1
+uppercase = true
+
+[node name="keybindButton" type="TextureButton" parent="centerSettings/backgroundPanel/content/settingsVbox/buttonsRow/HBoxContainer" unique_id=1227658045]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture_normal = ExtResource("1_ai1nm")
+stretch_mode = 6
+
+[connection signal="pressed" from="centerSettings/backgroundPanel/content/marginExitButton/exitButton" to="." method="_on_exit_button_pressed"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dn66sa6v3p8sv"
-path="res://.godot/imported/Brown Wood Border.png-36bbee0644790c511e23496f3886e210.ctex"
+uid="uid://bmd3ys38mbwux"
+path="res://.godot/imported/silverHelpBorder.png-bb797e757315efb7341a12eeaca16363.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/spritesArt/menuArtOutGame/Brown Wood Border.png"
-dest_files=["res://.godot/imported/Brown Wood Border.png-36bbee0644790c511e23496f3886e210.ctex"]
+source_file="res://assets/spritesArt/menuArtOutGame/silverHelpBorder.png"
+dest_files=["res://.godot/imported/silverHelpBorder.png-bb797e757315efb7341a12eeaca16363.ctex"]
 
 [params]
 
