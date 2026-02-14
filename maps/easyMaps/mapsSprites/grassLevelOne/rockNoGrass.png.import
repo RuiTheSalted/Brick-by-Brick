@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c6dojidsjvh0i"
-path="res://.godot/imported/rockNoGrass.png-03621bca3fbc09a3a830b42b863ec5bb.ctex"
+path="res://.godot/imported/rockNoGrass.png-b37d61f5e50b241ee3ee439261fcb458.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/spritesArt/mapsSprites/grassLevel/rockNoGrass.png"
-dest_files=["res://.godot/imported/rockNoGrass.png-03621bca3fbc09a3a830b42b863ec5bb.ctex"]
+source_file="res://maps/easyMaps/mapsSprites/grassLevelOne/rockNoGrass.png"
+dest_files=["res://.godot/imported/rockNoGrass.png-b37d61f5e50b241ee3ee439261fcb458.ctex"]
 
 [params]
 

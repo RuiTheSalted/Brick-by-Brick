@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c0h23gn43txwl"
-path="res://.godot/imported/Grass.png-f07400cf76c9469c685954938fa12ba4.ctex"
+uid="uid://bceiq5ajyhguf"
+path="res://.godot/imported/Tree.png-fd8b7d4ba140ae3ff2219b991fae0e6e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/spritesArt/mapsSprites/grassLevel/Grass.png"
-dest_files=["res://.godot/imported/Grass.png-f07400cf76c9469c685954938fa12ba4.ctex"]
+source_file="res://maps/easyMaps/mapsSprites/grassLevelOne/Tree.png"
+dest_files=["res://.godot/imported/Tree.png-fd8b7d4ba140ae3ff2219b991fae0e6e.ctex"]
 
 [params]
 

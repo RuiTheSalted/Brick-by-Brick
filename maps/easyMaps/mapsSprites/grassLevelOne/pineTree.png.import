@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://sgfauw5lwcku"
-path="res://.godot/imported/fallenLog.png-357bd2c77254994d5c1444f4f21a3b8d.ctex"
+uid="uid://eemue63q7n5x"
+path="res://.godot/imported/pineTree.png-3084ddd82cc4420b35c6068fc80df201.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/spritesArt/mapsSprites/grassLevel/fallenLog.png"
-dest_files=["res://.godot/imported/fallenLog.png-357bd2c77254994d5c1444f4f21a3b8d.ctex"]
+source_file="res://maps/easyMaps/mapsSprites/grassLevelOne/pineTree.png"
+dest_files=["res://.godot/imported/pineTree.png-3084ddd82cc4420b35c6068fc80df201.ctex"]
 
 [params]
 

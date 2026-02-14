@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d1qjtqb0jlut2"
-path="res://.godot/imported/treeTrunck.png-d083c26ef3a47b1d57f8418357ed8a07.ctex"
+uid="uid://diyfiptv2f3pg"
+path="res://.godot/imported/smallRocks.png-63d7e6e5129fa12ae0aec634151f1656.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/spritesArt/mapsSprites/grassLevel/treeTrunck.png"
-dest_files=["res://.godot/imported/treeTrunck.png-d083c26ef3a47b1d57f8418357ed8a07.ctex"]
+source_file="res://maps/easyMaps/mapsSprites/grassLevelOne/smallRocks.png"
+dest_files=["res://.godot/imported/smallRocks.png-63d7e6e5129fa12ae0aec634151f1656.ctex"]
 
 [params]
 

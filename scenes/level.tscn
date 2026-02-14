@@ -2,15 +2,15 @@
 
 [ext_resource type="PackedScene" uid="uid://d1qf34fyylxqi" path="res://scenes/paddle.tscn" id="1_2q6dc"]
 [ext_resource type="PackedScene" uid="uid://dtlu1ys4mvur7" path="res://scenes/ball_spawner.tscn" id="1_mx8sn"]
-[ext_resource type="Texture2D" uid="uid://cjm36a8ysgf4b" path="res://assets/spritesArt/mapsSprites/grassLevel/GrassBackground.png" id="8_bg"]
-[ext_resource type="Texture2D" uid="uid://eemue63q7n5x" path="res://assets/spritesArt/mapsSprites/grassLevel/pineTree.png" id="9_tree"]
 [ext_resource type="PackedScene" uid="uid://dj35vrqtmjv7k" path="res://scenes/ball.tscn" id="2_w7c3h"]
-[ext_resource type="Texture2D" uid="uid://c0h23gn43txwl" path="res://assets/spritesArt/mapsSprites/grassLevel/Grass.png" id="3_2r41h"]
+[ext_resource type="Texture2D" uid="uid://c0h23gn43txwl" path="res://maps/easyMaps/mapsSprites/grassLevelOne/Grass.png" id="3_2r41h"]
 [ext_resource type="PackedScene" uid="uid://bi4747sfo5gjc" path="res://scenes/buttons.tscn" id="3_w8frs"]
-[ext_resource type="Texture2D" uid="uid://dvqguhd5is4im" path="res://assets/spritesArt/mapsSprites/grassLevel/rockWithGrass.png" id="4_olg7q"]
-[ext_resource type="Texture2D" uid="uid://diyfiptv2f3pg" path="res://assets/spritesArt/mapsSprites/grassLevel/smallRocks.png" id="5_t1rx8"]
-[ext_resource type="Texture2D" uid="uid://sgfauw5lwcku" path="res://assets/spritesArt/mapsSprites/grassLevel/fallenLog.png" id="6_8iemx"]
-[ext_resource type="Texture2D" uid="uid://d1qjtqb0jlut2" path="res://assets/spritesArt/mapsSprites/grassLevel/treeTrunck.png" id="7_64w2a"]
+[ext_resource type="Texture2D" uid="uid://dvqguhd5is4im" path="res://maps/easyMaps/mapsSprites/grassLevelOne/rockWithGrass.png" id="4_olg7q"]
+[ext_resource type="Texture2D" uid="uid://diyfiptv2f3pg" path="res://maps/easyMaps/mapsSprites/grassLevelOne/smallRocks.png" id="5_t1rx8"]
+[ext_resource type="Texture2D" uid="uid://sgfauw5lwcku" path="res://maps/easyMaps/mapsSprites/grassLevelOne/fallenLog.png" id="6_8iemx"]
+[ext_resource type="Texture2D" uid="uid://d1qjtqb0jlut2" path="res://maps/easyMaps/mapsSprites/grassLevelOne/treeTrunck.png" id="7_64w2a"]
+[ext_resource type="Texture2D" uid="uid://cjm36a8ysgf4b" path="res://maps/easyMaps/mapsSprites/grassLevelOne/GrassBackground.png" id="8_bg"]
+[ext_resource type="Texture2D" uid="uid://eemue63q7n5x" path="res://maps/easyMaps/mapsSprites/grassLevelOne/pineTree.png" id="9_tree"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w7c3h"]
 size = Vector2(20, 733)
@@ -25,9 +25,6 @@ size = Vector2(1300, 20)
 size = Vector2(1280.5, 22)
 
 [node name="Level" type="Node2D" unique_id=1648176846]
-
-[node name="BallSpawner" parent="." unique_id=478855960 instance=ExtResource("1_mx8sn")]
-position = Vector2(430, 201)
 
 [node name="Background" type="Sprite2D" parent="." unique_id=394307397]
 position = Vector2(642, 350)
@@ -226,3 +223,6 @@ shape = SubResource("RectangleShape2D_ppgk2")
 [node name="Buttons" parent="." unique_id=608108710 instance=ExtResource("3_w8frs")]
 top_level = true
 position = Vector2(266, 193)
+
+[node name="BallSpawner" parent="." unique_id=478855960 instance=ExtResource("1_mx8sn")]
+position = Vector2(430, 201)
