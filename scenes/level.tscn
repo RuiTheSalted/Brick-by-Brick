@@ -1,12 +1,9 @@
 [gd_scene format=3 uid="uid://hppu1j2rywla"]
 
 [ext_resource type="PackedScene" uid="uid://d1qf34fyylxqi" path="res://scenes/paddle.tscn" id="1_2q6dc"]
-<<<<<<< HEAD
 [ext_resource type="PackedScene" uid="uid://dtlu1ys4mvur7" path="res://scenes/ball_spawner.tscn" id="1_mx8sn"]
-=======
-[ext_resource type="Texture2D" uid="uid://cjm36a8ysgf4b" path="res://assets/spritesArt/mapsSprites/grassLevel/GrassBackground.png" id="1_mx8sn"]
-[ext_resource type="Texture2D" uid="uid://eemue63q7n5x" path="res://assets/spritesArt/mapsSprites/grassLevel/pineTree.png" id="2_ppgk2"]
->>>>>>> c85e119 (Created map1 level 1. Created Seperate sprites for tree, grass, rocks, and trunks/log for fallen tree. Added all the sprites under assets>spritesArt>mapsSprites>grassLevel.)
+[ext_resource type="Texture2D" uid="uid://cjm36a8ysgf4b" path="res://assets/spritesArt/mapsSprites/grassLevel/GrassBackground.png" id="8_bg"]
+[ext_resource type="Texture2D" uid="uid://eemue63q7n5x" path="res://assets/spritesArt/mapsSprites/grassLevel/pineTree.png" id="9_tree"]
 [ext_resource type="PackedScene" uid="uid://dj35vrqtmjv7k" path="res://scenes/ball.tscn" id="2_w7c3h"]
 [ext_resource type="Texture2D" uid="uid://c0h23gn43txwl" path="res://assets/spritesArt/mapsSprites/grassLevel/Grass.png" id="3_2r41h"]
 [ext_resource type="PackedScene" uid="uid://bi4747sfo5gjc" path="res://scenes/buttons.tscn" id="3_w8frs"]
@@ -29,18 +26,17 @@ size = Vector2(1280.5, 22)
 
 [node name="Level" type="Node2D" unique_id=1648176846]
 
-<<<<<<< HEAD
 [node name="BallSpawner" parent="." unique_id=478855960 instance=ExtResource("1_mx8sn")]
 position = Vector2(430, 201)
-=======
+
 [node name="Background" type="Sprite2D" parent="." unique_id=394307397]
 position = Vector2(642, 350)
-texture = ExtResource("1_mx8sn")
+texture = ExtResource("8_bg")
 
 [node name="Tree1" type="Sprite2D" parent="Background" unique_id=1711328576]
 position = Vector2(-508, -224)
 scale = Vector2(2.671875, 2.7395833)
-texture = ExtResource("2_ppgk2")
+texture = ExtResource("9_tree")
 
 [node name="Grass3" type="Sprite2D" parent="Background/Tree1" unique_id=1318887373]
 position = Vector2(-18.713474, 27.741444)
@@ -60,7 +56,7 @@ texture = ExtResource("3_2r41h")
 [node name="Tree2" type="Sprite2D" parent="Background" unique_id=251439259]
 position = Vector2(572, -210)
 scale = Vector2(2.671875, 2.7395833)
-texture = ExtResource("2_ppgk2")
+texture = ExtResource("9_tree")
 
 [node name="Grass7" type="Sprite2D" parent="Background/Tree2" unique_id=362843819]
 position = Vector2(-16.842102, 40.15209)
@@ -75,7 +71,7 @@ texture = ExtResource("3_2r41h")
 [node name="Tree3" type="Sprite2D" parent="Background" unique_id=466908731]
 position = Vector2(364, 127)
 scale = Vector2(2.671875, 2.7395833)
-texture = ExtResource("2_ppgk2")
+texture = ExtResource("9_tree")
 
 [node name="Grass9" type="Sprite2D" parent="Background/Tree3" unique_id=2065707830]
 position = Vector2(-17.964935, 26.646393)
@@ -90,7 +86,7 @@ texture = ExtResource("3_2r41h")
 [node name="Tree4" type="Sprite2D" parent="Background" unique_id=808867556]
 position = Vector2(-8, -329)
 scale = Vector2(2.671875, 2.7395833)
-texture = ExtResource("2_ppgk2")
+texture = ExtResource("9_tree")
 
 [node name="Grass13" type="Sprite2D" parent="Background/Tree4" unique_id=447540417]
 position = Vector2(-13.099442, 43.437263)
@@ -105,7 +101,7 @@ texture = ExtResource("3_2r41h")
 [node name="Tree5" type="Sprite2D" parent="Background" unique_id=3842654]
 position = Vector2(-552, 198)
 scale = Vector2(2.671875, 2.7395833)
-texture = ExtResource("2_ppgk2")
+texture = ExtResource("9_tree")
 
 [node name="Grass4" type="Sprite2D" parent="Background/Tree5" unique_id=355212034]
 position = Vector2(-20.959087, 18.981003)
@@ -196,7 +192,6 @@ texture = ExtResource("4_olg7q")
 position = Vector2(28.970402, -33.066673)
 scale = Vector2(0.97633135, 0.9500003)
 texture = ExtResource("3_2r41h")
->>>>>>> c85e119 (Created map1 level 1. Created Seperate sprites for tree, grass, rocks, and trunks/log for fallen tree. Added all the sprites under assets>spritesArt>mapsSprites>grassLevel.)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1827269418]
 position = Vector2(639, 360)
@@ -229,9 +224,5 @@ position = Vector2(641, 732)
 shape = SubResource("RectangleShape2D_ppgk2")
 
 [node name="Buttons" parent="." unique_id=608108710 instance=ExtResource("3_w8frs")]
-<<<<<<< HEAD
 top_level = true
 position = Vector2(266, 193)
-=======
-position = Vector2(28, 28)
->>>>>>> c85e119 (Created map1 level 1. Created Seperate sprites for tree, grass, rocks, and trunks/log for fallen tree. Added all the sprites under assets>spritesArt>mapsSprites>grassLevel.)
