@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://d1qjtqb0jlut2" path="res://maps/easyMaps/mapsSprites/grassLevelOne/treeTrunck.png" id="7_64w2a"]
 [ext_resource type="Texture2D" uid="uid://cjm36a8ysgf4b" path="res://maps/easyMaps/mapsSprites/grassLevelOne/GrassBackground.png" id="8_bg"]
 [ext_resource type="Texture2D" uid="uid://eemue63q7n5x" path="res://maps/easyMaps/mapsSprites/grassLevelOne/pineTree.png" id="9_tree"]
+[ext_resource type="PackedScene" uid="uid://c45kb77sh2kav" path="res://scenes/bricks.tscn" id="10_ppgk2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w7c3h"]
 size = Vector2(20, 733)
@@ -226,3 +227,5 @@ position = Vector2(266, 193)
 
 [node name="BallSpawner" parent="." unique_id=478855960 instance=ExtResource("1_mx8sn")]
 position = Vector2(430, 201)
+
+[node name="Bricks" parent="." unique_id=1802336756 instance=ExtResource("10_ppgk2")]
