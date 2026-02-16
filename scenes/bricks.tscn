@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://c45kb77sh2kav"]
+
+[ext_resource type="Script" uid="uid://djjsaced8a0h6" path="res://scripts/bricks.gd" id="1_gysv1"]
+[ext_resource type="Texture2D" uid="uid://c8eld82ebpckk" path="res://assets/spritesArt/menuArtOutGame/Green Brick.png" id="2_wuing"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a4aoa"]
+size = Vector2(163.84619, 49.230774)
+
+[node name="Bricks" type="StaticBody2D" unique_id=1464704197]
+position = Vector2(594, 446)
+scale = Vector2(1.3, 1.3)
+script = ExtResource("1_gysv1")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1006821200]
+texture = ExtResource("2_wuing")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1497377939]
+position = Vector2(8.076904, -26.923126)
+shape = SubResource("RectangleShape2D_a4aoa")
