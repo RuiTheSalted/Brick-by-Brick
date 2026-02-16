@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8eld82ebpckk"
-path="res://.godot/imported/Green Brick.png-d87cfec5a2c790f6d69fe3b2e46b1b12.ctex"
+uid="uid://t56afts0xixm"
+path="res://.godot/imported/Yellow Brick.png-b3c464d9713524601698f8f30fee64b2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/spritesArt/menuArtOutGame/Green Brick.png"
-dest_files=["res://.godot/imported/Green Brick.png-d87cfec5a2c790f6d69fe3b2e46b1b12.ctex"]
+source_file="res://assets/spritesArt/bricks/Yellow Brick.png"
+dest_files=["res://.godot/imported/Yellow Brick.png-b3c464d9713524601698f8f30fee64b2.ctex"]
 
 [params]
 

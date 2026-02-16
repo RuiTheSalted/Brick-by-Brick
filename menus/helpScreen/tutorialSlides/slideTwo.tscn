@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://w6gl583pocp6"]
+
+[ext_resource type="Texture2D" uid="uid://dfitjubyf7dx2" path="res://assets/spritesArt/bricks/Red Block-1.png" id="1_h08e4"]
+[ext_resource type="FontFile" uid="uid://c3eqo4rgsja0k" path="res://assets/fonts/Stepalange-x3BLm.otf" id="2_bpq7o"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fl1jv"]
+bg_color = Color(6.3051284e-06, 0.710942, 0.46769094, 1)
+
+[node name="SlideTwo" type="Panel" unique_id=2093896998]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fl1jv")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=787732359]
+custom_minimum_size = Vector2(128, 80)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.5
+offset_top = 60.0
+offset_right = 12.5
+offset_bottom = 110.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_h08e4")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=513305392]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=933769059]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="title" type="Label" parent="MarginContainer/VBoxContainer" unique_id=947429605]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_bpq7o")
+theme_override_font_sizes/font_size = 48
+text = "HOW TO MOVE"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="body" type="Label" parent="MarginContainer/VBoxContainer" unique_id=2100337994]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_bpq7o")
+theme_override_font_sizes/font_size = 24
+text = "WASD BLAH BLAH"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+uppercase = true

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cgqufnvm2dmnb"
-path="res://.godot/imported/Red Brick.png-0d6493059727930db5f29fbfb3dd0cce.ctex"
+uid="uid://c3a8bvcj2v3q2"
+path="res://.godot/imported/Purple Block.png-b00a9a1dda61501e5c047d2e065b2e2d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/spritesArt/menuArtOutGame/Red Brick.png"
-dest_files=["res://.godot/imported/Red Brick.png-0d6493059727930db5f29fbfb3dd0cce.ctex"]
+source_file="res://assets/spritesArt/bricks/Purple Block.png"
+dest_files=["res://.godot/imported/Purple Block.png-b00a9a1dda61501e5c047d2e065b2e2d.ctex"]
 
 [params]
 

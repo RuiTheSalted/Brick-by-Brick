@@ -1,5 +1,20 @@
 [gd_scene format=3 uid="uid://bh51vq1cwyk8a"]
 
+[ext_resource type="Script" uid="uid://dfjbay576w8gg" path="res://menus/helpScreen/helpScreenScript.gd" id="1_klxlx"]
+[ext_resource type="Texture2D" uid="uid://bp54ent36gktw" path="res://assets/spritesArt/bricks/Yellow Block-1.png" id="1_uy3kg"]
+[ext_resource type="Texture2D" uid="uid://dfitjubyf7dx2" path="res://assets/spritesArt/bricks/Red Block-1.png" id="2_ihl41"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uy3kg"]
+bg_color = Color(1, 0.8862745, 0.69803923, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ihl41"]
+bg_color = Color(0.84594125, 0.0004528141, 0.8222102, 1)
+
 [node name="HelpScreen" type="Control" unique_id=1995486667]
 layout_mode = 3
 anchors_preset = 15
@@ -7,3 +22,99 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_klxlx")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=211474638]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5019608)
+
+[node name="CenterContainer" type="CenterContainer" parent="ColorRect" unique_id=1541003387]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/CenterContainer" unique_id=189168471]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="leftArrow" type="TextureButton" parent="ColorRect/CenterContainer/HBoxContainer" unique_id=1674173933]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("1_uy3kg")
+ignore_texture_size = true
+stretch_mode = 6
+
+[node name="slideViewport" type="Control" parent="ColorRect/CenterContainer/HBoxContainer" unique_id=1743103934]
+clip_contents = true
+custom_minimum_size = Vector2(700, 380)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="frame" type="Panel" parent="ColorRect/CenterContainer/HBoxContainer/slideViewport" unique_id=2047122495]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_uy3kg")
+
+[node name="slidinRect" type="Control" parent="ColorRect/CenterContainer/HBoxContainer/slideViewport/frame" unique_id=2094884574]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="slide" type="Panel" parent="ColorRect/CenterContainer/HBoxContainer/slideViewport/frame/slidinRect" unique_id=334866231]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ihl41")
+
+[node name="slideContent" type="Control" parent="ColorRect/CenterContainer/HBoxContainer/slideViewport/frame/slidinRect/slide" unique_id=1430200299]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="pageLabel" type="Label" parent="ColorRect/CenterContainer/HBoxContainer/slideViewport/frame" unique_id=835363676]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+text = "1/4"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="rightArrow" type="TextureButton" parent="ColorRect/CenterContainer/HBoxContainer" unique_id=1287555871]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("2_ihl41")
+ignore_texture_size = true
+stretch_mode = 6
+
+[connection signal="pressed" from="ColorRect/CenterContainer/HBoxContainer/leftArrow" to="." method="_on_left_arrow_pressed"]
+[connection signal="pressed" from="ColorRect/CenterContainer/HBoxContainer/rightArrow" to="." method="_on_right_arrow_pressed"]

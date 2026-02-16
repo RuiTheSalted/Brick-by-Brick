@@ -5,7 +5,7 @@
 [ext_resource type="FontFile" uid="uid://c3eqo4rgsja0k" path="res://assets/fonts/Stepalange-x3BLm.otf" id="2_bjpso"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hay4x"]
-bg_color = Color(1, 0.88581574, 0.6971606, 1)
+bg_color = Color(1, 0.8862745, 0.69803923, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ai1nm"]
 content_margin_left = 6.0

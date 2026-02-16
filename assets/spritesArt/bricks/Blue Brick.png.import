@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://yg8w486d28ec"
-path="res://.godot/imported/Yellow Block.png-7201edbaea8762f298385f128cda5a6a.ctex"
+uid="uid://0f8m6vc7xgyj"
+path="res://.godot/imported/Blue Brick.png-8d8a645cb6457e3c40e590824d954251.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/spritesArt/menuArtOutGame/Yellow Block.png"
-dest_files=["res://.godot/imported/Yellow Block.png-7201edbaea8762f298385f128cda5a6a.ctex"]
+source_file="res://assets/spritesArt/bricks/Blue Brick.png"
+dest_files=["res://.godot/imported/Blue Brick.png-8d8a645cb6457e3c40e590824d954251.ctex"]
 
 [params]
 
