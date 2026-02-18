@@ -20,6 +20,7 @@ var ball_scales = [
 @onready var sprite = $Sprite2D
 
 func _ready() -> void:
+	add_to_group("ball")
 	velocity = Vector2(speed * -1, speed)
 	
 func _physics_process(delta: float) -> void:
@@ -29,7 +30,10 @@ func _physics_process(delta: float) -> void:
 		
 		if collision:
 			velocity = velocity.bounce(collision.get_normal())
-			
+			var collider = collision.get_collider()
+			if collider.is_in_group("bricks"):
+				collider.hit()
+				
 		if (velocity.y > 0 and velocity.y < 100):
 			velocity.y = -200
 			
