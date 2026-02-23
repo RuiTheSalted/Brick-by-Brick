@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dfjbay576w8gg" path="res://menus/helpScreen/helpScreenScript.gd" id="1_klxlx"]
 [ext_resource type="Texture2D" uid="uid://bp54ent36gktw" path="res://assets/spritesArt/bricks/Yellow Block-1.png" id="1_uy3kg"]
 [ext_resource type="Texture2D" uid="uid://dfitjubyf7dx2" path="res://assets/spritesArt/bricks/Red Block-1.png" id="2_ihl41"]
-[ext_resource type="Texture2D" uid="uid://bb3fluwqgpvxf" path="res://assets/spritesArt/bricks/brick.png" id="3_klxlx"]
+[ext_resource type="Texture2D" uid="uid://bb3fluwqgpvxf" path="res://assets/spritesArt/bricks/placeholderBrick.png" id="3_klxlx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uy3kg"]
 bg_color = Color(1, 0.8862745, 0.69803923, 1)

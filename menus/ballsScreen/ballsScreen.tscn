@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cjm36a8ysgf4b" path="res://maps/easyMaps/mapsSprites/grassLevelOne/GrassBackground.png" id="1_fjtep"]
 [ext_resource type="Script" uid="uid://4fnm3rai2pf3" path="res://menus/ballsScreen/balls_screen.gd" id="1_nwaby"]
 [ext_resource type="PackedScene" uid="uid://i3x8pvsdri2m" path="res://menus/ballsScreen/balls/ballItem.tscn" id="2_r3p66"]
-[ext_resource type="Texture2D" uid="uid://bb3fluwqgpvxf" path="res://assets/spritesArt/bricks/brick.png" id="4_4fwmi"]
+[ext_resource type="Texture2D" uid="uid://bb3fluwqgpvxf" path="res://assets/spritesArt/bricks/placeholderBrick.png" id="4_4fwmi"]
 
 [node name="BallsScreen" type="Control" unique_id=136443830]
 layout_mode = 3

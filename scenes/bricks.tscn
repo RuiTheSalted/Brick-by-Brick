@@ -7,12 +7,10 @@
 size = Vector2(163.84622, 49.230804)
 
 [node name="Bricks" type="StaticBody2D" unique_id=1464704197]
-position = Vector2(594, 446)
 scale = Vector2(1.3, 1.3)
 script = ExtResource("1_gysv1")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1006821200]
-position = Vector2(-8.076939, 25.384626)
 scale = Vector2(0.99278855, 0.9423077)
 texture = ExtResource("2_wuing")
 

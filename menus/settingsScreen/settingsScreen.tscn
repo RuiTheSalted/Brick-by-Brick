@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c0stkw1ilssuy"]
 
-[ext_resource type="Texture2D" uid="uid://bb3fluwqgpvxf" path="res://assets/spritesArt/bricks/brick.png" id="1_ai1nm"]
+[ext_resource type="Texture2D" uid="uid://bb3fluwqgpvxf" path="res://assets/spritesArt/bricks/placeholderBrick.png" id="1_ai1nm"]
 [ext_resource type="Script" uid="uid://dipaoaenjmvup" path="res://menus/settingsScreen/settingsScreenScript.gd" id="1_bjpso"]
 [ext_resource type="FontFile" uid="uid://c3eqo4rgsja0k" path="res://assets/fonts/Stepalange-x3BLm.otf" id="2_bjpso"]
 

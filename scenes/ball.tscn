@@ -15,6 +15,5 @@ texture = ExtResource("2_cxlvu")
 offset = Vector2(10, 10)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1073249583]
-rotation = -6.2831855
 scale = Vector2(0.1, 0.1)
 shape = SubResource("CircleShape2D_cxlvu")

@@ -17,14 +17,14 @@ extends Control
 # REPLACE WITH "/map/mapNumber.png" & BOOLEAN NOT T/F. 
 # MAPS GO HERE NOT IN NODE TREE, ADD THE MAPS HERE.
 var maps := [
-	{"preview": preload("res://assets/spritesArt/bricks/brick.png"), "completed": false},
-	{"preview": preload("res://assets/spritesArt/bricks/brick.png"), "completed": true},
-	{"preview": preload("res://assets/spritesArt/bricks/brick.png"), "completed": false},
-	{"preview": preload("res://assets/spritesArt/bricks/brick.png"), "completed": true},
-	{"preview": preload("res://assets/spritesArt/bricks/brick.png"), "completed": false},
-	{"preview": preload("res://assets/spritesArt/bricks/brick.png"), "completed": true},
-	{"preview": preload("res://assets/spritesArt/bricks/brick.png"), "completed": false},
-	{"preview": preload("res://assets/spritesArt/bricks/brick.png"), "completed": true},
+	{"preview": preload("res://assets/spritesArt/mapPreviewImgs/map1Thumbnail.png"), "completed": false, "scene": "res://scenes/level.tscn"},
+	{"preview": preload("res://assets/spritesArt/bricks/placeholderBrick.png"), "completed": true},
+	{"preview": preload("res://assets/spritesArt/bricks/placeholderBrick.png"), "completed": false},
+	{"preview": preload("res://assets/spritesArt/bricks/placeholderBrick.png"), "completed": true},
+	{"preview": preload("res://assets/spritesArt/bricks/placeholderBrick.png"), "completed": false},
+	{"preview": preload("res://assets/spritesArt/bricks/placeholderBrick.png"), "completed": true},
+	{"preview": preload("res://assets/spritesArt/bricks/placeholderBrick.png"), "completed": false},
+	{"preview": preload("res://assets/spritesArt/bricks/placeholderBrick.png"), "completed": true},
 ]
 
 # SET PAGE AND MAP INDEX
@@ -90,11 +90,25 @@ func _apply_tile(tile: Control, preview: Texture2D, completed: bool) -> void:
 func _on_tile_gui_input(tile_index: int, event: InputEvent) -> void:
 # IF LEFT MOUSE CLICKED
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		selected_map_index = page * 6 + tile_index # GET CLICKED INDEX AND STORE
+		selected_map_index = page * 6 + tile_index
 
-# CHECK MAP EXISTS AND ISNT "coming soon"
-		if selected_map_index < maps.size():
-			print("Selected map:", selected_map_index)
+		# IF ITS "coming soon" STOP HERE
+		if selected_map_index >= maps.size():
+			return
+
+		print("Selected map:", selected_map_index)
+
+		var map_data: Dictionary = maps[selected_map_index]
+
+		# MAKE SURE SCENE PATH EXISTS
+		if not map_data.has("scene") or String(map_data["scene"]).is_empty():
+			print("Map has no scene assigned yet:", selected_map_index)
+			return
+
+		var scene_path: String = map_data["scene"]
+		print("Loading map:", selected_map_index, "->", scene_path)
+
+		get_tree().change_scene_to_file(scene_path)
 
 # WHEN LEFT ARROW CLICKED, GO LEFT
 func _on_left_arrow_pressed() -> void:

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dno8vqgflj0qr"]
 
 [ext_resource type="FontFile" uid="uid://c3eqo4rgsja0k" path="res://assets/fonts/Stepalange-x3BLm.otf" id="1_11rl1"]
-[ext_resource type="Texture2D" uid="uid://bb3fluwqgpvxf" path="res://assets/spritesArt/bricks/brick.png" id="1_bm2se"]
+[ext_resource type="Texture2D" uid="uid://bb3fluwqgpvxf" path="res://assets/spritesArt/bricks/placeholderBrick.png" id="1_bm2se"]
 [ext_resource type="Script" uid="uid://b1vdaegxb0xrc" path="res://menus/achievementsScreen/achievements_screen.gd" id="1_e2uqf"]
 
 [node name="AchievementsScreen" type="Control" unique_id=272239464]

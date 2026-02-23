@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dlo4grrwpad0r"]
 
-[ext_resource type="Texture2D" uid="uid://bb3fluwqgpvxf" path="res://assets/spritesArt/bricks/brick.png" id="1_qdors"]
+[ext_resource type="Texture2D" uid="uid://bb3fluwqgpvxf" path="res://assets/spritesArt/bricks/placeholderBrick.png" id="1_qdors"]
 [ext_resource type="FontFile" uid="uid://c3eqo4rgsja0k" path="res://assets/fonts/Stepalange-x3BLm.otf" id="2_yw43g"]
 
 [node name="brickSetup" type="VBoxContainer" unique_id=1548413846]

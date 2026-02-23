@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b6e47tnrva2v0"]
 
 [ext_resource type="Script" uid="uid://caw05dvpxt2jd" path="res://menus/playScreen/map_selection_screen.gd" id="1_0tbqx"]
-[ext_resource type="Texture2D" uid="uid://bb3fluwqgpvxf" path="res://assets/spritesArt/bricks/brick.png" id="1_p3lh0"]
+[ext_resource type="Texture2D" uid="uid://bb3fluwqgpvxf" path="res://assets/spritesArt/bricks/placeholderBrick.png" id="1_p3lh0"]
 [ext_resource type="Texture2D" uid="uid://bp54ent36gktw" path="res://assets/spritesArt/bricks/Yellow Block-1.png" id="2_ns55j"]
 [ext_resource type="Texture2D" uid="uid://dfitjubyf7dx2" path="res://assets/spritesArt/bricks/Red Block-1.png" id="3_0tbqx"]
 [ext_resource type="PackedScene" uid="uid://buw7cly7xpya" path="res://menus/playScreen/mapTile.tscn" id="4_0ao2u"]

@@ -21,6 +21,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_spubr")
 
 [node name="mapImage" type="TextureRect" parent="card" unique_id=737756433]
@@ -30,6 +31,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 texture = ExtResource("1_pti1o")
 expand_mode = 1
 stretch_mode = 6
@@ -49,17 +51,20 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 texture = ExtResource("2_kwk6h")
 expand_mode = 1
 stretch_mode = 5
 
 [node name="comingSoonContainer" type="Control" parent="card" unique_id=85213970]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="comingSoon" type="TextureRect" parent="card/comingSoonContainer" unique_id=595262332]
 layout_mode = 1
@@ -68,6 +73,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 texture = ExtResource("3_2cu4q")
 expand_mode = 1
 stretch_mode = 6
