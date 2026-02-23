@@ -1,5 +1,9 @@
 [gd_scene format=3 uid="uid://dno8vqgflj0qr"]
 
+[ext_resource type="FontFile" uid="uid://c3eqo4rgsja0k" path="res://assets/fonts/Stepalange-x3BLm.otf" id="1_11rl1"]
+[ext_resource type="Texture2D" uid="uid://bb3fluwqgpvxf" path="res://assets/spritesArt/bricks/brick.png" id="1_bm2se"]
+[ext_resource type="Script" uid="uid://b1vdaegxb0xrc" path="res://menus/achievementsScreen/achievements_screen.gd" id="1_e2uqf"]
+
 [node name="AchievementsScreen" type="Control" unique_id=272239464]
 layout_mode = 3
 anchors_preset = 15
@@ -7,3 +11,77 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_e2uqf")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1288193189]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.13788635, 0.17606035, 0.31807426, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect" unique_id=164545066]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 60
+theme_override_constants/margin_bottom = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/MarginContainer" unique_id=2117607668]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="exitButton" type="TextureButton" parent="ColorRect/MarginContainer/VBoxContainer" unique_id=2075371978]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture_normal = ExtResource("1_bm2se")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer" unique_id=1921683070]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="leftSpacer" type="Control" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1396662258]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1613549982]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_11rl1")
+theme_override_font_sizes/font_size = 32
+text = "ACHIEVEMENTS"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="rightSpacer" type="Control" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer" unique_id=149430153]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ColorRect/MarginContainer/VBoxContainer" unique_id=533118284]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="ColorRect/MarginContainer/VBoxContainer/ScrollContainer" unique_id=841706512]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="ColorRect/MarginContainer/VBoxContainer/ScrollContainer/CenterContainer" unique_id=390705115]
+layout_mode = 2
+theme_override_constants/h_separation = 140
+theme_override_constants/v_separation = 120
+columns = 4
+
+[connection signal="pressed" from="ColorRect/MarginContainer/VBoxContainer/exitButton" to="." method="_on_exit_button_pressed"]

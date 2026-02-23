@@ -1,0 +1,111 @@
+extends Control
+
+# VARIABLES FOR ARROWS
+@onready var left_arrow: TextureButton = $background/margin/main/mapArea/leftArrow
+@onready var right_arrow: TextureButton = $background/margin/main/mapArea/rightArrow
+
+# FORMATS 6 MAPS PER SCREEN (dont update this)
+@onready var tiles: Array[Control] = [
+	$background/margin/main/mapArea/mapGrid/map1,
+	$background/margin/main/mapArea/mapGrid/map2,
+	$background/margin/main/mapArea/mapGrid/map3,
+	$background/margin/main/mapArea/mapGrid/map4,
+	$background/margin/main/mapArea/mapGrid/map5,
+	$background/margin/main/mapArea/mapGrid/map6,
+]
+
+# REPLACE WITH "/map/mapNumber.png" & BOOLEAN NOT T/F. 
+# MAPS GO HERE NOT IN NODE TREE, ADD THE MAPS HERE.
+var maps := [
+	{"preview": preload("res://assets/spritesArt/bricks/brick.png"), "completed": false},
+	{"preview": preload("res://assets/spritesArt/bricks/brick.png"), "completed": true},
+	{"preview": preload("res://assets/spritesArt/bricks/brick.png"), "completed": false},
+	{"preview": preload("res://assets/spritesArt/bricks/brick.png"), "completed": true},
+	{"preview": preload("res://assets/spritesArt/bricks/brick.png"), "completed": false},
+	{"preview": preload("res://assets/spritesArt/bricks/brick.png"), "completed": true},
+	{"preview": preload("res://assets/spritesArt/bricks/brick.png"), "completed": false},
+	{"preview": preload("res://assets/spritesArt/bricks/brick.png"), "completed": true},
+]
+
+# SET PAGE AND MAP INDEX
+var page := 0 # WHICH GROUP OF 6
+var selected_map_index := 0 # STORES CLICKED MAP
+
+# RUN UPON LOADING
+func _ready() -> void:
+	# MAKE MAPS CLICKABLE (requires Mouse Filter = Stop on map1..mapN)
+	for i in range(tiles.size()):
+		tiles[i].gui_input.connect(func(event): _on_tile_gui_input(i, event))
+	_refresh_page()
+
+# SEES HOW MANY PAGES WE HAVE
+func _wrap_page(new_page: int) -> int:
+	var max_page := int(ceil(float(maps.size()) / 6.0)) - 1
+# IF THERE ARE NO MAPS, HANDLE THAT HERE
+	if max_page < 0:
+		return 0
+# IF LEFT FROM START, OR RIGHT FROM END.
+	return (new_page + (max_page + 1)) % (max_page + 1)
+
+# REFRESH THE CURRENT PAGE
+func _refresh_page() -> void:
+	var start := page * 6 # 0*6 = 0, 1*6 = 6, etc...
+
+# FOR EACH MAP DO THIS
+	for i in range(6):
+		var map_i := start + i # INDEX IN MAPS ARRAY
+		var tile := tiles[i] # THE UI TILE SLOT
+
+# IF MAP EXISTS FOR THIS SLOT, ADD PREVIEW IMG AND MEDAL
+		if map_i < maps.size():
+			tile.visible = true
+			_apply_tile(tile, maps[map_i]["preview"], maps[map_i]["completed"])
+# IF MAP DOESNT EXIST, SHOW TILE BUT WITH "coming soon".
+		else:
+			tile.visible = true
+			_apply_tile_empty(tile)
+
+# APPLY STUFF TO EMPTY MAPS
+func _apply_tile_empty(tile: Control) -> void:
+	var img: TextureRect = tile.get_node("card/mapImage") # MAP IMG
+	var medal: TextureRect = tile.get_node("card/completionMedal") # MEDAL
+	var soon: Control = tile.get_node("card/comingSoonContainer") # COMING SOON IMG
+
+	img.texture = null # NO MAP IMG
+	medal.visible = false # NO MEDAL
+	soon.visible = true # YES COMING SOON
+
+#APPLY STUFF TO EXISTING MAPS
+func _apply_tile(tile: Control, preview: Texture2D, completed: bool) -> void:
+	var img: TextureRect = tile.get_node("card/mapImage") # MAP IMG
+	var medal: TextureRect = tile.get_node("card/completionMedal") # MEDAL
+	var soon: Control = tile.get_node("card/comingSoonContainer") # COMING SOON IMG
+	
+
+	img.texture = preview # YES MAP IMG
+	medal.visible = completed # YES MEDAL (will be a func eventually)
+	soon.visible = false # NO COMING SOON (already exists)
+
+# HANDLE CLICKING ON IMG, later we'll implement entering maps
+func _on_tile_gui_input(tile_index: int, event: InputEvent) -> void:
+# IF LEFT MOUSE CLICKED
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		selected_map_index = page * 6 + tile_index # GET CLICKED INDEX AND STORE
+
+# CHECK MAP EXISTS AND ISNT "coming soon"
+		if selected_map_index < maps.size():
+			print("Selected map:", selected_map_index)
+
+# WHEN LEFT ARROW CLICKED, GO LEFT
+func _on_left_arrow_pressed() -> void:
+	page = _wrap_page(page - 1)
+	_refresh_page()
+
+# WHEN RIGHT ARROW CLICKED, GO RIGHT
+func _on_right_arrow_pressed() -> void:
+	page = _wrap_page(page + 1)
+	_refresh_page()
+
+# WHEN EXIT CLICKED, GO TO TITLE SCREEN
+func _on_exit_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://menus/titleScreen/mainScreen.tscn")

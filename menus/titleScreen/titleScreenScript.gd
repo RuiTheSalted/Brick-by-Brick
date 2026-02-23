@@ -3,24 +3,28 @@ extends Control
 #SCREENS VARIABLES
 @onready var exitScreen = $exitConfirm
 @onready var settingsScreen = $settingsPopUp
+@onready var helpScreen = $HelpScreen
 
-#BUTTON VARIABLES
-@onready var yesButton = $exitConfirm/center/Panel/content/buttons/yesButton
-@onready var noButton = $exitConfirm/center/Panel/content/buttons/noButton
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-
+# SHOW EXIT SCREEN
 func _on_button_exit_pressed() -> void:
 	exitScreen.show()
 
-
+# SHOW SETTINGS
 func _on_button_settings_pressed() -> void:
 	settingsScreen.show()
+
+# SHOW HELP SCREEN
+func _on_button_help_pressed() -> void:
+	helpScreen.show()
+
+# SWITCH TO ACHIEVEMENTS SCREEN
+func _on_button_achievements_pressed() -> void:
+	get_tree().change_scene_to_file("res://menus/achievementsScreen/achievementsScreen.tscn")
+
+# SWITCH TO BALLS SHOWCASE SCREEN
+func _on_balls_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://menus/ballsScreen/ballsScreen.tscn")
+
+# SWITCH TO MAP SELECTION SCREEN
+func _on_play_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://menus/playScreen/mapSelectionScreen.tscn")

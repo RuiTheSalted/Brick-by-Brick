@@ -6,7 +6,7 @@ extends Control
 @onready var slideContent = $ColorRect/CenterContainer/HBoxContainer/slideViewport/frame/slidinRect/slide/slideContent
 @onready var slideNumber = $ColorRect/CenterContainer/HBoxContainer/slideViewport/frame/pageLabel
 
-# THIS ARRAY WILL HOLD ALL THE SLIDES, CURRENTLY JUST TEXT
+# THIS ARRAY WILL HOLD ALL THE SLIDES, CURRENTLY JUST PLACEHOLDERS
 var slides = [
 	preload("res://menus/helpScreen/tutorialSlides/slideOne.tscn"),
 	preload("res://menus/helpScreen/tutorialSlides/slideTwo.tscn"),
@@ -23,6 +23,10 @@ var animating := false
 # INITIALIZE FIRST RECTANGE (SLIDE)
 func _ready():
 	updateSlide()
+
+# HIDE HELP SCREEN AND RETURN TO TITLE
+func _on_exit_button_pressed() -> void:
+	hide()
 
 # LEFT ARROW
 func _on_left_arrow_pressed() -> void:

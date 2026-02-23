@@ -1,5 +1,53 @@
 [gd_scene format=3 uid="uid://cssvucwpsy2c8"]
 
+[ext_resource type="Texture2D" uid="uid://cjm36a8ysgf4b" path="res://maps/easyMaps/mapsSprites/grassLevelOne/GrassBackground.png" id="1_fjtep"]
+[ext_resource type="Script" uid="uid://4fnm3rai2pf3" path="res://menus/ballsScreen/balls_screen.gd" id="1_nwaby"]
+[ext_resource type="PackedScene" uid="uid://i3x8pvsdri2m" path="res://menus/ballsScreen/balls/ballItem.tscn" id="2_r3p66"]
+[ext_resource type="Texture2D" uid="uid://bb3fluwqgpvxf" path="res://assets/spritesArt/bricks/brick.png" id="4_4fwmi"]
+
 [node name="BallsScreen" type="Control" unique_id=136443830]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nwaby")
+ball_item_scene = ExtResource("2_r3p66")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=795851733]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_fjtep")
+expand_mode = 1
+
+[node name="CarouselRoot" type="Control" parent="." unique_id=231056555]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="exitButtonSpacing" type="MarginContainer" parent="." unique_id=354460915]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="exitButton" type="TextureButton" parent="exitButtonSpacing" unique_id=470539955]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture_normal = ExtResource("4_4fwmi")
+ignore_texture_size = true
+stretch_mode = 6
+
+[connection signal="pressed" from="exitButtonSpacing/exitButton" to="." method="_on_exit_button_pressed"]

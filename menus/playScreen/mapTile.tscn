@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://buw7cly7xpya"]
+
+[ext_resource type="Texture2D" uid="uid://kcyly5da5b7e" path="res://assets/spritesArt/menuArtOutGame/placeholderBackground.png" id="1_pti1o"]
+[ext_resource type="Texture2D" uid="uid://cq0itf1mbefey" path="res://icon.svg" id="2_kwk6h"]
+[ext_resource type="Texture2D" uid="uid://cbx5i4dry0oew" path="res://assets/spritesArt/bricks/comingSoonMap1.png" id="3_2cu4q"]
+[ext_resource type="FontFile" uid="uid://c3eqo4rgsja0k" path="res://assets/fonts/Stepalange-x3BLm.otf" id="4_h7xrj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_spubr"]
+bg_color = Color(0.9205568, 0.561973, 0.36859608, 1)
+
+[node name="MapTile" type="Control" unique_id=542498910]
+custom_minimum_size = Vector2(320, 190)
+layout_mode = 3
+anchors_preset = 0
+
+[node name="card" type="Panel" parent="." unique_id=6500163]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_spubr")
+
+[node name="mapImage" type="TextureRect" parent="card" unique_id=737756433]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_pti1o")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="completionMedal" type="TextureRect" parent="card" unique_id=1752129774]
+visible = false
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_kwk6h")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="comingSoonContainer" type="Control" parent="card" unique_id=85213970]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="comingSoon" type="TextureRect" parent="card/comingSoonContainer" unique_id=595262332]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_2cu4q")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="comingSoonText" type="Label" parent="card/comingSoonContainer" unique_id=135506506]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -82.0
+offset_top = -15.5
+offset_right = 82.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_h7xrj")
+theme_override_font_sizes/font_size = 32
+text = "COMING SOON"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
