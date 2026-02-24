@@ -4,19 +4,13 @@ var hits = 0
 var health = 10 # Total Brick health
 
 # Textures for bricks health after each hit
+# Color progression per hit: healthy -> damaged -> critical health
 var brick_textures = [
 	"res://assets/spritesArt/bricks/Green Brick.png",
 	"res://assets/spritesArt/bricks/Orange Brick.png",
 	"res://assets/spritesArt/bricks/Red Brick.png",
 ]
 
-#Color progression per hit: fresh -> damaged -> critical health
-var hit_colors = [
-	Color(1.0, 1.0, 1.0),
-	Color(1.0, 0.85, 0.2),
-	Color(1.0, 0.45, 0.1),
-	Color(0.9, 0.1, 0.1),
-]
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	add_to_group("bricks")	# Add brick to group for easy detection
@@ -34,8 +28,18 @@ func hit() -> void:
 		
 func _update_visuals() -> void:
 		# Update texture based on hit count
-		var texture_index = min(hits, brick_textures.size() - 1)
-		var new_texture = load(brick_textures[texture_index])
-		if new_texture and has_node("Sprite2D"):
-			$Sprite2D.texture = new_texture
-			# Apply color change regardless of texture
+		if not has_node("Sprite2D"):
+			return
+			
+		var max_health = 10
+		var thirds = max_health / 3.0
+		
+		if health > thirds * 2.0:
+			print("Healthy")
+			$Sprite2D.texture = load(brick_textures[0])
+		elif health > thirds:
+			print("Injured")
+			$Sprite2D.texture = load(brick_textures[1])
+		else:
+			print("Critical")
+			$Sprite2D.texture = load(brick_textures[2])
