@@ -15,6 +15,7 @@ var brick_textures = [
 func _ready() -> void:
 	add_to_group("bricks")	# Add brick to group for easy detection
 	_update_visuals()
+	_update_label()
 	
 func hit() -> void:
 	hits += 1
@@ -25,9 +26,12 @@ func hit() -> void:
 		queue_free()		# Destroy brick after health = 0
 	else:
 		_update_visuals()
+		_update_label()
 		
 func _update_visuals() -> void:
 		# Update texture based on hit count
+		if has_node("HealthLabel"):
+			$HealthLabel.text = str(health)
 		if not has_node("Sprite2D"):
 			return
 			
@@ -43,3 +47,7 @@ func _update_visuals() -> void:
 		else:
 			print("Critical")
 			$Sprite2D.texture = load(brick_textures[2])
+			
+func _update_label()-> void:
+	if has_node("HealthLabel"):
+		$HealthLabel.text = str(health)
