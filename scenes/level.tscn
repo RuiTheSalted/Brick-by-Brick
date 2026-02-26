@@ -30,7 +30,7 @@ size = Vector2(1280.5, 22)
 script = ExtResource("1_64w2a")
 
 [node name="Background" type="Sprite2D" parent="." unique_id=394307397]
-position = Vector2(642, 350)
+position = Vector2(640, 360)
 texture = ExtResource("8_bg")
 
 [node name="Tree1" type="Sprite2D" parent="Background" unique_id=1711328576]
@@ -203,7 +203,7 @@ disable_mode = 1
 safe_margin = 0.001
 
 [node name="Ball" parent="." unique_id=777500282 instance=ExtResource("2_w7c3h")]
-position = Vector2(701, 491)
+position = Vector2(642, 520)
 
 [node name="Walls" type="StaticBody2D" parent="." unique_id=699938017]
 
@@ -225,10 +225,58 @@ shape = SubResource("RectangleShape2D_ppgk2")
 
 [node name="Buttons" parent="." unique_id=608108710 instance=ExtResource("3_w8frs")]
 top_level = true
-position = Vector2(266, 193)
+position = Vector2(0, 472)
 
 [node name="BallSpawner" parent="." unique_id=478855960 instance=ExtResource("1_mx8sn")]
-position = Vector2(430, 201)
+position = Vector2(0, 392)
 
 [node name="Bricks" parent="." unique_id=1802336756 instance=ExtResource("10_ppgk2")]
-position = Vector2(640, 350)
+position = Vector2(120.000015, 40.000004)
+
+[node name="Bricks2" parent="." unique_id=1464704197 instance=ExtResource("10_ppgk2")]
+position = Vector2(1160, 40)
+
+[node name="Bricks3" parent="." unique_id=463895011 instance=ExtResource("10_ppgk2")]
+position = Vector2(904.00006, 40.000004)
+
+[node name="Bricks4" parent="." unique_id=1074871475 instance=ExtResource("10_ppgk2")]
+position = Vector2(640.00006, 40.000004)
+
+[node name="Bricks5" parent="." unique_id=1557541198 instance=ExtResource("10_ppgk2")]
+position = Vector2(376, 40.000004)
+
+[node name="Bricks6" parent="." unique_id=1559180692 instance=ExtResource("10_ppgk2")]
+position = Vector2(896, 112)
+
+[node name="Bricks7" parent="." unique_id=363619063 instance=ExtResource("10_ppgk2")]
+position = Vector2(1136, 112)
+
+[node name="Bricks8" parent="." unique_id=114760824 instance=ExtResource("10_ppgk2")]
+position = Vector2(640, 112.00001)
+
+[node name="Bricks9" parent="." unique_id=1605762294 instance=ExtResource("10_ppgk2")]
+position = Vector2(400, 112)
+
+[node name="Bricks10" parent="." unique_id=2062415175 instance=ExtResource("10_ppgk2")]
+position = Vector2(160.00002, 112.00001)
+
+[node name="Bricks11" parent="." unique_id=448715788 instance=ExtResource("10_ppgk2")]
+position = Vector2(512, 184.00002)
+
+[node name="Bricks12" parent="." unique_id=1639353514 instance=ExtResource("10_ppgk2")]
+position = Vector2(1008.0001, 184.00002)
+
+[node name="Bricks13" parent="." unique_id=982114063 instance=ExtResource("10_ppgk2")]
+position = Vector2(272, 184)
+
+[node name="Bricks14" parent="." unique_id=189864252 instance=ExtResource("10_ppgk2")]
+position = Vector2(768, 184)
+
+[node name="Bricks15" parent="." unique_id=1950583351 instance=ExtResource("10_ppgk2")]
+position = Vector2(384, 256)
+
+[node name="Bricks16" parent="." unique_id=594934696 instance=ExtResource("10_ppgk2")]
+position = Vector2(648.00006, 256)
+
+[node name="Bricks17" parent="." unique_id=2023164092 instance=ExtResource("10_ppgk2")]
+position = Vector2(904, 256)

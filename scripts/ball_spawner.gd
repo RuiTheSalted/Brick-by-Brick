@@ -16,8 +16,8 @@ func _on_button_pressed() -> void:
 	var new_ball = ball_scene.instantiate()
 		
 	# Each new_ball spawns in random position
-	var random_x = randf_range(50, 1230)
-	var random_y = randf_range(50, 300)
+	var random_x = randf_range(200, 1000)
+	var random_y = randf_range(400,500)
 	new_ball.position = Vector2(random_x, random_y)
 		
 	# Add the ball to the scene

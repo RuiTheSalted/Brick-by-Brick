@@ -4,17 +4,18 @@
 [ext_resource type="Texture2D" uid="uid://b6ltqjlhjnfc1" path="res://assets/spritesArt/cannon/paddle.png" id="2_mo4dg"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y7wee"]
-radius = 13.999769
-height = 183.99698
+height = 144.0
 
 [node name="Paddle" type="CharacterBody2D" unique_id=1100885600]
 motion_mode = 1
 script = ExtResource("1_y7wee")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1724027559]
-scale = Vector2(0.3, 0.3)
+position = Vector2(5.684342e-14, 48)
+scale = Vector2(0.24076922, 0.20384616)
 texture = ExtResource("2_mo4dg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1570197696]
+position = Vector2(0, 48)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_y7wee")
