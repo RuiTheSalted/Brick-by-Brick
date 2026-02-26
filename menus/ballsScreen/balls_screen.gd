@@ -21,6 +21,7 @@ var balls: Array[Dictionary] = [
 	{"id":"ice",   "name":"Ice Ball",   "tex":"res://assets/spritesArt/ball/iceball.png"},
 	{"id":"fire",  "name":"Tennis Ball",  "tex":"res://assets/spritesArt/ball/tennisBall.png"},
 	{"id":"cannon",  "name":"Cannon Ball",  "tex":"res://assets/spritesArt/ball/Cannon_Ball_Big.png"},
+	{"id":"beach",  "name":"Beach Ball",  "tex":"res://assets/spritesArt/ball/BeachBall.png"},
 ]
 
 var selected_index: int = 0 # WHICH BALL IS CURRENTLY CENTERED
