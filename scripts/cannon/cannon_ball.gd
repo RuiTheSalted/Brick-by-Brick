@@ -39,8 +39,13 @@ func _physics_process(delta: float) -> void:
 	var collision = move_and_collide(velocity * delta)
 
 	if collision:
+		# Deal damage to whatever was hit before exploding
+		var hit = collision.get_collider()
+		if hit.has_method("take_damage"):
+			hit.take_damage(damage)
+
 		if explode_on_impact:
-#			explode()
+			explode()
 			return
 
 		# Apply bounce physics using the collision normal
@@ -54,8 +59,8 @@ func _on_visibility_notifier_exit_screen() -> void:
 
 
 # On impact
-#func explode() -> void:
-#	queue_free()
+func explode() -> void:
+	queue_free()
 
 
 # Return the damage this ball deals
