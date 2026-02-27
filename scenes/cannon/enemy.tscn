@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://bk7yo1rdc6sji"]
+
+[ext_resource type="Texture2D" uid="uid://dei21brokktrj" path="res://scenes/cannon/cloud.png" id="1_80k2y"]
+[ext_resource type="Script" uid="uid://b8at7hru1rd2v" path="res://scripts/cannon/enemy.gd" id="1_kt56i"]
+
+[node name="enemy" type="CharacterBody2D" unique_id=905923797]
+script = ExtResource("1_kt56i")
+
+[node name="sprite" type="Sprite2D" parent="." unique_id=1042245544]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_80k2y")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=40538766]
+position = Vector2(-3, 0)
+polygon = PackedVector2Array(-26, -40, -14, -40, -3, -32, 27, -32, 27, -14, 42, 5, 68, 5, 71, 12, 72, 20, 98, 20, 94, 25, 68, 24, 39, 31, 15, 23, -34, 32, -91, 31, -94, 16, -81, -2, -60, -2, -42, -19)
+
+[node name="area_2d" type="Area2D" parent="." unique_id=30017935]
+
+[node name="trigger_collision" type="CollisionPolygon2D" parent="area_2d" unique_id=1727887129]
+polygon = PackedVector2Array(-24, -55, 23, -46, 59, -18, 99, 6, 115, 18, 112, 37, 85, 45, -110, 53, -123, -3, -65, -23)
+
+[node name="damage_delay_timer" type="Timer" parent="." unique_id=1883590724]
+wait_time = 0.001
+one_shot = true
+
+[connection signal="body_entered" from="area_2d" to="." method="_on_area_2d_body_entered"]

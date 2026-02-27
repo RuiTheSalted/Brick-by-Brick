@@ -1,5 +1,0 @@
-[gd_scene format=3 uid="uid://yvyt2w2dha0l"]
-
-[node name="grasslands" type="Node2D" unique_id=1993398502]
-
-[node name="tile_1" type="Sprite2D" parent="." unique_id=386815323]

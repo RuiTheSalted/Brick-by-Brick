@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bs2v41w63n1ab" path="res://scripts/cannon/cannon.gd" id="1_p7cvk"]
 [ext_resource type="PackedScene" uid="uid://ck3aw8crmpkhh" path="res://scenes/cannon/cannon_ball.tscn" id="2_s14hi"]
 [ext_resource type="Texture2D" uid="uid://3xltrr51rktv" path="res://assets/spritesArt/cannon/Cannon_Static-1.png" id="3_lb0lo"]
-[ext_resource type="AudioStream" uid="uid://cs6bg8mqhkqpb" path="res://assets/audio/sfx/cannon_shot.mp3" id="4_s14hi"]
+[ext_resource type="AudioStream" uid="uid://cs6bg8mqhkqpb" path="res://scenes/cannon/SFX/cannon_shot.mp3" id="4_s14hi"]
 
 [sub_resource type="Animation" id="Animation_s14hi"]
 length = 0.001
@@ -49,20 +49,16 @@ cannon_scene = ExtResource("2_s14hi")
 cannonBall_spawn = NodePath("Rotator/cannonBall_spawn")
 cannon_sound = NodePath("cannon_sound")
 anim_player = NodePath("Camera/anim_player")
-preview_ingame = true
-preview_line_count = 2
-preview_max_bounces = 0
 
 [node name="Rotator" type="Node2D" parent="." unique_id=1221863442]
-rotation = 1.5707964
-
-[node name="cannon_sprite" type="Sprite2D" parent="Rotator" unique_id=1413947234]
-position = Vector2(-1.9073486e-06, 0.9999995)
-scale = Vector2(0.16833434, 0.14930554)
-texture = ExtResource("3_lb0lo")
 
 [node name="cannonBall_spawn" type="Marker2D" parent="Rotator" unique_id=210365810]
 position = Vector2(0, -61)
+
+[node name="cannon_sprite" type="Sprite2D" parent="Rotator" unique_id=1413947234]
+position = Vector2(-1.9073486e-06, 0.9999995)
+scale = Vector2(0.16833435, 0.14930554)
+texture = ExtResource("3_lb0lo")
 
 [node name="cannon_Collision" type="CollisionPolygon2D" parent="." unique_id=945264720]
 position = Vector2(-16.174696, -19.84505)
@@ -73,7 +69,7 @@ polygon = PackedVector2Array(-11.615372, -162.96431, -9.712624, -111.47826, 7.41
 stream = ExtResource("4_s14hi")
 
 [node name="Camera" type="Camera2D" parent="." unique_id=43757634]
-position = Vector2(0, -282)
+position = Vector2(1, -162)
 
 [node name="anim_player" type="AnimationPlayer" parent="Camera" unique_id=159724826]
 libraries/ = SubResource("AnimationLibrary_xrbou")
