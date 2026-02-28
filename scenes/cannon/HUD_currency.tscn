@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://brj2fucxkqw0c"]
+
+[ext_resource type="Script" uid="uid://d324c0rmw5ei8" path="res://scripts/cannon/HUD_currency.gd" id="1_5clsa"]
+[ext_resource type="Texture2D" uid="uid://dd1tc38jvtd6y" path="res://assets/spritesArt/currency/Currency.png" id="1_mphr0"]
+
+[node name="HUD" type="CanvasLayer" unique_id=45399565 node_paths=PackedStringArray("currency_label", "currency_icon")]
+layer = 10
+script = ExtResource("1_5clsa")
+currency_texture = ExtResource("1_mphr0")
+currency_label = NodePath("Control/HBoxContainer/CurrencyLabel")
+currency_icon = NodePath("Control/HBoxContainer/CurrencyIcon")
+
+[node name="Control" type="Control" parent="." unique_id=2080451227]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control" unique_id=1609404081]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -220.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = 64.0
+grow_horizontal = 0
+theme_override_constants/separation = 8
+alignment = 2
+
+[node name="CurrencyIcon" type="TextureRect" parent="Control/HBoxContainer" unique_id=1239740293]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+texture = ExtResource("1_mphr0")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CurrencyLabel" type="Label" parent="Control/HBoxContainer" unique_id=120967987]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "0"
+vertical_alignment = 1

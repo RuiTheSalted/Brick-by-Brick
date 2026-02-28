@@ -15,6 +15,11 @@ run/main_scene="uid://hppu1j2rywla"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+CurrencyManager="*uid://dpkshr51xy0oa"
+HudCurrency="*uid://d324c0rmw5ei8"
+
 [display]
 
 window/size/viewport_width=1280

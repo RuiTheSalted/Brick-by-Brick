@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://sgfauw5lwcku" path="res://maps/easyMaps/mapsSprites/grassLevelOne/fallenLog.png" id="6_elsug"]
 [ext_resource type="Texture2D" uid="uid://d1qjtqb0jlut2" path="res://maps/easyMaps/mapsSprites/grassLevelOne/treeTrunck.png" id="7_jgfd0"]
 [ext_resource type="PackedScene" uid="uid://dj35vrqtmjv7k" path="res://scenes/ball.tscn" id="8_pq2x4"]
+[ext_resource type="PackedScene" uid="uid://brj2fucxkqw0c" path="res://scenes/cannon/HUD_currency.tscn" id="8_uf7n0"]
 [ext_resource type="PackedScene" uid="uid://bi4747sfo5gjc" path="res://scenes/buttons.tscn" id="9_q4md7"]
 [ext_resource type="PackedScene" uid="uid://dtlu1ys4mvur7" path="res://scenes/ball_spawner.tscn" id="10_34f24"]
 [ext_resource type="PackedScene" uid="uid://c45kb77sh2kav" path="res://scenes/bricks.tscn" id="11_cypli"]
@@ -192,6 +193,8 @@ position = Vector2(28.970402, -33.066673)
 scale = Vector2(0.97633135, 0.9500003)
 texture = ExtResource("3_uf7n0")
 
+[node name="HUD" parent="." unique_id=45399565 instance=ExtResource("8_uf7n0")]
+
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1827269418]
 visible = false
 position = Vector2(639, 360)
@@ -231,6 +234,7 @@ position = Vector2(887.00006, 223.00003)
 
 [node name="Cannon" parent="." unique_id=855465672 instance=ExtResource("12_ure3i")]
 position = Vector2(639, 639)
+max_balls = 5
 preview_line_color = Color(0.49424613, 0, 0, 1)
 
 [node name="enemy" parent="." unique_id=905923797 instance=ExtResource("13_q2rll")]

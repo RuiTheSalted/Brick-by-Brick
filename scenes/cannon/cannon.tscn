@@ -45,6 +45,7 @@ _data = {
 [node name="Cannon" type="CharacterBody2D" unique_id=855465672 node_paths=PackedStringArray("cannonBall_spawn", "cannon_sound", "anim_player")]
 collision_layer = 2
 script = ExtResource("1_p7cvk")
+max_balls = null
 cannon_scene = ExtResource("2_s14hi")
 cannonBall_spawn = NodePath("Rotator/cannonBall_spawn")
 cannon_sound = NodePath("cannon_sound")
