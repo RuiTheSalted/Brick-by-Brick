@@ -1,94 +1,88 @@
 extends CharacterBody2D
 
-# --- Base Stats (set these as your starting values) ---
-@export var base_damage: int = 25
-@export var base_speed: float = 800.0
-@export var base_max_bounces: int = 10
-@export var currency_per_hit: int = 10
+# --- Textures (assign one per 5 total upgrades in the Inspector) ---
+@export var ball_textures: Array[Texture2D] = [
+	preload("res://assets/spritesArt/ball/ball.png"),        # tier 0  (0–4 total upgrades)
+	preload("res://assets/spritesArt/ball/tennisBall.png"),  # tier 1  (5–9)
+	preload("res://assets/spritesArt/ball/BeachBall.png"),   # tier 2  (10–14)
+	preload("res://assets/spritesArt/ball/iceball.png"),     # tier 3  (15–19)
+	preload("res://assets/spritesArt/ball/Cannon_Ball.png"), # tier 4  (20+)
+]
 
-# --- Textures (add one texture per 5 levels, e.g. 5 textures for levels 0-4, 5-9, 10-14...) ---
-@export var ball_textures: Array[Texture2D] = []
-
-# --- Runtime Stats (scaled by upgrade level) ---
-var damage: int = 25
+# --- Runtime Stats (set by UpgradeManager on spawn) ---
+var damage: int = 1
 var ball_speed: float = 800.0
 var max_bounces: int = 10
+
+# --- Currency per hit ---
+@export var currency_per_hit: int = 10
 
 # --- Internal State ---
 var bounce_count: int = 0
 var _movement: Vector2 = Vector2.ZERO
+var _base_display_size: Vector2 = Vector2.ZERO
 
 # --- Signal ---
 signal ball_died
 
 
 func _ready() -> void:
-	# Apply current upgrade level from CurrencyManager on spawn
-	if get_tree().root.has_node("CurrencyManager"):
-		var cm = get_tree().root.get_node("CurrencyManager")
-		set_upgrade_level(cm.upgrade_level)
+	add_to_group("cannonballs")
+	set_physics_process(false)
+	# Record the original display size before any texture swap
+	var sprite = get_node_or_null("cannonBall")
+	if sprite and sprite.texture:
+		_base_display_size = sprite.texture.get_size() * sprite.scale
+	if get_tree().root.has_node("UpgradeManager"):
+		get_tree().root.get_node("UpgradeManager").apply_to_ball(self)
 
 
 # Called by cannon to start movement
 func shoot(directional_force: Vector2, _gravity: float) -> void:
-	# Gravity ignored — straight line like Idle Breakout
 	_movement = directional_force.normalized() * ball_speed
 	set_physics_process(true)
 
 
-# Apply upgrade level — scales all stats and swaps texture
-func set_upgrade_level(level: int) -> void:
-	# Damage: +5 per level
-	damage = base_damage + (level * 5)
-
-	# Speed: exponential scaling (1.05 ^ level * base)
-	ball_speed = base_speed * pow(1.05, level)
-
-	# Bounces: +2 per level
-	max_bounces = base_max_bounces + (level * 2)
-
-	# Texture: swap every 5 levels
+# Called by UpgradeManager to swap texture based on total upgrade tier
+func apply_texture_tier(tier: int) -> void:
 	if ball_textures.size() > 0:
-		var texture_index = min(level / 5, ball_textures.size() - 1)
-		var sprite = get_node_or_null("Sprite2D")
+		var idx = min(tier / 5, ball_textures.size() - 1)
+		var sprite = get_node_or_null("cannonBall")
 		if sprite:
-			sprite.texture = ball_textures[texture_index]
-
-	print("Ball: Upgrade level ", level, " applied | DMG:", damage, " SPD:", snappedf(ball_speed, 0.1), " Bounces:", max_bounces)
+			sprite.texture = ball_textures[idx]
+			# Rescale to preserve the original display size regardless of new texture dimensions
+			if _base_display_size != Vector2.ZERO and sprite.texture:
+				sprite.scale = _base_display_size / sprite.texture.get_size()
 
 
 func _physics_process(_delta: float) -> void:
-	velocity = _movement
+	velocity = _movement.normalized() * ball_speed
 	move_and_slide()
 
-	# Only handle first collision to avoid corner-scrambling
 	if get_slide_collision_count() > 0:
 		var collision = get_slide_collision(0)
 		var hit = collision.get_collider()
 		var normal = collision.get_normal()
 
-		# Deal damage and award currency if enemy
-		if hit.has_method("take_damage"):
+		if hit.is_in_group("bricks"):
 			hit.take_damage(damage)
-			# Award currency
 			if get_tree().root.has_node("CurrencyManager"):
 				get_tree().root.get_node("CurrencyManager").add_currency(currency_per_hit)
 
-		# Bounce
-		_movement = _movement.bounce(normal)
+		elif hit.has_method("take_damage"):
+			hit.take_damage(damage)
+			if get_tree().root.has_node("CurrencyManager"):
+				get_tree().root.get_node("CurrencyManager").add_currency(currency_per_hit)
 
-		# Track bounces
+		_movement = _movement.bounce(normal)
 		bounce_count += 1
-		print("Ball: Bounce ", bounce_count, "/", max_bounces)
 
 		if bounce_count >= max_bounces:
-			print("Ball: Max bounces reached, dying")
 			emit_signal("ball_died")
 			queue_free()
 
 
 # Off screen — die
 func _on_visibility_notifier_exit_screen() -> void:
-	print("Ball: Left screen, dying")
 	emit_signal("ball_died")
 	queue_free()
