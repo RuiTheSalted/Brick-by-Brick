@@ -20,7 +20,7 @@ var max_bounces: int = 10
 # --- Internal State ---
 var bounce_count: int = 0
 var _movement: Vector2 = Vector2.ZERO
-var _base_display_size: Vector2 = Vector2.ZERO
+var _base_display_size: Vector2 = Vector2(1, 1)
 
 # --- Signal ---
 signal ball_died
@@ -51,8 +51,8 @@ func apply_texture_tier(tier: int) -> void:
 		if sprite:
 			sprite.texture = ball_textures[idx]
 			# Rescale to preserve the original display size regardless of new texture dimensions
-			if _base_display_size != Vector2.ZERO and sprite.texture:
-				sprite.scale = _base_display_size / sprite.texture.get_size()
+			if sprite.texture:
+				sprite.scale = (_base_display_size / sprite.texture.get_size()) * 0.5
 
 
 func _physics_process(_delta: float) -> void:
