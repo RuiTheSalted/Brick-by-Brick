@@ -7,6 +7,10 @@ extends CanvasLayer
 @export var currency_label: Label
 @export var currency_icon: TextureRect
 
+# Reserved for per-stat upgrade UI — wire these up manually when ready
+@export var upgrade_level_label: Label
+@export var upgrade_cost_label: Label
+
 # Internal smooth counter
 var display_currency: float = 0.0
 var target_currency: float = 0.0
@@ -19,7 +23,6 @@ func _ready() -> void:
 	if currency_icon and currency_texture:
 		currency_icon.texture = currency_texture
 
-	# Defer connection so CurrencyManager is guaranteed to be fully ready
 	call_deferred("_connect_to_currency_manager")
 	_update_label()
 

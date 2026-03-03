@@ -1,7 +1,9 @@
 extends Node2D
 
+@export var health = 10 # Total Brick health
+
+# Global hit counter:
 var hits = 0
-var health = 10 # Total Brick health
 
 # Textures for bricks health after each hit
 # Color progression per hit: healthy -> damaged -> critical health
@@ -17,13 +19,13 @@ func _ready() -> void:
 	_update_visuals()
 	_update_label()
 	
-func hit() -> void:
+func take_damage(amount: int) -> void:
+	health -= amount
 	hits += 1
-	health -= 1
-	print("Brick hit ", hits, " time(s).", " Health, remaining: ", health)
+	# print("Brick hit ", hits, " time(s). Health remaining: ", health)
 
 	if health <= 0:
-		queue_free()		# Destroy brick after health = 0
+		queue_free()
 	else:
 		_update_visuals()
 		_update_label()
@@ -39,13 +41,13 @@ func _update_visuals() -> void:
 		var thirds = max_health / 3.0
 		
 		if health > thirds * 2.0:
-			print("Healthy")
+			#print("Healthy")
 			$Sprite2D.texture = load(brick_textures[0])
 		elif health > thirds:
-			print("Injured")
+			#print("Injured")
 			$Sprite2D.texture = load(brick_textures[1])
 		else:
-			print("Critical")
+			#print("Critical")
 			$Sprite2D.texture = load(brick_textures[2])
 			
 func _update_label()-> void:

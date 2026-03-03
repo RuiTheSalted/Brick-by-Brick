@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 CurrencyManager="*uid://dpkshr51xy0oa"
 HudCurrency="*uid://d324c0rmw5ei8"
+UpgradeManager="*res://scripts/cannon/UpgradeManager.gd"
 
 [display]
 

@@ -41,6 +41,8 @@ var _rotator: Node2D = null
 
 
 func _ready():
+	add_to_group("cannons")  # Allows CurrencyManager to find and sync this cannon
+
 	if not cannonBall_spawn:
 		push_error("cannonBall_spawn Node2D is not assigned!")
 	if not cannon_scene:
@@ -50,6 +52,12 @@ func _ready():
 		_rotator = $Rotator
 
 	update_directional_force()
+
+	# Sync ammo from UpgradeManager on scene load
+	if get_tree().root.has_node("UpgradeManager"):
+		var um = get_tree().root.get_node("UpgradeManager")
+		max_balls = um.get_max_balls()
+		um.ammo_upgraded.connect(_on_ammo_upgraded)
 
 
 func _input(event):
@@ -74,7 +82,6 @@ func _process(delta):
 	if Engine.is_editor_hint() or preview_ingame:
 		queue_redraw()
 
-	# Only fire if we have balls available
 	if shooting and current_balls < max_balls:
 		waited += delta
 		if waited >= cannon_delay:
@@ -147,10 +154,8 @@ func _update_trajectory():
 
 		if result:
 			_trajectory_points.append({ "pos": result.position, "bounce": after_bounce })
-
 			if bounces >= preview_max_bounces:
 				break
-
 			vel = next_vel.bounce(result.normal)
 			pos = result.position + result.normal * 1.0
 			bounces += 1
@@ -165,7 +170,6 @@ func _update_trajectory():
 func _draw():
 	if _trajectory_points.size() < 2:
 		return
-
 	for i in range(1, _trajectory_points.size()):
 		var from = to_local(_trajectory_points[i - 1].pos)
 		var to = to_local(_trajectory_points[i].pos)
@@ -189,7 +193,6 @@ func _draw_dashed_line(from: Vector2, to: Vector2, color: Color, width: float):
 		traveled = end
 		drawing = not drawing
 
-
 func shoot():
 	if not cannon_scene:
 		push_warning("Cannot shoot: cannon_scene is not assigned!")
@@ -211,7 +214,6 @@ func shoot():
 
 	if cannonBall.has_method("shoot"):
 		cannonBall.shoot(directional_force, cannon_gravity)
-		# Track ball count and connect to its death signal
 		current_balls += 1
 		print("Cannon: Ball fired | Balls in play: ", current_balls, "/", max_balls)
 		cannonBall.ball_died.connect(_on_ball_died)
@@ -222,3 +224,14 @@ func shoot():
 func _on_ball_died():
 	current_balls -= 1
 	print("Cannon: Ball returned | Balls in play: ", current_balls, "/", max_balls)
+
+
+# Called by UpgradeManager when ammo is upgraded
+func sync_ammo(new_max_balls: int) -> void:
+	max_balls = new_max_balls
+	print("Cannon: Ammo upgraded | Max balls: ", max_balls)
+
+
+func _on_ammo_upgraded(_level: int) -> void:
+	if get_tree().root.has_node("UpgradeManager"):
+		sync_ammo(get_tree().root.get_node("UpgradeManager").get_max_balls())
