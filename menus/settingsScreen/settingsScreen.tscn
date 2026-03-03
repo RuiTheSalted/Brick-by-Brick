@@ -1,8 +1,11 @@
 [gd_scene format=3 uid="uid://c0stkw1ilssuy"]
 
-[ext_resource type="Texture2D" uid="uid://bb3fluwqgpvxf" path="res://assets/spritesArt/bricks/placeholderBrick.png" id="1_ai1nm"]
 [ext_resource type="Script" uid="uid://dipaoaenjmvup" path="res://menus/settingsScreen/settingsScreenScript.gd" id="1_bjpso"]
 [ext_resource type="FontFile" uid="uid://c3eqo4rgsja0k" path="res://assets/fonts/Stepalange-x3BLm.otf" id="2_bjpso"]
+[ext_resource type="Texture2D" uid="uid://d0ehjkmqmel0k" path="res://assets/spritesArt/buttonArt/Back Button Small.png" id="2_yn15q"]
+[ext_resource type="Texture2D" uid="uid://dslrnerecipvt" path="res://assets/spritesArt/buttonArt/Language Button.png" id="4_b6exh"]
+[ext_resource type="Texture2D" uid="uid://bflti1el2o1in" path="res://assets/spritesArt/buttonArt/Accessibility Button.png" id="5_lfp82"]
+[ext_resource type="Texture2D" uid="uid://bthjlfskb2typ" path="res://assets/spritesArt/buttonArt/Keybinds Button.png" id="6_lfp82"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hay4x"]
 bg_color = Color(1, 0.8862745, 0.69803923, 1)
@@ -122,11 +125,11 @@ theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 
 [node name="exitButton" type="TextureButton" parent="centerSettings/backgroundPanel/content/marginExitButton" unique_id=415878101]
-custom_minimum_size = Vector2(30, 30)
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-texture_normal = ExtResource("1_ai1nm")
+texture_normal = ExtResource("2_yn15q")
 ignore_texture_size = true
 stretch_mode = 6
 
@@ -231,7 +234,7 @@ clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-texture_normal = ExtResource("1_ai1nm")
+texture_normal = ExtResource("4_b6exh")
 stretch_mode = 6
 
 [node name="accessibilityRow" type="VBoxContainer" parent="centerSettings/backgroundPanel/content/settingsVbox/buttonsRow" unique_id=442666997]
@@ -252,7 +255,7 @@ uppercase = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-texture_normal = ExtResource("1_ai1nm")
+texture_normal = ExtResource("5_lfp82")
 stretch_mode = 6
 
 [node name="HBoxContainer" type="VBoxContainer" parent="centerSettings/backgroundPanel/content/settingsVbox/buttonsRow" unique_id=1079914945]
@@ -272,7 +275,7 @@ uppercase = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-texture_normal = ExtResource("1_ai1nm")
+texture_normal = ExtResource("6_lfp82")
 stretch_mode = 6
 
 [connection signal="pressed" from="centerSettings/backgroundPanel/content/marginExitButton/exitButton" to="." method="_on_exit_button_pressed"]

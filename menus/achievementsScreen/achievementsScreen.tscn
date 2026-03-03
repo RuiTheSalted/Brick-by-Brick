@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://dno8vqgflj0qr"]
 
 [ext_resource type="FontFile" uid="uid://c3eqo4rgsja0k" path="res://assets/fonts/Stepalange-x3BLm.otf" id="1_11rl1"]
-[ext_resource type="Texture2D" uid="uid://bb3fluwqgpvxf" path="res://assets/spritesArt/bricks/placeholderBrick.png" id="1_bm2se"]
 [ext_resource type="Script" uid="uid://b1vdaegxb0xrc" path="res://menus/achievementsScreen/achievements_screen.gd" id="1_e2uqf"]
+[ext_resource type="Texture2D" uid="uid://oujfwkkpq5qx" path="res://assets/spritesArt/buttonArt/Back Button.png" id="2_e2uqf"]
 
 [node name="AchievementsScreen" type="Control" unique_id=272239464]
 layout_mode = 3
@@ -43,7 +43,7 @@ custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-texture_normal = ExtResource("1_bm2se")
+texture_normal = ExtResource("2_e2uqf")
 ignore_texture_size = true
 stretch_mode = 5
 

@@ -1,10 +1,13 @@
 [gd_scene format=3 uid="uid://b6e47tnrva2v0"]
 
 [ext_resource type="Script" uid="uid://caw05dvpxt2jd" path="res://menus/playScreen/map_selection_screen.gd" id="1_0tbqx"]
-[ext_resource type="Texture2D" uid="uid://bb3fluwqgpvxf" path="res://assets/spritesArt/bricks/placeholderBrick.png" id="1_p3lh0"]
-[ext_resource type="Texture2D" uid="uid://bp54ent36gktw" path="res://assets/spritesArt/bricks/Yellow Block-1.png" id="2_ns55j"]
-[ext_resource type="Texture2D" uid="uid://dfitjubyf7dx2" path="res://assets/spritesArt/bricks/Red Block-1.png" id="3_0tbqx"]
+[ext_resource type="Texture2D" uid="uid://oujfwkkpq5qx" path="res://assets/spritesArt/buttonArt/Back Button.png" id="2_f2ef3"]
+[ext_resource type="Texture2D" uid="uid://buvgsdfxtpyln" path="res://assets/spritesArt/buttonArt/LeftRightArrow.png" id="3_0ao2u"]
 [ext_resource type="PackedScene" uid="uid://buw7cly7xpya" path="res://menus/playScreen/mapTile.tscn" id="4_0ao2u"]
+[ext_resource type="Texture2D" uid="uid://dpx6ix6h7jtmg" path="res://assets/spritesArt/buttonArt/Easy Difficulty.png" id="5_e0x8b"]
+[ext_resource type="Texture2D" uid="uid://6v1271w8huqe" path="res://assets/spritesArt/buttonArt/Medium Difficulty.png" id="6_lkgn6"]
+[ext_resource type="Texture2D" uid="uid://wcxlkrkg0bfx" path="res://assets/spritesArt/buttonArt/Hard Difficulty.png" id="7_76c0m"]
+[ext_resource type="Texture2D" uid="uid://depfs3rw7jn42" path="res://assets/spritesArt/buttonArt/Special Difficulty.png" id="8_jetwj"]
 
 [node name="MapSelectionScreen" type="Control" unique_id=1718984721]
 layout_mode = 3
@@ -55,7 +58,7 @@ theme_override_constants/separation = 16
 [node name="exitButton" type="TextureButton" parent="background/margin/main/topBar" unique_id=205153530]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-texture_normal = ExtResource("1_p3lh0")
+texture_normal = ExtResource("2_f2ef3")
 ignore_texture_size = true
 stretch_mode = 6
 
@@ -70,7 +73,7 @@ custom_minimum_size = Vector2(72, 72)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture_normal = ExtResource("2_ns55j")
+texture_normal = ExtResource("3_0ao2u")
 ignore_texture_size = true
 stretch_mode = 5
 
@@ -105,9 +108,10 @@ custom_minimum_size = Vector2(72, 72)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture_normal = ExtResource("3_0tbqx")
+texture_normal = ExtResource("3_0ao2u")
 ignore_texture_size = true
 stretch_mode = 5
+flip_h = true
 
 [node name="difficultyRow" type="HBoxContainer" parent="background/margin/main" unique_id=1568720005]
 layout_mode = 2
@@ -123,28 +127,28 @@ alignment = 1
 [node name="easyMaps" type="TextureButton" parent="background/margin/main/difficultyRow/difficultyButtons" unique_id=1970548607]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-texture_normal = ExtResource("1_p3lh0")
+texture_normal = ExtResource("5_e0x8b")
 ignore_texture_size = true
 stretch_mode = 6
 
 [node name="normalMaps" type="TextureButton" parent="background/margin/main/difficultyRow/difficultyButtons" unique_id=1727062354]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-texture_normal = ExtResource("1_p3lh0")
+texture_normal = ExtResource("6_lkgn6")
 ignore_texture_size = true
 stretch_mode = 6
 
 [node name="hardMaps" type="TextureButton" parent="background/margin/main/difficultyRow/difficultyButtons" unique_id=1855369834]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-texture_normal = ExtResource("1_p3lh0")
+texture_normal = ExtResource("7_76c0m")
 ignore_texture_size = true
 stretch_mode = 6
 
 [node name="specialMaps" type="TextureButton" parent="background/margin/main/difficultyRow/difficultyButtons" unique_id=814024044]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-texture_normal = ExtResource("1_p3lh0")
+texture_normal = ExtResource("8_jetwj")
 ignore_texture_size = true
 stretch_mode = 6
 

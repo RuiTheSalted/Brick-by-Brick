@@ -1,9 +1,8 @@
 [gd_scene format=3 uid="uid://bh51vq1cwyk8a"]
 
 [ext_resource type="Script" uid="uid://dfjbay576w8gg" path="res://menus/helpScreen/helpScreenScript.gd" id="1_klxlx"]
-[ext_resource type="Texture2D" uid="uid://bp54ent36gktw" path="res://assets/spritesArt/bricks/Yellow Block-1.png" id="1_uy3kg"]
-[ext_resource type="Texture2D" uid="uid://dfitjubyf7dx2" path="res://assets/spritesArt/bricks/Red Block-1.png" id="2_ihl41"]
-[ext_resource type="Texture2D" uid="uid://bb3fluwqgpvxf" path="res://assets/spritesArt/bricks/placeholderBrick.png" id="3_klxlx"]
+[ext_resource type="Texture2D" uid="uid://buvgsdfxtpyln" path="res://assets/spritesArt/buttonArt/LeftRightArrow.png" id="2_wua3e"]
+[ext_resource type="Texture2D" uid="uid://d0ehjkmqmel0k" path="res://assets/spritesArt/buttonArt/Back Button Small.png" id="3_klxlx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uy3kg"]
 bg_color = Color(1, 0.8862745, 0.69803923, 1)
@@ -51,9 +50,9 @@ custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture_normal = ExtResource("1_uy3kg")
+texture_normal = ExtResource("2_wua3e")
 ignore_texture_size = true
-stretch_mode = 6
+stretch_mode = 0
 
 [node name="slideViewport" type="Control" parent="ColorRect/CenterContainer/HBoxContainer" unique_id=1743103934]
 clip_contents = true
@@ -109,6 +108,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="exitButton" type="TextureButton" parent="ColorRect/CenterContainer/HBoxContainer/slideViewport/frame" unique_id=404361071]
+custom_minimum_size = Vector2(36, 36)
 layout_mode = 0
 offset_left = 10.0
 offset_top = 10.0
@@ -123,9 +123,10 @@ custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture_normal = ExtResource("2_ihl41")
+texture_normal = ExtResource("2_wua3e")
 ignore_texture_size = true
-stretch_mode = 6
+stretch_mode = 0
+flip_h = true
 
 [connection signal="pressed" from="ColorRect/CenterContainer/HBoxContainer/leftArrow" to="." method="_on_left_arrow_pressed"]
 [connection signal="pressed" from="ColorRect/CenterContainer/HBoxContainer/slideViewport/frame/exitButton" to="." method="_on_exit_button_pressed"]
