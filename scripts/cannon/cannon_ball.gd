@@ -6,13 +6,22 @@ extends CharacterBody2D
 	preload("res://assets/spritesArt/ball/tennisBall.png"),  # tier 1  (5–9)
 	preload("res://assets/spritesArt/ball/BeachBall.png"),   # tier 2  (10–14)
 	preload("res://assets/spritesArt/ball/iceball.png"),     # tier 3  (15–19)
-	preload("res://assets/spritesArt/ball/Cannon_Ball.png"), # tier 4  (20+)
+	preload("res://assets/spritesArt/ball/Cannon_Ball_Big.png"), # tier 4  (20+)
 ]
 
 # --- Runtime Stats (set by UpgradeManager on spawn) ---
 var damage: int = 1
 var ball_speed: float = 800.0
 var max_bounces: int = 10
+
+# --- Per-tier scale overrides (one entry per texture tier, Vector2.ZERO = auto) ---
+@export var tier_scales: Array[Vector2] = [
+	Vector2.ZERO, # tier 0 — auto
+	Vector2.ZERO, # tier 1 — auto
+	Vector2.ZERO, # tier 2 — auto
+	Vector2.ZERO, # tier 3 — auto
+	Vector2.ZERO, # tier 4 — set this to fix Cannon_Ball.png size
+]
 
 # --- Currency per hit ---
 @export var currency_per_hit: int = 10
@@ -32,7 +41,7 @@ func _ready() -> void:
 	# Record the original display size before any texture swap
 	var sprite = get_node_or_null("cannonBall")
 	if sprite and sprite.texture:
-		_base_display_size = sprite.texture.get_size() * sprite.scale
+		_base_display_size = (sprite.texture.get_size() * sprite.scale) * 0.50
 	if get_tree().root.has_node("UpgradeManager"):
 		get_tree().root.get_node("UpgradeManager").apply_to_ball(self)
 
@@ -42,7 +51,6 @@ func shoot(directional_force: Vector2, _gravity: float) -> void:
 	_movement = directional_force.normalized() * ball_speed
 	set_physics_process(true)
 
-
 # Called by UpgradeManager to swap texture based on total upgrade tier
 func apply_texture_tier(tier: int) -> void:
 	if ball_textures.size() > 0:
@@ -50,8 +58,10 @@ func apply_texture_tier(tier: int) -> void:
 		var sprite = get_node_or_null("cannonBall")
 		if sprite:
 			sprite.texture = ball_textures[idx]
-			# Rescale to preserve the original display size regardless of new texture dimensions
-			if _base_display_size != Vector2.ZERO and sprite.texture:
+			# Use manual override scale if set for this tier, otherwise auto-fit to base display size
+			if idx < tier_scales.size() and tier_scales[idx] != Vector2.ZERO:
+				sprite.scale = tier_scales[idx]
+			elif _base_display_size != Vector2.ZERO and sprite.texture:
 				sprite.scale = _base_display_size / sprite.texture.get_size()
 
 
