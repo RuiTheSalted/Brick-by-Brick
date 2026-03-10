@@ -339,13 +339,7 @@ texture = ExtResource("7_64w2a")
 [node name="Camera2D" type="Camera2D" parent="gameView" unique_id=1827269418]
 position = Vector2(639, 360)
 
-[node name="Paddle" parent="gameView" unique_id=1100885600 instance=ExtResource("1_2q6dc")]
-position = Vector2(649, 604)
-scale = Vector2(2, 2)
-disable_mode = 1
-safe_margin = 0.001
-
-[node name="Cannon" parent="gameView" unique_id=855465672 instance=ExtResource("11_fpun6")]
+[node name="Cannon" parent="." unique_id=855465672 instance=ExtResource("11_fpun6")]
 position = Vector2(648, 603)
 
 [node name="Walls" type="StaticBody2D" parent="gameView" unique_id=699938017]
