@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://hppu1j2rywla"]
 
-[ext_resource type="PackedScene" uid="uid://d1qf34fyylxqi" path="res://scenes/paddle.tscn" id="1_2q6dc"]
 [ext_resource type="Script" uid="uid://dsin6u8lewrlf" path="res://scenes/level.gd" id="1_64w2a"]
 [ext_resource type="PackedScene" uid="uid://dtlu1ys4mvur7" path="res://scenes/ball_spawner.tscn" id="1_mx8sn"]
 [ext_resource type="Texture2D" uid="uid://c0h23gn43txwl" path="res://maps/easyMaps/mapsSprites/grassLevelOne/Grass.png" id="3_2r41h"]
@@ -611,5 +610,192 @@ position = Vector2(0, 472)
 
 [node name="BallSpawner" parent="." unique_id=478855960 instance=ExtResource("1_mx8sn")]
 position = Vector2(0, 392)
+
+[node name="Bricks" parent="." unique_id=1802336756 instance=ExtResource("10_ppgk2")]
+position = Vector2(120.000015, 40.000004)
+
+[node name="HealthLabel" type="Label" parent="Bricks" unique_id=1714111101]
+offset_left = -19.230783
+offset_top = -12.307696
+offset_right = 20.769217
+offset_bottom = 10.692304
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bricks2" parent="." unique_id=1464704197 instance=ExtResource("10_ppgk2")]
+position = Vector2(1160, 40)
+
+[node name="HealthLabel" type="Label" parent="Bricks2" unique_id=1327603546]
+offset_left = -20.000004
+offset_top = -11.538462
+offset_right = 19.999996
+offset_bottom = 11.461538
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bricks3" parent="." unique_id=463895011 instance=ExtResource("10_ppgk2")]
+position = Vector2(904.00006, 40.000004)
+
+[node name="HealthLabel" type="Label" parent="Bricks3" unique_id=1884511156]
+offset_left = -19.230816
+offset_top = -11.5384655
+offset_right = 20.769184
+offset_bottom = 11.4615345
+horizontal_alignment = 3
+vertical_alignment = 3
+
+[node name="Bricks4" parent="." unique_id=1074871475 instance=ExtResource("10_ppgk2")]
+position = Vector2(640.00006, 40.000004)
+
+[node name="HealthLabel" type="Label" parent="Bricks4" unique_id=2122932759]
+offset_left = -20.00005
+offset_top = -10.769235
+offset_right = 19.99995
+offset_bottom = 12.230765
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bricks5" parent="." unique_id=1557541198 instance=ExtResource("10_ppgk2")]
+position = Vector2(376, 40.000004)
+
+[node name="HealthLabel" type="Label" parent="Bricks5" unique_id=1884216403]
+offset_left = -19.23077
+offset_top = -11.5384655
+offset_right = 20.76923
+offset_bottom = 11.4615345
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bricks6" parent="." unique_id=1559180692 instance=ExtResource("10_ppgk2")]
+position = Vector2(896, 112)
+
+[node name="HealthLabel" type="Label" parent="Bricks6" unique_id=802380205]
+offset_left = -19.23077
+offset_top = -11.538463
+offset_right = 20.76923
+offset_bottom = 11.461537
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bricks7" parent="." unique_id=363619063 instance=ExtResource("10_ppgk2")]
+position = Vector2(1136, 112)
+
+[node name="HealthLabel" type="Label" parent="Bricks7" unique_id=1982966479]
+offset_left = -20.000002
+offset_top = -11.538463
+offset_right = 19.999998
+offset_bottom = 11.461537
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bricks8" parent="." unique_id=114760824 instance=ExtResource("10_ppgk2")]
+position = Vector2(640, 112.00001)
+
+[node name="HealthLabel" type="Label" parent="Bricks8" unique_id=1895119631]
+offset_left = -20.0
+offset_top = -10.7692375
+offset_right = 20.0
+offset_bottom = 12.2307625
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bricks9" parent="." unique_id=1605762294 instance=ExtResource("10_ppgk2")]
+position = Vector2(400, 112)
+
+[node name="HealthLabel" type="Label" parent="Bricks9" unique_id=1780417703]
+offset_left = -19.23077
+offset_top = -12.3076935
+offset_right = 20.76923
+offset_bottom = 10.6923065
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bricks10" parent="." unique_id=2062415175 instance=ExtResource("10_ppgk2")]
+position = Vector2(160.00002, 112.00001)
+
+[node name="HealthLabel" type="Label" parent="Bricks10" unique_id=1492187079]
+offset_left = -19.230783
+offset_top = -11.538468
+offset_right = 20.769217
+offset_bottom = 11.461532
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bricks11" parent="." unique_id=448715788 instance=ExtResource("10_ppgk2")]
+position = Vector2(512, 184.00002)
+
+[node name="HealthLabel" type="Label" parent="Bricks11" unique_id=1375195616]
+offset_left = -20.0
+offset_top = -12.307705
+offset_right = 20.0
+offset_bottom = 10.692295
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bricks12" parent="." unique_id=1639353514 instance=ExtResource("10_ppgk2")]
+position = Vector2(1008.0001, 184.00002)
+
+[node name="HealthLabel" type="Label" parent="Bricks12" unique_id=1996456826]
+offset_left = -20.000095
+offset_top = -11.538474
+offset_right = 19.999905
+offset_bottom = 11.461526
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bricks13" parent="." unique_id=982114063 instance=ExtResource("10_ppgk2")]
+position = Vector2(272, 184)
+
+[node name="HealthLabel" type="Label" parent="Bricks13" unique_id=1240819522]
+offset_left = -20.000002
+offset_top = -11.538463
+offset_right = 19.999998
+offset_bottom = 11.461537
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bricks14" parent="." unique_id=189864252 instance=ExtResource("10_ppgk2")]
+position = Vector2(768, 184)
+
+[node name="HealthLabel" type="Label" parent="Bricks14" unique_id=1766939642]
+offset_left = -20.000002
+offset_top = -11.538463
+offset_right = 19.999998
+offset_bottom = 11.461537
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bricks15" parent="." unique_id=1950583351 instance=ExtResource("10_ppgk2")]
+position = Vector2(384, 256)
+
+[node name="HealthLabel" type="Label" parent="Bricks15" unique_id=580741939]
+offset_left = -20.000002
+offset_top = -11.538463
+offset_right = 19.999998
+offset_bottom = 11.461537
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bricks16" parent="." unique_id=594934696 instance=ExtResource("10_ppgk2")]
+position = Vector2(648.00006, 256)
+
+[node name="HealthLabel" type="Label" parent="Bricks16" unique_id=891905481]
+offset_left = -20.00005
+offset_top = -11.538463
+offset_right = 19.99995
+offset_bottom = 11.461537
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bricks17" parent="." unique_id=2023164092 instance=ExtResource("10_ppgk2")]
+position = Vector2(904, 256)
+
+[node name="HealthLabel" type="Label" parent="Bricks17" unique_id=951612029]
+offset_left = -20.000002
+offset_top = -11.538463
+offset_right = 19.999998
+offset_bottom = 11.461537
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="HUD" parent="." unique_id=45399565 instance=ExtResource("14_fpun6")]
