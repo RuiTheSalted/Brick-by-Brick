@@ -1,0 +1,192 @@
+[gd_scene format=3 uid="uid://bki0vq8ax6djl"]
+
+[ext_resource type="Texture2D" uid="uid://bwcfjnfhir5kj" path="res://assets/spritesArt/menuArtOutGame/Completion Medal.png" id="1_4gauh"]
+[ext_resource type="Script" uid="uid://c04j84ufl0dp1" path="res://menus/victoryScreen/victory_screen.gd" id="1_cftvp"]
+[ext_resource type="FontFile" uid="uid://c3eqo4rgsja0k" path="res://assets/fonts/Stepalange-x3BLm.otf" id="2_kl7in"]
+[ext_resource type="Texture2D" uid="uid://bb3fluwqgpvxf" path="res://assets/spritesArt/bricks/placeholderBrick.png" id="3_kl7in"]
+[ext_resource type="Texture2D" uid="uid://cli4t4alnf4xq" path="res://assets/spritesArt/buttonArt/Home Button.png" id="4_qwbor"]
+[ext_resource type="Texture2D" uid="uid://cgts3mqwndvq6" path="res://assets/spritesArt/buttonArt/Freeplay Button.png" id="5_cftvp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qwbor"]
+bg_color = Color(1, 0.8862745, 0.69803923, 1)
+
+[node name="VictoryScreen" type="Control" unique_id=967817888]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cftvp")
+
+[node name="dim" type="ColorRect" parent="." unique_id=1568634922]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.43137255)
+
+[node name="center" type="CenterContainer" parent="." unique_id=20795691]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="center" unique_id=208107561]
+custom_minimum_size = Vector2(850, 500)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qwbor")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="center/Panel" unique_id=1746071882]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 25
+alignment = 1
+
+[node name="medal" type="TextureRect" parent="center/Panel/VBoxContainer" unique_id=1475559219]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("1_4gauh")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="title" type="Label" parent="center/Panel/VBoxContainer" unique_id=1441963751]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_kl7in")
+theme_override_font_sizes/font_size = 32
+text = "VICTORY"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="spacerTop" type="Control" parent="center/Panel/VBoxContainer" unique_id=607557871]
+custom_minimum_size = Vector2(10, 20)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="rewardsTitle" type="Label" parent="center/Panel/VBoxContainer" unique_id=1447587577]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_kl7in")
+theme_override_font_sizes/font_size = 24
+text = "REWARDS"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="rewardsGrid" type="GridContainer" parent="center/Panel/VBoxContainer" unique_id=1323034213]
+layout_mode = 2
+columns = 3
+
+[node name="rewardOne" type="HBoxContainer" parent="center/Panel/VBoxContainer/rewardsGrid" unique_id=1324446839]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="icon" type="TextureRect" parent="center/Panel/VBoxContainer/rewardsGrid/rewardOne" unique_id=1251432627]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("3_kl7in")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Amount" type="Label" parent="center/Panel/VBoxContainer/rewardsGrid/rewardOne" unique_id=160942813]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_kl7in")
+theme_override_font_sizes/font_size = 20
+text = "x250"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="rewardTwo" type="HBoxContainer" parent="center/Panel/VBoxContainer/rewardsGrid" unique_id=1005297092]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="Icon" type="TextureRect" parent="center/Panel/VBoxContainer/rewardsGrid/rewardTwo" unique_id=1188641370]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("3_kl7in")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Amount" type="Label" parent="center/Panel/VBoxContainer/rewardsGrid/rewardTwo" unique_id=1460177564]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_kl7in")
+theme_override_font_sizes/font_size = 20
+text = "x250"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="rewardThree" type="HBoxContainer" parent="center/Panel/VBoxContainer/rewardsGrid" unique_id=1999918098]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="Icon" type="TextureRect" parent="center/Panel/VBoxContainer/rewardsGrid/rewardThree" unique_id=1906085984]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("3_kl7in")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Amount" type="Label" parent="center/Panel/VBoxContainer/rewardsGrid/rewardThree" unique_id=33320473]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_kl7in")
+theme_override_font_sizes/font_size = 20
+text = "x250"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="spacerMid" type="Control" parent="center/Panel/VBoxContainer" unique_id=1549786976]
+custom_minimum_size = Vector2(10, 20)
+layout_mode = 2
+
+[node name="buttonsRow" type="HBoxContainer" parent="center/Panel/VBoxContainer" unique_id=1000880427]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="homeButton" type="TextureButton" parent="center/Panel/VBoxContainer/buttonsRow" unique_id=2042314426]
+custom_minimum_size = Vector2(54, 54)
+layout_mode = 2
+texture_normal = ExtResource("4_qwbor")
+ignore_texture_size = true
+stretch_mode = 6
+
+[node name="freeplayButton" type="TextureButton" parent="center/Panel/VBoxContainer/buttonsRow" unique_id=596175246]
+custom_minimum_size = Vector2(54, 54)
+layout_mode = 2
+texture_normal = ExtResource("5_cftvp")
+ignore_texture_size = true
+stretch_mode = 6
+
+[connection signal="pressed" from="center/Panel/VBoxContainer/buttonsRow/homeButton" to="." method="_on_home_button_pressed"]

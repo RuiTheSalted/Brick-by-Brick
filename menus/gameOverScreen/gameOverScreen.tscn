@@ -1,0 +1,171 @@
+[gd_scene format=3 uid="uid://b6s8m1x4jwhix"]
+
+[ext_resource type="FontFile" uid="uid://c3eqo4rgsja0k" path="res://assets/fonts/Stepalange-x3BLm.otf" id="1_2lr2e"]
+[ext_resource type="Texture2D" uid="uid://cwd7wdb44tfse" path="res://assets/spritesArt/cannon/Broken Cannon transparent.png" id="1_g81eb"]
+[ext_resource type="Script" uid="uid://c15dkydsmv42o" path="res://menus/gameOverScreen/game_over_screen.gd" id="1_omm55"]
+[ext_resource type="Texture2D" uid="uid://bp54ent36gktw" path="res://assets/spritesArt/bricks/Yellow Block-1.png" id="2_wi8eu"]
+[ext_resource type="Texture2D" uid="uid://cli4t4alnf4xq" path="res://assets/spritesArt/buttonArt/Home Button.png" id="4_alwyn"]
+[ext_resource type="Texture2D" uid="uid://ckymlg2r01bh0" path="res://assets/spritesArt/buttonArt/Restart Button.png" id="5_omm55"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g81eb"]
+bg_color = Color(1, 0.8862745, 0.69803923, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_alwyn"]
+bg_color = Color(0.23070607, 0.21416703, 0.45463246, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[node name="GameOverScreen" type="Control" unique_id=169110721]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_omm55")
+
+[node name="dim" type="ColorRect" parent="." unique_id=254879166]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.25490198)
+
+[node name="center" type="CenterContainer" parent="." unique_id=1537842053]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="center" unique_id=587425811]
+custom_minimum_size = Vector2(950, 550)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_g81eb")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="center/Panel" unique_id=962040104]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -4.5
+offset_bottom = -4.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="brokenCannon" type="TextureRect" parent="center/Panel/VBoxContainer" unique_id=1792782365]
+custom_minimum_size = Vector2(196, 196)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("1_g81eb")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="title" type="Label" parent="center/Panel/VBoxContainer" unique_id=585604528]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_2lr2e")
+theme_override_font_sizes/font_size = 26
+text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="topSpacer" type="Control" parent="center/Panel/VBoxContainer" unique_id=1772800566]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="roundLabel" type="Label" parent="center/Panel/VBoxContainer" unique_id=1797913576]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_2lr2e")
+theme_override_font_sizes/font_size = 20
+text = "Round 1: "
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Panel" type="Panel" parent="center/Panel/VBoxContainer" unique_id=894411021]
+custom_minimum_size = Vector2(550, 150)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_alwyn")
+
+[node name="killedByRow" type="VBoxContainer" parent="center/Panel/VBoxContainer/Panel" unique_id=572394073]
+layout_mode = 0
+offset_right = 268.0
+offset_bottom = 122.0
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="brickIcon" type="TextureRect" parent="center/Panel/VBoxContainer/Panel/killedByRow" unique_id=221201862]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_wi8eu")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="brickText" type="HBoxContainer" parent="center/Panel/VBoxContainer/Panel/killedByRow/brickIcon" unique_id=1244461182]
+layout_mode = 0
+offset_left = -102.0
+offset_top = 80.0
+offset_right = 166.0
+offset_bottom = 99.0
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="damageLabel" type="Label" parent="center/Panel/VBoxContainer/Panel/killedByRow/brickIcon/brickText" unique_id=1070298484]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_2lr2e")
+theme_override_font_sizes/font_size = 20
+text = "-2"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="middleSpcaer" type="Control" parent="center/Panel/VBoxContainer" unique_id=809420521]
+custom_minimum_size = Vector2(0, 18)
+layout_mode = 2
+
+[node name="buttonsRow" type="HBoxContainer" parent="center/Panel/VBoxContainer" unique_id=739626274]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 85
+alignment = 1
+
+[node name="homeButton" type="TextureButton" parent="center/Panel/VBoxContainer/buttonsRow" unique_id=2002182771]
+custom_minimum_size = Vector2(54, 54)
+layout_mode = 2
+texture_normal = ExtResource("4_alwyn")
+ignore_texture_size = true
+stretch_mode = 6
+
+[node name="restartButton" type="TextureButton" parent="center/Panel/VBoxContainer/buttonsRow" unique_id=396103646]
+custom_minimum_size = Vector2(54, 54)
+layout_mode = 2
+texture_normal = ExtResource("5_omm55")
+ignore_texture_size = true
+stretch_mode = 6
+
+[connection signal="pressed" from="center/Panel/VBoxContainer/buttonsRow/homeButton" to="." method="_on_home_button_pressed"]
