@@ -10,7 +10,7 @@ var ammo_level: int = 0
 @export var base_damage: int = 1
 @export var base_speed: float = 800.0
 @export var base_max_bounces: int = 10
-@export var base_max_balls: int = 5
+@export var base_max_balls: int = 100
 
 # --- Per-Stat Upgrade Costs ---
 @export var damage_base_cost: int = 50

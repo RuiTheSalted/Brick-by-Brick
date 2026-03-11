@@ -25,6 +25,10 @@ func take_damage(amount: int) -> void:
 	# print("Brick hit ", hits, " time(s). Health remaining: ", health)
 
 	if health <= 0:
+		if get_tree().root.has_node("ScoreManager"):
+			get_tree().root.get_node("ScoreManager").add_score(
+				get_tree().root.get_node("ScoreManager").score_per_brick
+			)
 		queue_free()
 	else:
 		_update_visuals()

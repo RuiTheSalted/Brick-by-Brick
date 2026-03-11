@@ -1,0 +1,677 @@
+[gd_scene format=3 uid="uid://nysbtbtjs8ba"]
+
+[ext_resource type="Script" uid="uid://02nitpmvgh0r" path="res://UI/inGameHud/right_hud.gd" id="1_as0hi"]
+[ext_resource type="Texture2D" uid="uid://cur7nv7depfnh" path="res://assets/spritesArt/specificUIArt/Right Side UI BG.png" id="1_thcnc"]
+[ext_resource type="Texture2D" uid="uid://bb3fluwqgpvxf" path="res://assets/spritesArt/bricks/placeholderBrick.png" id="2_greum"]
+[ext_resource type="Texture2D" uid="uid://dxv05x5kpl54k" path="res://assets/spritesArt/specificUIArt/Right UI Section Background.png" id="2_iaofp"]
+[ext_resource type="FontFile" uid="uid://c3eqo4rgsja0k" path="res://assets/fonts/Stepalange-x3BLm.otf" id="3_11pmb"]
+[ext_resource type="Texture2D" uid="uid://dk0rtop83i8w" path="res://assets/spritesArt/specificUIArt/Upgrade Button.png" id="3_inaon"]
+[ext_resource type="Texture2D" uid="uid://dhhliue08eybj" path="res://assets/spritesArt/specificUIArt/Entity Title Border.png" id="5_iaofp"]
+[ext_resource type="Texture2D" uid="uid://bqpljki08juwp" path="res://assets/spritesArt/cannon/Cannon_Static_Fix.png" id="5_w3sr8"]
+[ext_resource type="Texture2D" uid="uid://dwv5hq8nqghna" path="res://assets/spritesArt/ball/ball.png" id="6_f52h2"]
+[ext_resource type="Texture2D" uid="uid://j6hsdlh0lxji" path="res://assets/spritesArt/specificUIArt/Scrollable Select Area BG.png" id="6_iaofp"]
+[ext_resource type="Texture2D" uid="uid://crwdqf4r735es" path="res://assets/spritesArt/ball/iceball.png" id="8_186xs"]
+[ext_resource type="Texture2D" uid="uid://dfybk2jqbk53b" path="res://assets/spritesArt/ball/BeachBall.png" id="9_5jwxg"]
+[ext_resource type="Texture2D" uid="uid://d06jr1y0cutrt" path="res://assets/spritesArt/ball/tennisBall.png" id="10_rjxjb"]
+[ext_resource type="StyleBox" uid="uid://b65xwn2a23270" path="res://assets/styles/priceStyle.stylebox" id="11_rjxjb"]
+[ext_resource type="Texture2D" uid="uid://bwoohj6dxks0r" path="res://assets/spritesArt/ball/Cannon_Ball_Big.png" id="11_vterv"]
+[ext_resource type="Texture2D" uid="uid://dt4y30funl0ri" path="res://assets/spritesArt/specificUIArt/Settings Button In Game.png" id="13_jwi7w"]
+[ext_resource type="Texture2D" uid="uid://dq8urw52gfpj6" path="res://assets/spritesArt/specificUIArt/Play Button In Game.png" id="14_inaon"]
+[ext_resource type="PackedScene" uid="uid://caer2afrw3ta5" path="res://UI/inGameSettings.tscn" id="18_14iq7"]
+
+[node name="rightUI" type="Control" unique_id=656473262]
+custom_minimum_size = Vector2(210, 720)
+layout_mode = 3
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -210.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_as0hi")
+
+[node name="rightUIBackground" type="TextureRect" parent="." unique_id=278715481]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_thcnc")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1385333334]
+custom_minimum_size = Vector2(210, 720)
+layout_mode = 0
+offset_right = 210.0
+offset_bottom = 720.0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 12
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer" unique_id=1881493730]
+custom_minimum_size = Vector2(194, 696)
+layout_mode = 2
+texture = ExtResource("2_iaofp")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="stack" type="VBoxContainer" parent="MarginContainer" unique_id=754293064]
+custom_minimum_size = Vector2(194, 696)
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="spacer" type="Control" parent="MarginContainer/stack" unique_id=1666473114]
+layout_mode = 2
+
+[node name="upgradeButton" type="TextureButton" parent="MarginContainer/stack" unique_id=332484689]
+custom_minimum_size = Vector2(130, 35)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("3_inaon")
+ignore_texture_size = true
+stretch_mode = 6
+
+[node name="upgradeButtonText" type="Label" parent="MarginContainer/stack/upgradeButton" unique_id=529779163]
+custom_minimum_size = Vector2(130, 35)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -72.5
+offset_top = -16.5
+offset_right = 72.5
+offset_bottom = 18.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_11pmb")
+theme_override_font_sizes/font_size = 20
+text = "UPGRADES"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="selectedEntity" type="TextureRect" parent="MarginContainer/stack" unique_id=101278197]
+custom_minimum_size = Vector2(194, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("5_iaofp")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="entityName" type="Label" parent="MarginContainer/stack/selectedEntity" unique_id=528079047]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -97.0
+offset_top = -11.5
+offset_right = 97.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_11pmb")
+theme_override_font_sizes/font_size = 18
+text = "Selected Entity"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="selectBallArea" type="Control" parent="MarginContainer/stack" unique_id=241268169]
+custom_minimum_size = Vector2(194, 475)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="entriesBG" type="TextureRect" parent="MarginContainer/stack/selectBallArea" unique_id=842554351]
+custom_minimum_size = Vector2(194, 500)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("6_iaofp")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="listOfEntitys" type="ScrollContainer" parent="MarginContainer/stack/selectBallArea" unique_id=1387538466]
+custom_minimum_size = Vector2(194, 450)
+layout_mode = 0
+offset_top = 30.0
+offset_right = 194.0
+offset_bottom = 480.0
+size_flags_horizontal = 4
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="vEntryHolder" type="VBoxContainer" parent="MarginContainer/stack/selectBallArea/listOfEntitys" unique_id=1823925154]
+custom_minimum_size = Vector2(194, 500)
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="rowOne" type="HBoxContainer" parent="MarginContainer/stack/selectBallArea/listOfEntitys/vEntryHolder" unique_id=1935411511]
+custom_minimum_size = Vector2(194, 85)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="cannon" type="TextureButton" parent="MarginContainer/stack/selectBallArea/listOfEntitys/vEntryHolder/rowOne" unique_id=807573673]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("5_w3sr8")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="basicBall" type="TextureButton" parent="MarginContainer/stack/selectBallArea/listOfEntitys/vEntryHolder/rowOne" unique_id=771866141]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("6_f52h2")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="basicBallPrice" type="Label" parent="MarginContainer/stack/selectBallArea/listOfEntitys/vEntryHolder/rowOne/basicBall" unique_id=1078784016]
+custom_minimum_size = Vector2(55, 0)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -27.5
+offset_top = -23.0
+offset_right = 27.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_11pmb")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = ExtResource("11_rjxjb")
+text = "$500"
+horizontal_alignment = 1
+vertical_alignment = 2
+uppercase = true
+
+[node name="rowTwo" type="HBoxContainer" parent="MarginContainer/stack/selectBallArea/listOfEntitys/vEntryHolder" unique_id=1884344227]
+custom_minimum_size = Vector2(194, 85)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="iceBall" type="TextureButton" parent="MarginContainer/stack/selectBallArea/listOfEntitys/vEntryHolder/rowTwo" unique_id=1014158311]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("8_186xs")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="iceBallPrice" type="Label" parent="MarginContainer/stack/selectBallArea/listOfEntitys/vEntryHolder/rowTwo/iceBall" unique_id=1296675360]
+custom_minimum_size = Vector2(55, 0)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -27.5
+offset_top = -23.0
+offset_right = 27.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_11pmb")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = ExtResource("11_rjxjb")
+text = "$650"
+horizontal_alignment = 1
+vertical_alignment = 2
+uppercase = true
+
+[node name="beachBall" type="TextureButton" parent="MarginContainer/stack/selectBallArea/listOfEntitys/vEntryHolder/rowTwo" unique_id=159748506]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("9_5jwxg")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="beachBallPrice" type="Label" parent="MarginContainer/stack/selectBallArea/listOfEntitys/vEntryHolder/rowTwo/beachBall" unique_id=1046662286]
+custom_minimum_size = Vector2(55, 0)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -27.5
+offset_top = -23.0
+offset_right = 27.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_11pmb")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = ExtResource("11_rjxjb")
+text = "$600"
+horizontal_alignment = 1
+vertical_alignment = 2
+uppercase = true
+
+[node name="rowThree" type="HBoxContainer" parent="MarginContainer/stack/selectBallArea/listOfEntitys/vEntryHolder" unique_id=1268451336]
+custom_minimum_size = Vector2(194, 85)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="tennisBall" type="TextureButton" parent="MarginContainer/stack/selectBallArea/listOfEntitys/vEntryHolder/rowThree" unique_id=697385620]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("10_rjxjb")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="tennisBallPrice" type="Label" parent="MarginContainer/stack/selectBallArea/listOfEntitys/vEntryHolder/rowThree/tennisBall" unique_id=1752498828]
+custom_minimum_size = Vector2(55, 0)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -27.5
+offset_top = -23.0
+offset_right = 27.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_11pmb")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = ExtResource("11_rjxjb")
+text = "$700"
+horizontal_alignment = 1
+vertical_alignment = 2
+uppercase = true
+
+[node name="cannonBall" type="TextureButton" parent="MarginContainer/stack/selectBallArea/listOfEntitys/vEntryHolder/rowThree" unique_id=428553108]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("11_vterv")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="cannonBallPrice" type="Label" parent="MarginContainer/stack/selectBallArea/listOfEntitys/vEntryHolder/rowThree/cannonBall" unique_id=952719911]
+custom_minimum_size = Vector2(55, 0)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_11pmb")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = ExtResource("11_rjxjb")
+text = "$1000"
+horizontal_alignment = 1
+vertical_alignment = 2
+uppercase = true
+
+[node name="rowFour" type="HBoxContainer" parent="MarginContainer/stack/selectBallArea/listOfEntitys/vEntryHolder" unique_id=1139188267]
+custom_minimum_size = Vector2(194, 85)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="tennisBall" type="TextureButton" parent="MarginContainer/stack/selectBallArea/listOfEntitys/vEntryHolder/rowFour" unique_id=742202654]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("2_greum")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="tennisBallPrice" type="Label" parent="MarginContainer/stack/selectBallArea/listOfEntitys/vEntryHolder/rowFour/tennisBall" unique_id=2125218340]
+custom_minimum_size = Vector2(55, 0)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -27.5
+offset_top = -23.0
+offset_right = 27.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_11pmb")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = ExtResource("11_rjxjb")
+text = "$700"
+horizontal_alignment = 1
+vertical_alignment = 2
+uppercase = true
+
+[node name="cannonBall" type="TextureButton" parent="MarginContainer/stack/selectBallArea/listOfEntitys/vEntryHolder/rowFour" unique_id=2103309111]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("2_greum")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="cannonBallPrice" type="Label" parent="MarginContainer/stack/selectBallArea/listOfEntitys/vEntryHolder/rowFour/cannonBall" unique_id=869424716]
+custom_minimum_size = Vector2(55, 0)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_11pmb")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = ExtResource("11_rjxjb")
+text = "$1000"
+horizontal_alignment = 1
+vertical_alignment = 2
+uppercase = true
+
+[node name="rowFive" type="HBoxContainer" parent="MarginContainer/stack/selectBallArea/listOfEntitys/vEntryHolder" unique_id=873730279]
+custom_minimum_size = Vector2(194, 85)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="tennisBall" type="TextureButton" parent="MarginContainer/stack/selectBallArea/listOfEntitys/vEntryHolder/rowFive" unique_id=1452821791]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("2_greum")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="tennisBallPrice" type="Label" parent="MarginContainer/stack/selectBallArea/listOfEntitys/vEntryHolder/rowFive/tennisBall" unique_id=1970085559]
+custom_minimum_size = Vector2(55, 0)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -27.5
+offset_top = -23.0
+offset_right = 27.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_11pmb")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = ExtResource("11_rjxjb")
+text = "$700"
+horizontal_alignment = 1
+vertical_alignment = 2
+uppercase = true
+
+[node name="cannonBall" type="TextureButton" parent="MarginContainer/stack/selectBallArea/listOfEntitys/vEntryHolder/rowFive" unique_id=1356948002]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("2_greum")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="cannonBallPrice" type="Label" parent="MarginContainer/stack/selectBallArea/listOfEntitys/vEntryHolder/rowFive/cannonBall" unique_id=1423723410]
+custom_minimum_size = Vector2(55, 0)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_11pmb")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = ExtResource("11_rjxjb")
+text = "$1000"
+horizontal_alignment = 1
+vertical_alignment = 2
+uppercase = true
+
+[node name="rowSix" type="HBoxContainer" parent="MarginContainer/stack/selectBallArea/listOfEntitys/vEntryHolder" unique_id=1109132144]
+custom_minimum_size = Vector2(194, 85)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="tennisBall" type="TextureButton" parent="MarginContainer/stack/selectBallArea/listOfEntitys/vEntryHolder/rowSix" unique_id=1816265124]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("2_greum")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="tennisBallPrice" type="Label" parent="MarginContainer/stack/selectBallArea/listOfEntitys/vEntryHolder/rowSix/tennisBall" unique_id=728900274]
+custom_minimum_size = Vector2(55, 0)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -27.5
+offset_top = -23.0
+offset_right = 27.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_11pmb")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = ExtResource("11_rjxjb")
+text = "$700"
+horizontal_alignment = 1
+vertical_alignment = 2
+uppercase = true
+
+[node name="cannonBall" type="TextureButton" parent="MarginContainer/stack/selectBallArea/listOfEntitys/vEntryHolder/rowSix" unique_id=376157891]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("2_greum")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="cannonBallPrice" type="Label" parent="MarginContainer/stack/selectBallArea/listOfEntitys/vEntryHolder/rowSix/cannonBall" unique_id=2024488178]
+custom_minimum_size = Vector2(55, 0)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_11pmb")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = ExtResource("11_rjxjb")
+text = "$1000"
+horizontal_alignment = 1
+vertical_alignment = 2
+uppercase = true
+
+[node name="rowSeven" type="HBoxContainer" parent="MarginContainer/stack/selectBallArea/listOfEntitys/vEntryHolder" unique_id=937169377]
+custom_minimum_size = Vector2(194, 85)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="tennisBall" type="TextureButton" parent="MarginContainer/stack/selectBallArea/listOfEntitys/vEntryHolder/rowSeven" unique_id=75519935]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("2_greum")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="tennisBallPrice" type="Label" parent="MarginContainer/stack/selectBallArea/listOfEntitys/vEntryHolder/rowSeven/tennisBall" unique_id=1684264280]
+custom_minimum_size = Vector2(55, 0)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -27.5
+offset_top = -23.0
+offset_right = 27.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_11pmb")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = ExtResource("11_rjxjb")
+text = "$700"
+horizontal_alignment = 1
+vertical_alignment = 2
+uppercase = true
+
+[node name="cannonBall" type="TextureButton" parent="MarginContainer/stack/selectBallArea/listOfEntitys/vEntryHolder/rowSeven" unique_id=1703955851]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("2_greum")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="cannonBallPrice" type="Label" parent="MarginContainer/stack/selectBallArea/listOfEntitys/vEntryHolder/rowSeven/cannonBall" unique_id=262525167]
+custom_minimum_size = Vector2(55, 0)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_11pmb")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = ExtResource("11_rjxjb")
+text = "$1000"
+horizontal_alignment = 1
+vertical_alignment = 2
+uppercase = true
+
+[node name="buttonRow" type="HBoxContainer" parent="MarginContainer/stack" unique_id=1541684886]
+custom_minimum_size = Vector2(194, 105)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="settingsButton" type="TextureButton" parent="MarginContainer/stack/buttonRow" unique_id=158807832]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("13_jwi7w")
+ignore_texture_size = true
+stretch_mode = 6
+
+[node name="playButton" type="TextureButton" parent="MarginContainer/stack/buttonRow" unique_id=759970483]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("14_inaon")
+ignore_texture_size = true
+stretch_mode = 6
+
+[node name="InGameSettings" parent="." unique_id=1526801701 instance=ExtResource("18_14iq7")]
+visible = false
+layout_mode = 1
+offset_left = -1070.0
+
+[connection signal="pressed" from="MarginContainer/stack/buttonRow/settingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="MarginContainer/stack/buttonRow/playButton" to="." method="_on_play_button_pressed"]

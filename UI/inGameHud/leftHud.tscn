@@ -1,0 +1,232 @@
+[gd_scene format=3 uid="uid://dhghar4nt373f"]
+
+[ext_resource type="Texture2D" uid="uid://d2ahw6y8lb7vy" path="res://assets/spritesArt/specificUIArt/Left UI Background.png" id="1_v7yso"]
+[ext_resource type="Texture2D" uid="uid://dwsyr062nb3s5" path="res://assets/spritesArt/specificUIArt/leftUISegmentsBG.png" id="2_oh2ot"]
+[ext_resource type="FontFile" uid="uid://c3eqo4rgsja0k" path="res://assets/fonts/Stepalange-x3BLm.otf" id="2_sdgbn"]
+[ext_resource type="Texture2D" uid="uid://daxd3vipeaapo" path="res://assets/spritesArt/specificUIArt/HP Art.png" id="3_3stw8"]
+[ext_resource type="Texture2D" uid="uid://drqrcwmauo8x8" path="res://assets/spritesArt/currency/CurrencySizeFix.png" id="3_qyt22"]
+[ext_resource type="Texture2D" uid="uid://dwv5hq8nqghna" path="res://assets/spritesArt/ball/ball.png" id="4_o0us2"]
+[ext_resource type="Texture2D" uid="uid://ceq60vuoq0glb" path="res://assets/spritesArt/specificUIArt/Left UI Big Panel BG.png" id="6_3stw8"]
+[ext_resource type="Texture2D" uid="uid://bqpljki08juwp" path="res://assets/spritesArt/cannon/Cannon_Static_Fix.png" id="8_oh2ot"]
+
+[node name="leftHud" type="Control" unique_id=824069563]
+custom_minimum_size = Vector2(180, 720)
+layout_mode = 3
+anchors_preset = 9
+anchor_bottom = 1.0
+grow_vertical = 2
+
+[node name="leftUIBackground" type="TextureRect" parent="." unique_id=1808467108]
+custom_minimum_size = Vector2(180, 720)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_v7yso")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=283286795]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 12
+
+[node name="stack" type="VBoxContainer" parent="MarginContainer" unique_id=1133789669]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 16
+
+[node name="healthSection" type="Control" parent="MarginContainer/stack" unique_id=664753881]
+custom_minimum_size = Vector2(164, 116)
+layout_mode = 2
+
+[node name="healthBG" type="TextureRect" parent="MarginContainer/stack/healthSection" unique_id=1067939125]
+custom_minimum_size = Vector2(164, 116)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_oh2ot")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="healthRow" type="HBoxContainer" parent="MarginContainer/stack/healthSection" unique_id=640330777]
+custom_minimum_size = Vector2(164, 116)
+layout_mode = 0
+offset_right = 164.0
+offset_bottom = 116.0
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="healthIcon" type="TextureRect" parent="MarginContainer/stack/healthSection/healthRow" unique_id=890065564]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_3stw8")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="healthNumber" type="Label" parent="MarginContainer/stack/healthSection/healthRow" unique_id=816845672]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_sdgbn")
+theme_override_font_sizes/font_size = 20
+text = "1000000"
+vertical_alignment = 1
+uppercase = true
+
+[node name="roundSection" type="Control" parent="MarginContainer/stack" unique_id=1452218133]
+custom_minimum_size = Vector2(164, 116)
+layout_mode = 2
+
+[node name="roundBG" type="TextureRect" parent="MarginContainer/stack/roundSection" unique_id=1239600983]
+custom_minimum_size = Vector2(164, 116)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_oh2ot")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="roundRow" type="HBoxContainer" parent="MarginContainer/stack/roundSection" unique_id=175967965]
+custom_minimum_size = Vector2(164, 116)
+layout_mode = 0
+offset_right = 164.0
+offset_bottom = 116.0
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="roundCounter" type="Label" parent="MarginContainer/stack/roundSection/roundRow" unique_id=1526582207]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_sdgbn")
+theme_override_font_sizes/font_size = 24
+text = "Round: 
+1/40"
+vertical_alignment = 1
+uppercase = true
+
+[node name="currencySection" type="Control" parent="MarginContainer/stack" unique_id=245673408]
+custom_minimum_size = Vector2(164, 116)
+layout_mode = 2
+
+[node name="currencyBG" type="TextureRect" parent="MarginContainer/stack/currencySection" unique_id=2037446056]
+custom_minimum_size = Vector2(164, 116)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_oh2ot")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="currencyRow" type="HBoxContainer" parent="MarginContainer/stack/currencySection" unique_id=566112756]
+custom_minimum_size = Vector2(164, 116)
+layout_mode = 0
+offset_right = 164.0
+offset_bottom = 116.0
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="currencyIcon" type="TextureRect" parent="MarginContainer/stack/currencySection/currencyRow" unique_id=1879748896]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("3_qyt22")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="currencyNumber" type="Label" parent="MarginContainer/stack/currencySection/currencyRow" unique_id=2075083655]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_sdgbn")
+theme_override_font_sizes/font_size = 20
+text = "$1000000"
+vertical_alignment = 1
+uppercase = true
+
+[node name="ammoSection" type="Control" parent="MarginContainer/stack" unique_id=97333214]
+custom_minimum_size = Vector2(164, 300)
+layout_mode = 2
+
+[node name="ammoBG" type="TextureRect" parent="MarginContainer/stack/ammoSection" unique_id=1308331667]
+custom_minimum_size = Vector2(164, 300)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_3stw8")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="ammoRow" type="VBoxContainer" parent="MarginContainer/stack/ammoSection" unique_id=1559779382]
+custom_minimum_size = Vector2(164, 300)
+layout_mode = 0
+offset_right = 164.0
+offset_bottom = 300.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="ammoText" type="Label" parent="MarginContainer/stack/ammoSection/ammoRow" unique_id=1044851069]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_sdgbn")
+theme_override_font_sizes/font_size = 24
+text = "AMMO"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="ammoName" type="Label" parent="MarginContainer/stack/ammoSection/ammoRow" unique_id=1065324426]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_sdgbn")
+theme_override_font_sizes/font_size = 20
+text = "[Ball Name]"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="ammoIcon" type="TextureRect" parent="MarginContainer/stack/ammoSection/ammoRow" unique_id=1904591533]
+custom_minimum_size = Vector2(54, 54)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("4_o0us2")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="cannonIcon" type="TextureRect" parent="MarginContainer/stack/ammoSection/ammoRow" unique_id=1160743260]
+custom_minimum_size = Vector2(112, 112)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("8_oh2ot")
+expand_mode = 1
+stretch_mode = 5
