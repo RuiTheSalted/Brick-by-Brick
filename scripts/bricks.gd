@@ -1,6 +1,13 @@
 extends Node2D
 
 @export var health = 10 # Total Brick health
+@export var speed := 100
+@export var brick_type : BrickType = BrickType.Normal
+
+enum BrickType {
+	Normal,
+	Lava
+}
 
 # Global hit counter:
 var hits = 0
@@ -19,7 +26,8 @@ func _ready() -> void:
 	_update_visuals()
 	_update_label()
 	
-func take_damage(amount: int) -> void:
+func take_damage(amount: int, body = null) -> void:
+			
 	health -= amount
 	hits += 1
 	# print("Brick hit ", hits, " time(s). Health remaining: ", health)
@@ -31,6 +39,10 @@ func take_damage(amount: int) -> void:
 		_update_label()
 		
 func _update_visuals() -> void:
+		if brick_type == BrickType.Lava:
+			$Sprite2D.texture = load("res://assets/spritesArt/bricks/Lava Brick.png")
+			return
+			
 		# Update texture based on hit count
 		if has_node("HealthLabel"):
 			$HealthLabel.text = str(health)
@@ -53,3 +65,15 @@ func _update_visuals() -> void:
 func _update_label()-> void:
 	if has_node("HealthLabel"):
 		$HealthLabel.text = str(health)
+
+func _physics_process(delta):
+	var path_follow = get_parent()
+	path_follow.progress += speed * delta
+	
+	if path_follow.progress_ratio >= 1.0:
+		# Tell GameManager plaer lost life points
+		GameManager.lose_life(1)
+		path_follow.queue_free()
+
+func is_lava():
+	return brick_type == BrickType.Lava

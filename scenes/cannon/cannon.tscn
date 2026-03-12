@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dwqqquosf3rgt"]
 
 [ext_resource type="Script" uid="uid://bs2v41w63n1ab" path="res://scripts/cannon/cannon.gd" id="1_p7cvk"]
-[ext_resource type="PackedScene" uid="uid://ck3aw8crmpkhh" path="res://scenes/cannon/cannon_ball.tscn" id="2_s14hi"]
+[ext_resource type="PackedScene" uid="uid://dj35vrqtmjv7k" path="res://scenes/ball.tscn" id="2_s14hi"]
 [ext_resource type="Texture2D" uid="uid://3xltrr51rktv" path="res://assets/spritesArt/cannon/Cannon_Static-1.png" id="3_lb0lo"]
 [ext_resource type="AudioStream" uid="uid://cs6bg8mqhkqpb" path="res://assets/audio/sfx/cannon_shot.mp3" id="4_s14hi"]
 

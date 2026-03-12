@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal ball_died
+
 var speed = 200
 var dir = Vector2.DOWN
 var is_active = true
@@ -7,6 +9,7 @@ var upgrade_level = 0
 var total_bounces = 0
 var bounces = 0
 var ball_health = 10
+var gravity = 0
 
 # Array of textures for different upgrade levels
 var ball_textures = [
@@ -23,33 +26,43 @@ var ball_scales = [
 @onready var sprite = $Sprite2D
 
 func _ready() -> void:
+	print("BALL READY - script is loaded correctly")
 	add_to_group("ball")
 	velocity = Vector2(speed * -1, speed)
 	
 func _physics_process(delta: float) -> void:
 	if is_active:
 		
+		velocity.y += gravity * delta
+		
 		var collision = move_and_collide(velocity * delta)
 		
 		if collision:
-			bounces += 1	# Personal ball bounce count 
-			add_bounce() # Global ball count across all balls
-			if ball_health <= 0: 
-				queue_free()		# Destroy ball
-			velocity = velocity.bounce(collision.get_normal())
-			var collider = collision.get_collider()
-			if collider.is_in_group("bricks"):
-				collider.hit()
-				ball_health -= 1	# Lose health on brick hits
-			else:
-				ball_health -= 1	# Lose health on wall hits
-			if ball_health <= 0:
-				queue_free()
-		if (velocity.y > 0 and velocity.y < 100):
-			velocity.y = -200
 			
-		if velocity.x == 0:
-			velocity.x = -200
+			var collider = collision.get_collider()
+			var brick = collider.get_parent() if not collider.is_in_group("bricks") else collider
+				
+			if brick.is_in_group("bricks"):
+						# Lava brick destroys the ball instantly
+				if brick.has_method("is_lava") and brick.is_lava():
+					print("lava brick hit!")
+					brick.take_damage(1, self)
+					ball_died.emit()
+					queue_free()
+					return
+					
+				# Normal brick damage
+				brick.take_damage(1, self)
+				ball_health -= 1
+			else:
+				ball_health -= 1
+			if ball_health <= 0:
+				ball_died.emit()
+				queue_free()
+				return
+				
+			velocity = velocity.bounce(collision.get_normal())
+		
 
 func add_bounce() -> void:
 	total_bounces += 1
@@ -73,3 +86,7 @@ func upgrade() -> void:
 	# Optionally increase speed with upgrades
 	speed = 200 + (upgrade_level * 20)
 	velocity = velocity.normalized() * speed
+	
+func shoot(force: Vector2, grav: float):
+	velocity = force
+	gravity = grav
