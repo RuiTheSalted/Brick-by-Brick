@@ -1,23 +1,40 @@
 extends Node2D
 
-# Which stat this button upgrades — set in the Inspector per button node
-# Valid values: "damage", "speed", "bounces", "ammo"
-@export var upgrade_stat: String = "damage"
-
-# Set to true while testing so upgrades are free
 @export var debug_free_upgrades: bool = false
 
+@onready var damage_button: Button = $VBoxContainer/DamageButton
+@onready var speed_button: Button = $VBoxContainer/SpeedButton
+@onready var bounces_button: Button = $VBoxContainer/BouncesButton
+@onready var ammo_button: Button = $VBoxContainer/AmmoButton
 
-func _on_upgrade_button_pressed() -> void:
+
+func _ready() -> void:
+	damage_button.pressed.connect(_on_damage_pressed)
+	speed_button.pressed.connect(_on_speed_pressed)
+	bounces_button.pressed.connect(_on_bounces_pressed)
+	ammo_button.pressed.connect(_on_ammo_pressed)
+	_update_labels()
+
+
+func _update_labels() -> void:
+	if not get_tree().root.has_node("UpgradeManager"):
+		return
+	var um = get_tree().root.get_node("UpgradeManager")
+	damage_button.text = "Damage\nCost: %d" % um.get_cost("damage")
+	speed_button.text = "Speed\nCost: %d" % um.get_cost("speed")
+	bounces_button.text = "Bounces\nCost: %d" % um.get_cost("bounces")
+	ammo_button.text = "Ammo\nCost: %d" % um.get_cost("ammo")
+
+
+func _try_upgrade(stat: String) -> void:
 	if not get_tree().root.has_node("UpgradeManager"):
 		print("Error: UpgradeManager not found")
 		return
 
 	var um = get_tree().root.get_node("UpgradeManager")
 
-	# Debug mode: bypass cost check entirely
 	if debug_free_upgrades:
-		match upgrade_stat:
+		match stat:
 			"damage":
 				um.damage_level += 1
 				um.emit_signal("damage_upgraded", um.damage_level)
@@ -34,16 +51,31 @@ func _on_upgrade_button_pressed() -> void:
 				um.ammo_level += 1
 				um.emit_signal("ammo_upgraded", um.ammo_level)
 				um.update_active_cannons()
-		print("DEBUG: Free '", upgrade_stat, "' upgrade applied")
+		print("DEBUG: Free '", stat, "' upgrade applied")
+		_update_labels()
 		return
 
-	# Normal path: deduct currency and apply upgrade
-	print("Attempting '", upgrade_stat, "' upgrade | Currency: ",
+	print("Attempting '", stat, "' upgrade | Currency: ",
 		get_tree().root.get_node("CurrencyManager").currency,
-		" | Cost: ", um.get_cost(upgrade_stat))
+		" | Cost: ", um.get_cost(stat))
 
-	var success = um.try_upgrade(upgrade_stat)
+	var success = um.try_upgrade(stat)
 
 	if not success:
-		print("Upgrade failed — need ", um.get_cost(upgrade_stat),
+		print("Upgrade failed — need ", um.get_cost(stat),
 			" but have ", get_tree().root.get_node("CurrencyManager").currency)
+
+	_update_labels()
+
+
+func _on_damage_pressed() -> void:
+	_try_upgrade("damage")
+
+func _on_speed_pressed() -> void:
+	_try_upgrade("speed")
+
+func _on_bounces_pressed() -> void:
+	_try_upgrade("bounces")
+
+func _on_ammo_pressed() -> void:
+	_try_upgrade("ammo")

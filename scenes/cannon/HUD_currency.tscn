@@ -3,12 +3,13 @@
 [ext_resource type="Script" uid="uid://d324c0rmw5ei8" path="res://scripts/cannon/HUD_currency.gd" id="1_5clsa"]
 [ext_resource type="Texture2D" uid="uid://dd1tc38jvtd6y" path="res://assets/spritesArt/currency/Currency.png" id="1_mphr0"]
 
-[node name="HUD" type="CanvasLayer" unique_id=45399565 node_paths=PackedStringArray("currency_label", "currency_icon")]
+[node name="HUD" type="CanvasLayer" unique_id=45399565 node_paths=PackedStringArray("currency_label", "currency_icon", "score_label")]
 layer = 10
 script = ExtResource("1_5clsa")
 currency_texture = ExtResource("1_mphr0")
 currency_label = NodePath("Control/HBoxContainer/CurrencyLabel")
 currency_icon = NodePath("Control/HBoxContainer/CurrencyIcon")
+score_label = NodePath("Control/ScoreLabel")
 
 [node name="Control" type="Control" parent="." unique_id=2080451227]
 layout_mode = 3
@@ -43,4 +44,19 @@ stretch_mode = 5
 layout_mode = 2
 theme_override_font_sizes/font_size = 28
 text = "0"
+vertical_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="Control" unique_id=200000001]
+layout_mode = 1
+anchors_preset = 2
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 220.0
+offset_bottom = 64.0
+theme_override_font_sizes/font_size = 28
+text = "Score: 0"
 vertical_alignment = 1

@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://pjf6yd3vuih5"]
+
+[ext_resource type="Script" uid="uid://c8drerf6w3g" path="res://scenes/level_with_ui.gd" id="1_o1swj"]
+[ext_resource type="PackedScene" uid="uid://dhghar4nt373f" path="res://UI/inGameHud/leftHud.tscn" id="2_427n8"]
+[ext_resource type="PackedScene" uid="uid://nysbtbtjs8ba" path="res://UI/inGameHud/rightHud.tscn" id="3_x6jge"]
+
+[node name="LevelWithUi" type="Control" unique_id=1222897132]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_o1swj")
+
+[node name="mainRow" type="HBoxContainer" parent="." unique_id=138681566]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="leftUI" type="Control" parent="mainRow" unique_id=2000459211]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+
+[node name="leftHud" parent="mainRow/leftUI" unique_id=824069563 instance=ExtResource("2_427n8")]
+layout_mode = 1
+
+[node name="centerMap" type="AspectRatioContainer" parent="mainRow" unique_id=1074844999]
+layout_mode = 2
+size_flags_horizontal = 3
+ratio = 1.7778
+
+[node name="gameFrame" type="SubViewportContainer" parent="mainRow/centerMap" unique_id=847225082]
+custom_minimum_size = Vector2(890, 720)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="gameViewport" type="SubViewport" parent="mainRow/centerMap/gameFrame" unique_id=1327789588]
+disable_3d = true
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(890, 720)
+render_target_update_mode = 4
+
+[node name="rightUI" type="Control" parent="mainRow" unique_id=84285954]
+custom_minimum_size = Vector2(210, 0)
+layout_mode = 2
+
+[node name="rightUI" parent="mainRow/rightUI" unique_id=656473262 instance=ExtResource("3_x6jge")]
+layout_mode = 1

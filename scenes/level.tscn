@@ -1,15 +1,14 @@
 [gd_scene format=3 uid="uid://hppu1j2rywla"]
 
-[ext_resource type="PackedScene" uid="uid://d1qf34fyylxqi" path="res://scenes/paddle.tscn" id="1_2q6dc"]
 [ext_resource type="Script" uid="uid://dsin6u8lewrlf" path="res://scenes/level.gd" id="1_64w2a"]
 [ext_resource type="PackedScene" uid="uid://dtlu1ys4mvur7" path="res://scenes/ball_spawner.tscn" id="1_mx8sn"]
+[ext_resource type="Texture2D" uid="uid://dl045exidth5e" path="res://maps/easyMaps/mapsSprites/grassLevelOne/GrassBackgroundRESIZE.png" id="2_wc255"]
 [ext_resource type="Texture2D" uid="uid://c0h23gn43txwl" path="res://maps/easyMaps/mapsSprites/grassLevelOne/Grass.png" id="3_2r41h"]
 [ext_resource type="PackedScene" uid="uid://bi4747sfo5gjc" path="res://scenes/buttons.tscn" id="3_w8frs"]
 [ext_resource type="Texture2D" uid="uid://dvqguhd5is4im" path="res://maps/easyMaps/mapsSprites/grassLevelOne/rockWithGrass.png" id="4_olg7q"]
 [ext_resource type="Texture2D" uid="uid://diyfiptv2f3pg" path="res://maps/easyMaps/mapsSprites/grassLevelOne/smallRocks.png" id="5_t1rx8"]
 [ext_resource type="Texture2D" uid="uid://sgfauw5lwcku" path="res://maps/easyMaps/mapsSprites/grassLevelOne/fallenLog.png" id="6_8iemx"]
 [ext_resource type="Texture2D" uid="uid://d1qjtqb0jlut2" path="res://maps/easyMaps/mapsSprites/grassLevelOne/treeTrunck.png" id="7_64w2a"]
-[ext_resource type="Texture2D" uid="uid://cjm36a8ysgf4b" path="res://maps/easyMaps/mapsSprites/grassLevelOne/GrassBackground.png" id="8_bg"]
 [ext_resource type="Texture2D" uid="uid://eemue63q7n5x" path="res://maps/easyMaps/mapsSprites/grassLevelOne/pineTree.png" id="9_tree"]
 [ext_resource type="Texture2D" uid="uid://dywe4nqvod402" path="res://maps/easyMaps/mapsSprites/grassLevelOne/dirt.png" id="9_wc255"]
 [ext_resource type="PackedScene" uid="uid://c45kb77sh2kav" path="res://scenes/bricks.tscn" id="10_ppgk2"]
@@ -21,10 +20,10 @@
 [ext_resource type="Script" uid="uid://ckj4i78vxpe1v" path="res://scenes/brick_spawner.gd" id="19_gunhw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w7c3h"]
-size = Vector2(20, 733)
+size = Vector2(215, 733)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w8frs"]
-size = Vector2(20, 733)
+size = Vector2(211, 733)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mx8sn"]
 size = Vector2(1300, 20)
@@ -41,410 +40,745 @@ point_count = 7
 [node name="Level" type="Node2D" unique_id=1648176846]
 script = ExtResource("1_64w2a")
 
-[node name="Background" type="Sprite2D" parent="." unique_id=394307397]
+[node name="gameView" type="Node2D" parent="." unique_id=518620017]
+
+[node name="Background" type="Sprite2D" parent="gameView" unique_id=394307397]
 position = Vector2(640, 360)
-texture = ExtResource("8_bg")
+texture = ExtResource("2_wc255")
 
-[node name="Tree1" type="Sprite2D" parent="Background" unique_id=1711328576]
-position = Vector2(-508, -224)
+[node name="Tree1" type="Sprite2D" parent="gameView/Background" unique_id=1711328576]
+position = Vector2(-383, -320)
 scale = Vector2(2.671875, 2.7395833)
 texture = ExtResource("9_tree")
 
-[node name="Grass3" type="Sprite2D" parent="Background/Tree1" unique_id=1318887373]
-position = Vector2(-18.713474, 27.741444)
+[node name="Grass3" type="Sprite2D" parent="gameView/Background/Tree1" unique_id=1318887373]
+position = Vector2(-13.473685, 85.779465)
 scale = Vector2(0.60818714, 0.5874528)
 texture = ExtResource("3_2r41h")
 
-[node name="Grass2" type="Sprite2D" parent="Background/Tree1" unique_id=1910278240]
-position = Vector2(9.730968, 41.61217)
+[node name="Grass2" type="Sprite2D" parent="gameView/Background/Tree1" unique_id=1910278240]
+position = Vector2(-16.842108, 36.866924)
 scale = Vector2(0.60818714, 0.5874528)
 texture = ExtResource("3_2r41h")
 
-[node name="Grass1" type="Sprite2D" parent="Background/Tree1" unique_id=383847202]
-position = Vector2(22.456116, 21.901142)
-scale = Vector2(0.60818714, 0.5874528)
-texture = ExtResource("3_2r41h")
-
-[node name="Tree2" type="Sprite2D" parent="Background" unique_id=251439259]
-position = Vector2(572, -210)
-scale = Vector2(2.671875, 2.7395833)
-texture = ExtResource("9_tree")
-
-[node name="Grass7" type="Sprite2D" parent="Background/Tree2" unique_id=362843819]
-position = Vector2(-16.842102, 40.15209)
-scale = Vector2(0.60818714, 0.5874528)
-texture = ExtResource("3_2r41h")
-
-[node name="Grass11" type="Sprite2D" parent="Background/Tree2" unique_id=327384204]
-position = Vector2(5.98831, -37.596962)
-scale = Vector2(0.60818714, 0.5874528)
-texture = ExtResource("3_2r41h")
-
-[node name="Tree3" type="Sprite2D" parent="Background" unique_id=466908731]
+[node name="Tree3" type="Sprite2D" parent="gameView/Background" unique_id=466908731]
 position = Vector2(364, 127)
 scale = Vector2(2.671875, 2.7395833)
 texture = ExtResource("9_tree")
 
-[node name="Grass9" type="Sprite2D" parent="Background/Tree3" unique_id=2065707830]
+[node name="Grass9" type="Sprite2D" parent="gameView/Background/Tree3" unique_id=2065707830]
 position = Vector2(-17.964935, 26.646393)
 scale = Vector2(0.60818714, 0.5874528)
 texture = ExtResource("3_2r41h")
 
-[node name="Grass8" type="Sprite2D" parent="Background/Tree3" unique_id=779629036]
+[node name="Grass8" type="Sprite2D" parent="gameView/Background/Tree3" unique_id=779629036]
 position = Vector2(19.462006, 34.3118)
 scale = Vector2(0.60818714, 0.5874528)
 texture = ExtResource("3_2r41h")
 
-[node name="Tree4" type="Sprite2D" parent="Background" unique_id=808867556]
-position = Vector2(-8, -329)
+[node name="Tree4" type="Sprite2D" parent="gameView/Background" unique_id=808867556]
+position = Vector2(67, -277)
 scale = Vector2(2.671875, 2.7395833)
 texture = ExtResource("9_tree")
 
-[node name="Grass13" type="Sprite2D" parent="Background/Tree4" unique_id=447540417]
+[node name="Grass13" type="Sprite2D" parent="gameView/Background/Tree4" unique_id=447540417]
 position = Vector2(-13.099442, 43.437263)
 scale = Vector2(0.60818714, 0.5874528)
 texture = ExtResource("3_2r41h")
 
-[node name="Grass12" type="Sprite2D" parent="Background/Tree4" unique_id=572083674]
+[node name="Grass12" type="Sprite2D" parent="gameView/Background/Tree4" unique_id=572083674]
 position = Vector2(22.830399, 26.64639)
 scale = Vector2(0.60818714, 0.5874528)
 texture = ExtResource("3_2r41h")
 
-[node name="Tree5" type="Sprite2D" parent="Background" unique_id=3842654]
+[node name="Tree5" type="Sprite2D" parent="gameView/Background" unique_id=3842654]
 position = Vector2(-364, 202)
 scale = Vector2(2.671875, 2.7395833)
 texture = ExtResource("9_tree")
 
-[node name="Grass4" type="Sprite2D" parent="Background/Tree5" unique_id=355212034]
+[node name="Grass4" type="Sprite2D" parent="gameView/Background/Tree5" unique_id=355212034]
 position = Vector2(-20.959087, 18.981003)
 scale = Vector2(0.60818714, 0.5874528)
 texture = ExtResource("3_2r41h")
 
-[node name="Grass10" type="Sprite2D" parent="Background/Tree5" unique_id=400133149]
+[node name="Grass10" type="Sprite2D" parent="gameView/Background/Tree5" unique_id=400133149]
 position = Vector2(-2.6199055, 43.43727)
 scale = Vector2(0.60818714, 0.5874528)
 texture = ExtResource("3_2r41h")
 
-[node name="Grass5" type="Sprite2D" parent="Background/Tree5" unique_id=475239315]
+[node name="Grass5" type="Sprite2D" parent="gameView/Background/Tree5" unique_id=475239315]
 position = Vector2(18.713451, 32.851715)
 scale = Vector2(0.60818714, 0.5874528)
 texture = ExtResource("3_2r41h")
 
-[node name="Grass6" type="Sprite2D" parent="Background" unique_id=1840059018]
-position = Vector2(-415, -321)
+[node name="Grass6" type="Sprite2D" parent="gameView/Background" unique_id=1840059018]
+position = Vector2(-215, -154)
 scale = Vector2(1.625, 1.609376)
 texture = ExtResource("3_2r41h")
 
-[node name="RockWithGrass" type="Sprite2D" parent="Background" unique_id=1393787951]
+[node name="RockWithGrass" type="Sprite2D" parent="gameView/Background" unique_id=1393787951]
 position = Vector2(325.99997, -47.000008)
 scale = Vector2(1.9895843, 1.9140623)
 texture = ExtResource("4_olg7q")
 
-[node name="RockWithGrass2" type="Sprite2D" parent="Background/RockWithGrass" unique_id=480337146]
+[node name="RockWithGrass2" type="Sprite2D" parent="gameView/Background/RockWithGrass" unique_id=480337146]
 position = Vector2(-14.964722, 10.51429)
 scale = Vector2(0.48235297, 0.49523813)
 texture = ExtResource("4_olg7q")
 
-[node name="SmallRocks" type="Sprite2D" parent="Background/RockWithGrass" unique_id=464737278]
+[node name="SmallRocks" type="Sprite2D" parent="gameView/Background/RockWithGrass" unique_id=464737278]
 position = Vector2(17.22351, 8.076187)
 scale = Vector2(0.8882341, 0.8761903)
 texture = ExtResource("5_t1rx8")
 
-[node name="Grass14" type="Sprite2D" parent="Background/RockWithGrass" unique_id=130300319]
+[node name="Grass14" type="Sprite2D" parent="gameView/Background/RockWithGrass" unique_id=130300319]
 position = Vector2(-0.8470459, 17.828575)
 scale = Vector2(0.9176471, 0.980953)
 texture = ExtResource("3_2r41h")
 
-[node name="Grass15" type="Sprite2D" parent="Background" unique_id=1218771897]
+[node name="Grass15" type="Sprite2D" parent="gameView/Background" unique_id=1218771897]
 position = Vector2(260, -275)
 scale = Vector2(1.625, 1.609376)
 texture = ExtResource("3_2r41h")
 
-[node name="RockWithGrass3" type="Sprite2D" parent="Background" unique_id=2810384]
+[node name="RockWithGrass3" type="Sprite2D" parent="gameView/Background" unique_id=2810384]
 position = Vector2(320, -295.00003)
 scale = Vector2(1.1979164, 1.2265626)
 texture = ExtResource("4_olg7q")
 
-[node name="Grass16" type="Sprite2D" parent="Background" unique_id=40291778]
+[node name="Grass16" type="Sprite2D" parent="gameView/Background" unique_id=40291778]
 position = Vector2(388, -211)
 scale = Vector2(1.625, 1.609376)
 texture = ExtResource("3_2r41h")
 
-[node name="FallenLog" type="Sprite2D" parent="Background" unique_id=587495243]
-position = Vector2(-536, 28)
+[node name="FallenLog" type="Sprite2D" parent="gameView/Background" unique_id=587495243]
+position = Vector2(-407.00006, -19)
 scale = Vector2(2.3958335, 2.65625)
 texture = ExtResource("6_8iemx")
 
-[node name="TreeTrunck" type="Sprite2D" parent="Background/FallenLog" unique_id=1799081210]
+[node name="TreeTrunck" type="Sprite2D" parent="gameView/Background/FallenLog" unique_id=1799081210]
 position = Vector2(0.8347702, 26.729416)
 scale = Vector2(0.7695653, 0.84705913)
 texture = ExtResource("7_64w2a")
 
-[node name="Grass2" type="Sprite2D" parent="Background/FallenLog" unique_id=894392334]
+[node name="Grass2" type="Sprite2D" parent="gameView/Background/FallenLog" unique_id=894392334]
 position = Vector2(23.373917, 15.058807)
 scale = Vector2(0.66399676, 0.59486437)
 texture = ExtResource("3_2r41h")
 
-[node name="Grass3" type="Sprite2D" parent="Background/FallenLog" unique_id=2033284540]
-position = Vector2(-8.765221, 54.96469)
-scale = Vector2(0.65003264, 0.5840465)
-texture = ExtResource("3_2r41h")
-
-[node name="RockWithGrass2" type="Sprite2D" parent="Background" unique_id=277385139]
+[node name="RockWithGrass2" type="Sprite2D" parent="gameView/Background" unique_id=277385139]
 position = Vector2(-175, -255.00003)
 scale = Vector2(1.7604167, 1.8749996)
 texture = ExtResource("4_olg7q")
 
-[node name="RockWithGrass2" type="Sprite2D" parent="Background/RockWithGrass2" unique_id=9032145]
+[node name="RockWithGrass2" type="Sprite2D" parent="gameView/Background/RockWithGrass2" unique_id=9032145]
 position = Vector2(20.449682, 7.466674)
 scale = Vector2(0.56804734, 0.5333335)
 texture = ExtResource("4_olg7q")
 
-[node name="Grass" type="Sprite2D" parent="Background/RockWithGrass2" unique_id=1684873966]
-position = Vector2(28.970402, -33.066673)
+[node name="Grass" type="Sprite2D" parent="gameView/Background/RockWithGrass2" unique_id=1684873966]
+position = Vector2(66.46152, -32.533325)
 scale = Vector2(0.97633135, 0.9500003)
 texture = ExtResource("3_2r41h")
 
-[node name="Dirt" type="Sprite2D" parent="Background" unique_id=656811570]
+[node name="Dirt" type="Sprite2D" parent="gameView/Background" unique_id=656811570]
 position = Vector2(-309, -329)
 scale = Vector2(1.041, 1)
 texture = ExtResource("9_wc255")
 
-[node name="Dirt2" type="Sprite2D" parent="Background" unique_id=1535916294]
+[node name="Dirt2" type="Sprite2D" parent="gameView/Background" unique_id=1535916294]
 position = Vector2(-309, -265)
 scale = Vector2(1.041, 1)
 texture = ExtResource("9_wc255")
 
-[node name="Dirt3" type="Sprite2D" parent="Background" unique_id=882710864]
+[node name="Dirt3" type="Sprite2D" parent="gameView/Background" unique_id=882710864]
 position = Vector2(-309, -201)
 scale = Vector2(1.041, 1)
 texture = ExtResource("9_wc255")
 
-[node name="Dirt4" type="Sprite2D" parent="Background" unique_id=1506492788]
+[node name="Dirt4" type="Sprite2D" parent="gameView/Background" unique_id=1506492788]
 position = Vector2(-309, -137)
 scale = Vector2(1.041, 1)
 texture = ExtResource("9_wc255")
 
-[node name="Dirt5" type="Sprite2D" parent="Background" unique_id=1384991027]
+[node name="Dirt5" type="Sprite2D" parent="gameView/Background" unique_id=1384991027]
 position = Vector2(-309, -74)
 scale = Vector2(1.041, 1)
 texture = ExtResource("9_wc255")
 
-[node name="Dirt6" type="Sprite2D" parent="Background" unique_id=1583412588]
+[node name="Dirt6" type="Sprite2D" parent="gameView/Background" unique_id=1583412588]
 position = Vector2(-309, -10)
 scale = Vector2(1.041, 1)
 texture = ExtResource("9_wc255")
 
-[node name="Dirt7" type="Sprite2D" parent="Background" unique_id=413711044]
+[node name="Dirt7" type="Sprite2D" parent="gameView/Background" unique_id=413711044]
 position = Vector2(-309, 54)
 scale = Vector2(1.041, 1)
 texture = ExtResource("9_wc255")
 
-[node name="Dirt8" type="Sprite2D" parent="Background" unique_id=210862475]
+[node name="Dirt8" type="Sprite2D" parent="gameView/Background" unique_id=210862475]
 position = Vector2(-175, 126)
 rotation = 1.5707964
 scale = Vector2(1.041, 1)
 texture = ExtResource("9_wc255")
 
-[node name="Dirt9" type="Sprite2D" parent="Background" unique_id=647630360]
+[node name="Dirt9" type="Sprite2D" parent="gameView/Background" unique_id=647630360]
 position = Vector2(-111, 127)
 rotation = 1.5707964
 scale = Vector2(1.041, 1)
 texture = ExtResource("9_wc255")
 
-[node name="Dirt10" type="Sprite2D" parent="Background" unique_id=585293330]
+[node name="Dirt10" type="Sprite2D" parent="gameView/Background" unique_id=585293330]
 position = Vector2(-47, 127)
 rotation = 1.5707964
 scale = Vector2(1.041, 1)
 texture = ExtResource("9_wc255")
 
-[node name="Dirt11" type="Sprite2D" parent="Background" unique_id=641275202]
+[node name="Dirt11" type="Sprite2D" parent="gameView/Background" unique_id=641275202]
 position = Vector2(17, 127)
 rotation = 1.5707964
 scale = Vector2(1.041, 1)
 texture = ExtResource("9_wc255")
 
-[node name="Dirt12" type="Sprite2D" parent="Background" unique_id=50886332]
+[node name="Dirt12" type="Sprite2D" parent="gameView/Background" unique_id=50886332]
 position = Vector2(81, 127)
 rotation = 1.5707964
 scale = Vector2(1.041, 1)
 texture = ExtResource("9_wc255")
 
-[node name="Dirt13" type="Sprite2D" parent="Background" unique_id=1330169019]
+[node name="Dirt13" type="Sprite2D" parent="gameView/Background" unique_id=1330169019]
 position = Vector2(145, 127)
 rotation = 1.5707964
 scale = Vector2(1.041, 1)
 texture = ExtResource("9_wc255")
 
-[node name="Dirt14" type="Sprite2D" parent="Background" unique_id=28635857]
+[node name="Dirt14" type="Sprite2D" parent="gameView/Background" unique_id=28635857]
 position = Vector2(217, -4)
 scale = Vector2(1.041, 1)
 texture = ExtResource("9_wc255")
 
-[node name="Dirt15" type="Sprite2D" parent="Background" unique_id=1408787837]
-position = Vector2(351, -139)
+[node name="Dirt15" type="Sprite2D" parent="gameView/Background" unique_id=1408787837]
+position = Vector2(351, -140)
 rotation = 1.5707964
 scale = Vector2(1.041, 1)
 texture = ExtResource("9_wc255")
 
-[node name="Dirt16" type="Sprite2D" parent="Background" unique_id=976148727]
-position = Vector2(493, 63.305775)
-rotation = 1.5707964
-scale = Vector2(1.0408055, 1)
-texture = ExtResource("9_wc255")
-
-[node name="Dirt17" type="Sprite2D" parent="Background" unique_id=528889770]
-position = Vector2(422, -9)
-scale = Vector2(1.041, 1)
-texture = ExtResource("9_wc255")
-
-[node name="Dirt18" type="Sprite2D" parent="Background" unique_id=1483797233]
-position = Vector2(557, 63.999985)
-rotation = 1.5707964
-scale = Vector2(1.0408055, 1)
-texture = ExtResource("9_wc255")
-
-[node name="Dirt19" type="Sprite2D" parent="Background" unique_id=2088592029]
-position = Vector2(621, 63.99999)
-rotation = 1.5707964
-scale = Vector2(1.0408055, 1)
-texture = ExtResource("9_wc255")
-
-[node name="Tree6" type="Sprite2D" parent="Background" unique_id=2028323986]
+[node name="Tree6" type="Sprite2D" parent="gameView/Background" unique_id=2028323986]
 position = Vector2(-148, -57)
 scale = Vector2(2.671875, 2.7395833)
 texture = ExtResource("9_tree")
 
-[node name="Tree7" type="Sprite2D" parent="Background/Tree6" unique_id=571817682]
+[node name="Tree7" type="Sprite2D" parent="gameView/Background/Tree6" unique_id=571817682]
 position = Vector2(22.456131, -11.680603)
 texture = ExtResource("9_tree")
 
-[node name="RockWithGrass4" type="Sprite2D" parent="Background/Tree6" unique_id=948789552]
+[node name="RockWithGrass4" type="Sprite2D" parent="gameView/Background/Tree6" unique_id=948789552]
 position = Vector2(22.456131, 31.026627)
 scale = Vector2(0.65886945, 0.6844105)
 texture = ExtResource("4_olg7q")
 
-[node name="Grass" type="Sprite2D" parent="Background/Tree6/RockWithGrass4" unique_id=1548042430]
+[node name="Grass" type="Sprite2D" parent="gameView/Background/Tree6/RockWithGrass4" unique_id=1548042430]
 position = Vector2(28.970402, -33.066673)
 scale = Vector2(0.97633135, 0.9500003)
 texture = ExtResource("3_2r41h")
 
-[node name="Grass" type="Sprite2D" parent="Background/Tree6" unique_id=355969037]
+[node name="Grass" type="Sprite2D" parent="gameView/Background/Tree6" unique_id=355969037]
 position = Vector2(-13.473694, 24.821304)
 scale = Vector2(0.56901646, 0.53916377)
 texture = ExtResource("3_2r41h")
 
-[node name="Grass2" type="Sprite2D" parent="Background/Tree6" unique_id=1396640042]
+[node name="Grass2" type="Sprite2D" parent="gameView/Background/Tree6" unique_id=1396640042]
 position = Vector2(33.684204, 43.80229)
 scale = Vector2(0.57673335, 0.5543727)
 texture = ExtResource("3_2r41h")
 
-[node name="TreeTrunck" type="Sprite2D" parent="Background" unique_id=1936932981]
+[node name="TreeTrunck" type="Sprite2D" parent="gameView/Background" unique_id=1936932981]
 position = Vector2(128, 47)
 scale = Vector2(1.8437502, 2.2500007)
 texture = ExtResource("7_64w2a")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1827269418]
+[node name="Camera2D" type="Camera2D" parent="gameView" unique_id=1827269418]
 position = Vector2(639, 360)
 
-[node name="Paddle" parent="." unique_id=1100885600 instance=ExtResource("1_2q6dc")]
-position = Vector2(649, 604)
-scale = Vector2(2, 2)
-disable_mode = 1
-safe_margin = 0.001
+[node name="Walls" type="StaticBody2D" parent="gameView" unique_id=699938017]
 
-[node name="Cannon" parent="." unique_id=855465672 instance=ExtResource("11_fpun6")]
-position = Vector2(648, 603)
-
-[node name="Walls" type="StaticBody2D" parent="." unique_id=699938017]
-
-[node name="Left Wall" type="CollisionShape2D" parent="Walls" unique_id=712070755]
-position = Vector2(-10, 357)
+[node name="Left Wall" type="CollisionShape2D" parent="gameView/Walls" unique_id=712070755]
+position = Vector2(87.5, 357)
 shape = SubResource("RectangleShape2D_w7c3h")
 
-[node name="Right Wall" type="CollisionShape2D" parent="Walls" unique_id=809428144]
-position = Vector2(1286, 363)
+[node name="Right Wall" type="CollisionShape2D" parent="gameView/Walls" unique_id=809428144]
+position = Vector2(1190.5, 363)
 shape = SubResource("RectangleShape2D_w8frs")
 
-[node name="Ceiling" type="CollisionShape2D" parent="Walls" unique_id=839577583]
+[node name="Ceiling" type="CollisionShape2D" parent="gameView/Walls" unique_id=839577583]
 position = Vector2(647, -6)
 shape = SubResource("RectangleShape2D_mx8sn")
 
-[node name="Floor" type="CollisionShape2D" parent="Walls" unique_id=1534209908]
+[node name="Floor" type="CollisionShape2D" parent="gameView/Walls" unique_id=1534209908]
 position = Vector2(641, 732)
 shape = SubResource("RectangleShape2D_ppgk2")
 
-[node name="Buttons" parent="." unique_id=608108710 instance=ExtResource("3_w8frs")]
-top_level = true
-position = Vector2(0, 472)
+[node name="Bricks" parent="gameView" unique_id=1802336756 instance=ExtResource("10_ppgk2")]
+visible = false
+position = Vector2(120.000015, 40.000004)
 
-[node name="BallSpawner" parent="." unique_id=478855960 instance=ExtResource("1_mx8sn")]
-position = Vector2(0, 392)
+[node name="HealthLabel" type="Label" parent="gameView/Bricks" unique_id=1714111101]
+offset_left = -19.230783
+offset_top = -12.307696
+offset_right = 20.769217
+offset_bottom = 10.692304
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="HUD" parent="." unique_id=45399565 instance=ExtResource("14_fpun6")]
+[node name="Bricks2" parent="gameView" unique_id=1464704197 instance=ExtResource("10_ppgk2")]
+visible = false
+position = Vector2(1160, 40)
 
-[node name="Curve2" type="Sprite2D" parent="." unique_id=1405868292]
+[node name="HealthLabel" type="Label" parent="gameView/Bricks2" unique_id=1327603546]
+offset_left = -20.000004
+offset_top = -11.538462
+offset_right = 19.999996
+offset_bottom = 11.461538
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bricks3" parent="gameView" unique_id=463895011 instance=ExtResource("10_ppgk2")]
+visible = false
+position = Vector2(904.00006, 40.000004)
+
+[node name="HealthLabel" type="Label" parent="gameView/Bricks3" unique_id=1884511156]
+offset_left = -19.230816
+offset_top = -11.5384655
+offset_right = 20.769184
+offset_bottom = 11.4615345
+horizontal_alignment = 3
+vertical_alignment = 3
+
+[node name="Bricks4" parent="gameView" unique_id=1074871475 instance=ExtResource("10_ppgk2")]
+visible = false
+position = Vector2(640.00006, 40.000004)
+
+[node name="HealthLabel" type="Label" parent="gameView/Bricks4" unique_id=2122932759]
+offset_left = -20.00005
+offset_top = -10.769235
+offset_right = 19.99995
+offset_bottom = 12.230765
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bricks5" parent="gameView" unique_id=1557541198 instance=ExtResource("10_ppgk2")]
+visible = false
+position = Vector2(376, 40.000004)
+
+[node name="HealthLabel" type="Label" parent="gameView/Bricks5" unique_id=1884216403]
+offset_left = -19.23077
+offset_top = -11.5384655
+offset_right = 20.76923
+offset_bottom = 11.4615345
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bricks6" parent="gameView" unique_id=1559180692 instance=ExtResource("10_ppgk2")]
+visible = false
+position = Vector2(896, 112)
+
+[node name="HealthLabel" type="Label" parent="gameView/Bricks6" unique_id=802380205]
+offset_left = -19.23077
+offset_top = -11.538463
+offset_right = 20.76923
+offset_bottom = 11.461537
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bricks7" parent="gameView" unique_id=363619063 instance=ExtResource("10_ppgk2")]
+visible = false
+position = Vector2(1136, 112)
+
+[node name="HealthLabel" type="Label" parent="gameView/Bricks7" unique_id=1982966479]
+offset_left = -20.000002
+offset_top = -11.538463
+offset_right = 19.999998
+offset_bottom = 11.461537
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bricks8" parent="gameView" unique_id=114760824 instance=ExtResource("10_ppgk2")]
+visible = false
+position = Vector2(640, 112.00001)
+
+[node name="HealthLabel" type="Label" parent="gameView/Bricks8" unique_id=1895119631]
+offset_left = -20.0
+offset_top = -10.7692375
+offset_right = 20.0
+offset_bottom = 12.2307625
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bricks9" parent="gameView" unique_id=1605762294 instance=ExtResource("10_ppgk2")]
+visible = false
+position = Vector2(400, 112)
+
+[node name="HealthLabel" type="Label" parent="gameView/Bricks9" unique_id=1780417703]
+offset_left = -19.23077
+offset_top = -12.3076935
+offset_right = 20.76923
+offset_bottom = 10.6923065
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bricks10" parent="gameView" unique_id=2062415175 instance=ExtResource("10_ppgk2")]
+visible = false
+position = Vector2(160.00002, 112.00001)
+
+[node name="HealthLabel" type="Label" parent="gameView/Bricks10" unique_id=1492187079]
+offset_left = -19.230783
+offset_top = -11.538468
+offset_right = 20.769217
+offset_bottom = 11.461532
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bricks11" parent="gameView" unique_id=448715788 instance=ExtResource("10_ppgk2")]
+visible = false
+position = Vector2(512, 184.00002)
+
+[node name="HealthLabel" type="Label" parent="gameView/Bricks11" unique_id=1375195616]
+offset_left = -20.0
+offset_top = -12.307705
+offset_right = 20.0
+offset_bottom = 10.692295
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bricks12" parent="gameView" unique_id=1639353514 instance=ExtResource("10_ppgk2")]
+visible = false
+position = Vector2(1008.0001, 184.00002)
+
+[node name="HealthLabel" type="Label" parent="gameView/Bricks12" unique_id=1996456826]
+offset_left = -20.000095
+offset_top = -11.538474
+offset_right = 19.999905
+offset_bottom = 11.461526
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bricks13" parent="gameView" unique_id=982114063 instance=ExtResource("10_ppgk2")]
+visible = false
+position = Vector2(272, 184)
+
+[node name="HealthLabel" type="Label" parent="gameView/Bricks13" unique_id=1240819522]
+offset_left = -20.000002
+offset_top = -11.538463
+offset_right = 19.999998
+offset_bottom = 11.461537
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bricks14" parent="gameView" unique_id=189864252 instance=ExtResource("10_ppgk2")]
+visible = false
+position = Vector2(768, 184)
+
+[node name="HealthLabel" type="Label" parent="gameView/Bricks14" unique_id=1766939642]
+offset_left = -20.000002
+offset_top = -11.538463
+offset_right = 19.999998
+offset_bottom = 11.461537
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bricks15" parent="gameView" unique_id=1950583351 instance=ExtResource("10_ppgk2")]
+visible = false
+position = Vector2(384, 256)
+
+[node name="HealthLabel" type="Label" parent="gameView/Bricks15" unique_id=580741939]
+offset_left = -20.000002
+offset_top = -11.538463
+offset_right = 19.999998
+offset_bottom = 11.461537
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bricks16" parent="gameView" unique_id=594934696 instance=ExtResource("10_ppgk2")]
+visible = false
+position = Vector2(648.00006, 256)
+
+[node name="HealthLabel" type="Label" parent="gameView/Bricks16" unique_id=891905481]
+offset_left = -20.00005
+offset_top = -11.538463
+offset_right = 19.99995
+offset_bottom = 11.461537
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bricks17" parent="gameView" unique_id=2023164092 instance=ExtResource("10_ppgk2")]
+visible = false
+position = Vector2(904, 256)
+
+[node name="HealthLabel" type="Label" parent="gameView/Bricks17" unique_id=951612029]
+offset_left = -20.000002
+offset_top = -11.538463
+offset_right = 19.999998
+offset_bottom = 11.461537
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Curve2" type="Sprite2D" parent="gameView" unique_id=1405868292]
 position = Vector2(332.19696, 478)
-rotation = 3.1415927
+rotation = -3.1415925
 texture = ExtResource("15_arp2o")
 
-[node name="Dirt" type="Sprite2D" parent="." unique_id=677977457]
+[node name="Dirt" type="Sprite2D" parent="gameView" unique_id=677977457]
 position = Vector2(403, 486)
 rotation = 1.5707964
 scale = Vector2(1.041, 1)
 texture = ExtResource("9_wc255")
 
-[node name="Curve" type="Sprite2D" parent="." unique_id=904979355]
+[node name="Curve" type="Sprite2D" parent="gameView" unique_id=904979355]
 position = Vector2(848, 487)
 rotation = 1.5707964
 texture = ExtResource("15_arp2o")
 
-[node name="Dirt2" type="Sprite2D" parent="." unique_id=1939055160]
+[node name="Dirt2" type="Sprite2D" parent="gameView" unique_id=1939055160]
 position = Vector2(857, 420)
 scale = Vector2(1.041, 1)
 texture = ExtResource("9_wc255")
 
-[node name="Dirt3" type="Sprite2D" parent="." unique_id=1548648493]
+[node name="Dirt3" type="Sprite2D" parent="gameView" unique_id=1548648493]
 position = Vector2(857, 292)
 scale = Vector2(1.041, 1)
 texture = ExtResource("9_wc255")
 
-[node name="Curve3" type="Sprite2D" parent="." unique_id=66024452]
+[node name="Curve3" type="Sprite2D" parent="gameView" unique_id=66024452]
 position = Vector2(865, 221)
-rotation = 4.712389
+rotation = -1.5707964
 texture = ExtResource("15_arp2o")
 
-[node name="Dirt4" type="Sprite2D" parent="." unique_id=861178844]
-position = Vector2(928, 221)
+[node name="Dirt4" type="Sprite2D" parent="gameView" unique_id=861178844]
+position = Vector2(928, 220)
 rotation = 1.5707964
 scale = Vector2(1.041, 1)
 texture = ExtResource("9_wc255")
 
-[node name="Curve4" type="Sprite2D" parent="." unique_id=1667189822]
-position = Vector2(1062, 228.00002)
-texture = ExtResource("15_arp2o")
+[node name="Cannon" parent="." unique_id=855465672 instance=ExtResource("11_fpun6")]
+position = Vector2(648, 603)
 
-[node name="Dirt5" type="Sprite2D" parent="." unique_id=2065958045]
-position = Vector2(1062, 288)
-scale = Vector2(1.041, 1)
+[node name="Buttons" parent="." unique_id=608108710 instance=ExtResource("3_w8frs")]
+top_level = true
+position = Vector2(0, 472)
+scale = Vector2(0.975, 0.975)
+
+[node name="BallSpawner" parent="." unique_id=478855960 instance=ExtResource("1_mx8sn")]
+position = Vector2(0, 392)
+
+[node name="Bricks" parent="." unique_id=844423518 instance=ExtResource("10_ppgk2")]
+visible = false
+position = Vector2(120.000015, 40.000004)
+
+[node name="HealthLabel" type="Label" parent="Bricks" unique_id=715785360]
+offset_left = -19.230783
+offset_top = -12.307696
+offset_right = 20.769217
+offset_bottom = 10.692304
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bricks2" parent="." unique_id=1382804486 instance=ExtResource("10_ppgk2")]
+visible = false
+position = Vector2(1160, 40)
+
+[node name="HealthLabel" type="Label" parent="Bricks2" unique_id=405152058]
+offset_left = -20.000004
+offset_top = -11.538462
+offset_right = 19.999996
+offset_bottom = 11.461538
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bricks3" parent="." unique_id=104997770 instance=ExtResource("10_ppgk2")]
+visible = false
+position = Vector2(904.00006, 40.000004)
+
+[node name="HealthLabel" type="Label" parent="Bricks3" unique_id=1140541024]
+offset_left = -19.230816
+offset_top = -11.5384655
+offset_right = 20.769184
+offset_bottom = 11.4615345
+horizontal_alignment = 3
+vertical_alignment = 3
+
+[node name="Bricks4" parent="." unique_id=650494608 instance=ExtResource("10_ppgk2")]
+visible = false
+position = Vector2(640.00006, 40.000004)
+
+[node name="HealthLabel" type="Label" parent="Bricks4" unique_id=1493803975]
+offset_left = -20.00005
+offset_top = -10.769235
+offset_right = 19.99995
+offset_bottom = 12.230765
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bricks5" parent="." unique_id=124558139 instance=ExtResource("10_ppgk2")]
+visible = false
+position = Vector2(376, 40.000004)
+
+[node name="HealthLabel" type="Label" parent="Bricks5" unique_id=53000467]
+offset_left = -19.23077
+offset_top = -11.5384655
+offset_right = 20.76923
+offset_bottom = 11.4615345
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bricks6" parent="." unique_id=2080049642 instance=ExtResource("10_ppgk2")]
+visible = false
+position = Vector2(896, 112)
+
+[node name="HealthLabel" type="Label" parent="Bricks6" unique_id=162010777]
+offset_left = -19.23077
+offset_top = -11.538463
+offset_right = 20.76923
+offset_bottom = 11.461537
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bricks7" parent="." unique_id=996650946 instance=ExtResource("10_ppgk2")]
+visible = false
+position = Vector2(1136, 112)
+
+[node name="HealthLabel" type="Label" parent="Bricks7" unique_id=1131265142]
+offset_left = -20.000002
+offset_top = -11.538463
+offset_right = 19.999998
+offset_bottom = 11.461537
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bricks8" parent="." unique_id=1682539124 instance=ExtResource("10_ppgk2")]
+visible = false
+position = Vector2(640, 112.00001)
+
+[node name="HealthLabel" type="Label" parent="Bricks8" unique_id=1776604773]
+offset_left = -20.0
+offset_top = -10.7692375
+offset_right = 20.0
+offset_bottom = 12.2307625
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bricks9" parent="." unique_id=1859563576 instance=ExtResource("10_ppgk2")]
+visible = false
+position = Vector2(400, 112)
+
+[node name="HealthLabel" type="Label" parent="Bricks9" unique_id=1233763637]
+offset_left = -19.23077
+offset_top = -12.3076935
+offset_right = 20.76923
+offset_bottom = 10.6923065
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bricks10" parent="." unique_id=2031371296 instance=ExtResource("10_ppgk2")]
+visible = false
+position = Vector2(160.00002, 112.00001)
+
+[node name="HealthLabel" type="Label" parent="Bricks10" unique_id=1362251465]
+offset_left = -19.230783
+offset_top = -11.538468
+offset_right = 20.769217
+offset_bottom = 11.461532
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bricks11" parent="." unique_id=726700718 instance=ExtResource("10_ppgk2")]
+visible = false
+position = Vector2(512, 184.00002)
+
+[node name="HealthLabel" type="Label" parent="Bricks11" unique_id=756575348]
+offset_left = -20.0
+offset_top = -12.307705
+offset_right = 20.0
+offset_bottom = 10.692295
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bricks12" parent="." unique_id=195984861 instance=ExtResource("10_ppgk2")]
+visible = false
+position = Vector2(1008.0001, 184.00002)
+
+[node name="HealthLabel" type="Label" parent="Bricks12" unique_id=1992238609]
+visible = false
+offset_left = -20.000095
+offset_top = -11.538474
+offset_right = 19.999905
+offset_bottom = 11.461526
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bricks13" parent="." unique_id=10999915 instance=ExtResource("10_ppgk2")]
+visible = false
+position = Vector2(272, 184)
+
+[node name="HealthLabel" type="Label" parent="Bricks13" unique_id=1400285457]
+offset_left = -20.000002
+offset_top = -11.538463
+offset_right = 19.999998
+offset_bottom = 11.461537
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bricks14" parent="." unique_id=1090203751 instance=ExtResource("10_ppgk2")]
+visible = false
+position = Vector2(768, 184)
+
+[node name="HealthLabel" type="Label" parent="Bricks14" unique_id=920206170]
+offset_left = -20.000002
+offset_top = -11.538463
+offset_right = 19.999998
+offset_bottom = 11.461537
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bricks15" parent="." unique_id=354690309 instance=ExtResource("10_ppgk2")]
+visible = false
+position = Vector2(384, 256)
+
+[node name="HealthLabel" type="Label" parent="Bricks15" unique_id=1851495954]
+offset_left = -20.000002
+offset_top = -11.538463
+offset_right = 19.999998
+offset_bottom = 11.461537
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bricks16" parent="." unique_id=268765521 instance=ExtResource("10_ppgk2")]
+visible = false
+position = Vector2(648.00006, 256)
+
+[node name="HealthLabel" type="Label" parent="Bricks16" unique_id=1216077656]
+offset_left = -20.00005
+offset_top = -11.538463
+offset_right = 19.99995
+offset_bottom = 11.461537
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bricks17" parent="." unique_id=1231469771 instance=ExtResource("10_ppgk2")]
+visible = false
+position = Vector2(904, 256)
+
+[node name="HealthLabel" type="Label" parent="Bricks17" unique_id=918004275]
+offset_left = -20.000002
+offset_top = -11.538463
+offset_right = 19.999998
+offset_bottom = 11.461537
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HUD" parent="." unique_id=45399565 instance=ExtResource("14_fpun6")]
+
+[node name="Dirt15" type="Sprite2D" parent="." unique_id=22895087]
+position = Vector2(1054.085, 220)
+rotation = 1.5707964
+scale = Vector2(1.041, 0.9714031)
 texture = ExtResource("9_wc255")
-
-[node name="Curve5" type="Sprite2D" parent="." unique_id=2140187028]
-position = Vector2(1062, 415)
-rotation = 3.1415927
-texture = ExtResource("15_arp2o")
-
-[node name="Path2D" type="Path2D" parent="." unique_id=560843602]
-curve = SubResource("Curve2D_8gofh")
-script = ExtResource("16_82cfe")
-
-[node name="BrickSpawner" type="Node" parent="." unique_id=827234814]
-script = ExtResource("19_gunhw")
-brick_scene = ExtResource("10_ppgk2")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1896437211]
-
-[node name="LivesLabel" type="Label" parent="CanvasLayer" unique_id=1726406045]
-offset_right = 40.0
-offset_bottom = 23.0
-script = ExtResource("19_8gofh")
