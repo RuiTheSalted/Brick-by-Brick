@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://caer2afrw3ta5"]
 
-[ext_resource type="Script" uid="uid://b2pt3u6xy3oly" path="res://UI/in_game_settings.gd" id="1_p20yq"]
+[ext_resource type="Script" uid="uid://b2pt3u6xy3oly" path="res://UI/inGameSettings/in_game_settings.gd" id="1_p20yq"]
 [ext_resource type="FontFile" uid="uid://c3eqo4rgsja0k" path="res://assets/fonts/Stepalange-x3BLm.otf" id="2_tj0w0"]
 [ext_resource type="Texture2D" uid="uid://bflti1el2o1in" path="res://assets/spritesArt/buttonArt/Accessibility Button.png" id="4_7g8cq"]
 [ext_resource type="Texture2D" uid="uid://bx1c0g854pcrc" path="res://assets/spritesArt/buttonArt/Circular Restart Button.png" id="4_ioapo"]
@@ -79,6 +79,7 @@ corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
 [node name="InGameSettings" type="Control" unique_id=1526801701]
+process_mode = 2
 custom_minimum_size = Vector2(1280, 720)
 layout_mode = 3
 anchors_preset = 15

@@ -17,7 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://bwoohj6dxks0r" path="res://assets/spritesArt/ball/Cannon_Ball_Big.png" id="11_vterv"]
 [ext_resource type="Texture2D" uid="uid://dt4y30funl0ri" path="res://assets/spritesArt/specificUIArt/Settings Button In Game.png" id="13_jwi7w"]
 [ext_resource type="Texture2D" uid="uid://dq8urw52gfpj6" path="res://assets/spritesArt/specificUIArt/Play Button In Game.png" id="14_inaon"]
-[ext_resource type="PackedScene" uid="uid://caer2afrw3ta5" path="res://UI/inGameSettings.tscn" id="18_14iq7"]
+[ext_resource type="PackedScene" uid="uid://caer2afrw3ta5" path="res://UI/inGameSettings/inGameSettings.tscn" id="18_14iq7"]
 
 [node name="rightUI" type="Control" unique_id=656473262]
 custom_minimum_size = Vector2(210, 720)

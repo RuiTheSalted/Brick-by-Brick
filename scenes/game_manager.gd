@@ -2,7 +2,7 @@ extends Node
 
 signal lives_changed(new_lives)
 
-@export var starting_lives :=20
+@export var starting_lives :=1
 
 var lives := 0
 
@@ -18,10 +18,7 @@ func lose_life(amount := 1):
 	if lives <= 0:
 		game_over()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
 func game_over():
 	print("GameOver")
 	get_tree().paused = true
+	get_tree().change_scene_to_file("res://menus/gameOverScreen/gameOverScreen.tscn")

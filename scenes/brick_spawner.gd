@@ -36,8 +36,3 @@ func start_wave():
 func _ready() -> void:
 	randomize()
 	start_wave()
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
