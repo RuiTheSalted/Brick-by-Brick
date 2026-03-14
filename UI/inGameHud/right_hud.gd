@@ -71,3 +71,6 @@ func _update_ball_buttons(_changed_index: int) -> void:
 
 func _on_settings_button_pressed() -> void:
 	inGameSettings.show()
+	get_tree().paused = true
+#checkout brick_spawner and freeze/unfreeze
+#fiddle with the upgrades button when able to

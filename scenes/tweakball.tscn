@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://glhkx6n8km3q"]
+
+[ext_resource type="Script" uid="uid://di716arx4x6xs" path="res://scripts/ball.gd" id="1_xckr5"]
+[ext_resource type="Texture2D" uid="uid://d06jr1y0cutrt" path="res://assets/spritesArt/ball/tennisBall.png" id="2_x4oup"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cxlvu"]
+radius = 159.99998
+
+[node name="Ball" type="CharacterBody2D" unique_id=777500282]
+script = ExtResource("1_xckr5")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=101104206]
+position = Vector2(-0.78431404, -0.7843145)
+scale = Vector2(0.078431375, 0.078431375)
+texture = ExtResource("2_x4oup")
+offset = Vector2(10, 10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1073249583]
+scale = Vector2(0.1, 0.1)
+shape = SubResource("CircleShape2D_cxlvu")

@@ -21,6 +21,7 @@ CurrencyManager="*uid://dpkshr51xy0oa"
 HudCurrency="*uid://d324c0rmw5ei8"
 UpgradeManager="*res://scripts/cannon/UpgradeManager.gd"
 BallTypeManager="*res://scripts/BallTypeManager.gd"
+GameManager="*uid://b18t38aycv4th"
 
 [display]
 
