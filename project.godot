@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Project Brick"
-run/main_scene="uid://mkpkvd5s2s23"
+run/main_scene="uid://pjf6yd3vuih5"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -21,7 +21,7 @@ CurrencyManager="*uid://dpkshr51xy0oa"
 HudCurrency="*uid://d324c0rmw5ei8"
 UpgradeManager="*res://scripts/cannon/UpgradeManager.gd"
 BallTypeManager="*res://scripts/BallTypeManager.gd"
-GameManager="*uid://b18t38aycv4th"
+ScoreManager="*uid://dlybcvqa7yh8b"
 
 [display]
 

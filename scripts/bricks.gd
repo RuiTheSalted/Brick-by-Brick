@@ -11,6 +11,8 @@ enum BrickType {
 
 # Global hit counter:
 var hits = 0
+# Guard to prevent lose_life from firing multiple times before queue_free takes effect
+var _reached_end: bool = false
 
 # Textures for bricks health after each hit
 # Color progression per hit: healthy -> damaged -> critical health
@@ -31,6 +33,10 @@ func take_damage(amount: int, body = null) -> void:
 	health -= amount
 	hits += 1
 	# print("Brick hit ", hits, " time(s). Health remaining: ", health)
+
+	# Award points on every hit
+	if get_tree().root.has_node("ScoreManager"):
+		get_tree().root.get_node("ScoreManager").add_score(10)
 
 	if health <= 0:
 		if get_tree().root.has_node("ScoreManager"):
@@ -73,10 +79,14 @@ func _update_label()-> void:
 func _physics_process(delta):
 	var path_follow = get_parent()
 	path_follow.progress += speed * delta
-	
-	if path_follow.progress_ratio >= 1.0:
-		# Tell GameManager plaer lost life points
-		GameManager.lose_life(1)
+
+	if not _reached_end and path_follow.progress_ratio >= 1.0:
+		_reached_end = true
+		var gm = get_node_or_null("GameManager")
+		if gm:
+			gm.lose_life(1)
+		else:
+			push_error("bricks.gd: GameManager autoload not found at GameManager")
 		path_follow.queue_free()
 
 func is_lava():

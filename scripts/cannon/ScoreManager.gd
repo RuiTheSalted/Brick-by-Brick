@@ -4,7 +4,7 @@ extends Node
 var score: int = 0
 
 # --- Points awarded per brick destroyed (configurable in Inspector) ---
-@export var score_per_brick: int = 10
+@export var score_per_brick: int = 100
 
 # --- Signal ---
 signal score_changed(new_score: int)

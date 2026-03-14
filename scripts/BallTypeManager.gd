@@ -85,3 +85,14 @@ func select_type(type_index: int) -> void:
 	selected_type = type_index
 	emit_signal("ball_type_changed", type_index)
 	print("BallTypeManager: Equipped '%s'" % BALL_TYPES[type_index]["name"])
+	_update_active_balls()
+
+
+# Push the selected texture to all active balls so swapping is seamless.
+func _update_active_balls() -> void:
+	if not get_tree():
+		return
+	var balls = get_tree().get_nodes_in_group("cannonballs")
+	for ball in balls:
+		if ball.has_method("_apply_ball_type_texture"):
+			ball._apply_ball_type_texture()

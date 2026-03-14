@@ -10,17 +10,17 @@ var god_mode: bool = false
 
 func _ready() -> void:
 	# ── ErrorHandler diagnostic block ──────────────────────
-	print("ErrorHandler exists: ", is_instance_valid(ErrorHandler))
-	print("ErrorHandler node: ", ErrorHandler)
-	ErrorHandler.debug("_ready() fired — debug test", CONTEXT)
-	ErrorHandler.info("_ready() fired — info test", CONTEXT)
-	ErrorHandler.warning("_ready() fired — warning test", CONTEXT)
-	ErrorHandler.error("_ready() fired — error test", CONTEXT)
-	print("Log path: ", ErrorHandler.LOG_PATH)
-	print("Buffer size after calls: ", ErrorHandler._buffer.size())
-	ErrorHandler._flush()
-	print("Buffer size after flush: ", ErrorHandler._buffer.size())
-	print("Log file exists after flush: ", FileAccess.file_exists(ErrorHandler.LOG_PATH))
+	#print("ErrorHandler exists: ", is_instance_valid(ErrorHandler))
+	#print("ErrorHandler node: ", ErrorHandler)
+	#ErrorHandler.debug("_ready() fired — debug test", CONTEXT)
+	#ErrorHandler.info("_ready() fired — info test", CONTEXT)
+	#ErrorHandler.warning("_ready() fired — warning test", CONTEXT)
+	#ErrorHandler.error("_ready() fired — error test", CONTEXT)
+	#print("Log path: ", ErrorHandler.LOG_PATH)
+	#print("Buffer size after calls: ", ErrorHandler._buffer.size())
+	#ErrorHandler._flush()
+	#print("Buffer size after flush: ", ErrorHandler._buffer.size())
+	#print("Log file exists after flush: ", FileAccess.file_exists(ErrorHandler.LOG_PATH))
 	# ── End diagnostic block ────────────────────────────────
 
 	health = max_health

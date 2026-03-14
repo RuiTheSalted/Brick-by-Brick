@@ -45,13 +45,16 @@ func _ready() -> void:
 	if get_tree().root.has_node("UpgradeManager"):
 		get_tree().root.get_node("UpgradeManager").apply_to_ball(self)
 	# In levelWithUi: BallTypeManager drives texture instead of the upgrade-tier system
-	if get_tree().root.has_node("BallTypeManager"):
+	var btm = get_tree().root.get_node_or_null("BallTypeManager")
+	if btm:
 		_apply_ball_type_texture()
 
 
 # Applies the texture selected in BallTypeManager (used in levelWithUi instead of upgrade tiers)
 func _apply_ball_type_texture() -> void:
-	var btm = get_tree().root.get_node("BallTypeManager")
+	var btm = get_tree().root.get_node_or_null("BallTypeManager")
+	if btm == null:
+		return
 	var texture: Texture2D = btm.get_selected_texture()
 	if texture == null:
 		return

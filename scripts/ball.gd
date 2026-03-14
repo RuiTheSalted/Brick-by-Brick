@@ -13,8 +13,7 @@ var gravity = 0
 
 # Array of textures for different upgrade levels
 var ball_textures = [
-	"res://assets/spritesArt/ball/tennisBall.png",
-	"res://assets/spritesArt/ball/iceball.png",
+	"res://assets/spritesArt/ball/iceball.png"
 ]
 
 # Base scale for each texture to make them the same visual size

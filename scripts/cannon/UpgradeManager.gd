@@ -109,6 +109,9 @@ func apply_to_ball(ball) -> void:
 	ball.max_bounces = get_max_bounces()
 	if ball.has_method("apply_texture_tier"):
 		ball.apply_texture_tier(get_total_upgrades())
+	# Let BallTypeManager re-assert its texture so upgrades don't override it
+	if ball.has_method("_apply_ball_type_texture"):
+		ball._apply_ball_type_texture()
 
 
 # Push current stats to all active balls in the scene
