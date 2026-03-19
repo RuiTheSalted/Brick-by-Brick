@@ -17,7 +17,7 @@ extends Control
 # REPLACE WITH "/map/mapNumber.png" & BOOLEAN NOT T/F. 
 # MAPS GO HERE NOT IN NODE TREE, ADD THE MAPS HERE.
 var maps := [
-	{"preview": preload("res://assets/spritesArt/mapPreviewImgs/map1Thumbnail.png"), "completed": false, "scene": "res://scenes/level.tscn"},
+	{"preview": preload("res://assets/spritesArt/mapPreviewImgs/map1Thumbnail.png"), "completed": false, "scene": "res://scenes/levelWithUi.tscn"},
 	{"preview": preload("res://assets/spritesArt/bricks/placeholderBrick.png"), "completed": true},
 	{"preview": preload("res://assets/spritesArt/bricks/placeholderBrick.png"), "completed": false},
 	{"preview": preload("res://assets/spritesArt/bricks/placeholderBrick.png"), "completed": true},
