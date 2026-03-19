@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c8drerf6w3g" path="res://scenes/level_with_ui.gd" id="1_o1swj"]
 [ext_resource type="PackedScene" uid="uid://dhghar4nt373f" path="res://UI/inGameHud/leftHud.tscn" id="2_427n8"]
+[ext_resource type="Script" uid="uid://c3ggoua7psjp6" path="res://scripts/leftUIStats/gameStats.gd" id="2_x6jge"]
 [ext_resource type="PackedScene" uid="uid://nysbtbtjs8ba" path="res://UI/inGameHud/rightHud.tscn" id="3_x6jge"]
 
 [node name="LevelWithUi" type="Control" unique_id=1222897132]
@@ -12,6 +13,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_o1swj")
+
+[node name="gameStatsNode" type="Node" parent="." unique_id=2117539876]
+script = ExtResource("2_x6jge")
 
 [node name="mainRow" type="HBoxContainer" parent="." unique_id=138681566]
 layout_mode = 1

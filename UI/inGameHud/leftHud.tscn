@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://dhghar4nt373f"]
 
+[ext_resource type="Script" uid="uid://v8nxhqhicc8q" path="res://UI/inGameHud/left_hud.gd" id="1_oh2ot"]
 [ext_resource type="Texture2D" uid="uid://d2ahw6y8lb7vy" path="res://assets/spritesArt/specificUIArt/Left UI Background.png" id="1_v7yso"]
 [ext_resource type="Texture2D" uid="uid://dwsyr062nb3s5" path="res://assets/spritesArt/specificUIArt/leftUISegmentsBG.png" id="2_oh2ot"]
 [ext_resource type="FontFile" uid="uid://c3eqo4rgsja0k" path="res://assets/fonts/Stepalange-x3BLm.otf" id="2_sdgbn"]
@@ -15,6 +16,7 @@ layout_mode = 3
 anchors_preset = 9
 anchor_bottom = 1.0
 grow_vertical = 2
+script = ExtResource("1_oh2ot")
 
 [node name="leftUIBackground" type="TextureRect" parent="." unique_id=1808467108]
 custom_minimum_size = Vector2(180, 720)
