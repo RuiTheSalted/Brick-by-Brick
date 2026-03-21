@@ -12,12 +12,17 @@
 [ext_resource type="Texture2D" uid="uid://j6hsdlh0lxji" path="res://assets/spritesArt/specificUIArt/Scrollable Select Area BG.png" id="6_iaofp"]
 [ext_resource type="Texture2D" uid="uid://crwdqf4r735es" path="res://assets/spritesArt/ball/iceball.png" id="8_186xs"]
 [ext_resource type="Texture2D" uid="uid://dfybk2jqbk53b" path="res://assets/spritesArt/ball/BeachBall.png" id="9_5jwxg"]
+[ext_resource type="Script" uid="uid://bewxwloine446" path="res://scripts/ballRightHudScripts/basicBallClicked.gd" id="10_funql"]
 [ext_resource type="Texture2D" uid="uid://d06jr1y0cutrt" path="res://assets/spritesArt/ball/tennisBall.png" id="10_rjxjb"]
 [ext_resource type="StyleBox" uid="uid://b65xwn2a23270" path="res://assets/styles/priceStyle.stylebox" id="11_rjxjb"]
 [ext_resource type="Texture2D" uid="uid://bwoohj6dxks0r" path="res://assets/spritesArt/ball/Cannon_Ball_Big.png" id="11_vterv"]
+[ext_resource type="Script" uid="uid://c78mpfgmwro0s" path="res://scripts/ballRightHudScripts/iceBallClicked.gd" id="12_0f2kw"]
 [ext_resource type="Texture2D" uid="uid://dt4y30funl0ri" path="res://assets/spritesArt/specificUIArt/Settings Button In Game.png" id="13_jwi7w"]
+[ext_resource type="Script" uid="uid://cfe7iye608q4m" path="res://scripts/ballRightHudScripts/beachBallClicked.gd" id="14_4vdw8"]
 [ext_resource type="Texture2D" uid="uid://dq8urw52gfpj6" path="res://assets/spritesArt/specificUIArt/Play Button In Game.png" id="14_inaon"]
+[ext_resource type="Script" uid="uid://dnpejnl03qq82" path="res://scripts/ballRightHudScripts/tennisBallClicked.gd" id="16_2a3pr"]
 [ext_resource type="PackedScene" uid="uid://caer2afrw3ta5" path="res://UI/inGameSettings/inGameSettings.tscn" id="18_14iq7"]
+[ext_resource type="Script" uid="uid://dapa0n6shavip" path="res://scripts/ballRightHudScripts/cannonBallClicked.gd" id="18_anfxu"]
 
 [node name="rightUI" type="Control" unique_id=656473262]
 custom_minimum_size = Vector2(210, 720)
@@ -186,6 +191,7 @@ size_flags_vertical = 4
 texture_normal = ExtResource("6_f52h2")
 ignore_texture_size = true
 stretch_mode = 5
+script = ExtResource("10_funql")
 
 [node name="basicBallPrice" type="Label" parent="MarginContainer/stack/selectBallArea/listOfEntitys/vEntryHolder/rowOne/basicBall" unique_id=1078784016]
 custom_minimum_size = Vector2(55, 0)
@@ -205,7 +211,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_11pmb")
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = ExtResource("11_rjxjb")
-text = "$500"
+text = "In Use"
 horizontal_alignment = 1
 vertical_alignment = 2
 uppercase = true
@@ -226,6 +232,7 @@ size_flags_vertical = 4
 texture_normal = ExtResource("8_186xs")
 ignore_texture_size = true
 stretch_mode = 5
+script = ExtResource("12_0f2kw")
 
 [node name="iceBallPrice" type="Label" parent="MarginContainer/stack/selectBallArea/listOfEntitys/vEntryHolder/rowTwo/iceBall" unique_id=1296675360]
 custom_minimum_size = Vector2(55, 0)
@@ -245,7 +252,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_11pmb")
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = ExtResource("11_rjxjb")
-text = "$650"
+text = "$1000"
 horizontal_alignment = 1
 vertical_alignment = 2
 uppercase = true
@@ -258,6 +265,7 @@ size_flags_vertical = 4
 texture_normal = ExtResource("9_5jwxg")
 ignore_texture_size = true
 stretch_mode = 5
+script = ExtResource("14_4vdw8")
 
 [node name="beachBallPrice" type="Label" parent="MarginContainer/stack/selectBallArea/listOfEntitys/vEntryHolder/rowTwo/beachBall" unique_id=1046662286]
 custom_minimum_size = Vector2(55, 0)
@@ -277,7 +285,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_11pmb")
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = ExtResource("11_rjxjb")
-text = "$600"
+text = "$250"
 horizontal_alignment = 1
 vertical_alignment = 2
 uppercase = true
@@ -298,6 +306,7 @@ size_flags_vertical = 4
 texture_normal = ExtResource("10_rjxjb")
 ignore_texture_size = true
 stretch_mode = 5
+script = ExtResource("16_2a3pr")
 
 [node name="tennisBallPrice" type="Label" parent="MarginContainer/stack/selectBallArea/listOfEntitys/vEntryHolder/rowThree/tennisBall" unique_id=1752498828]
 custom_minimum_size = Vector2(55, 0)
@@ -317,7 +326,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_11pmb")
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = ExtResource("11_rjxjb")
-text = "$700"
+text = "$625"
 horizontal_alignment = 1
 vertical_alignment = 2
 uppercase = true
@@ -330,6 +339,7 @@ size_flags_vertical = 4
 texture_normal = ExtResource("11_vterv")
 ignore_texture_size = true
 stretch_mode = 5
+script = ExtResource("18_anfxu")
 
 [node name="cannonBallPrice" type="Label" parent="MarginContainer/stack/selectBallArea/listOfEntitys/vEntryHolder/rowThree/cannonBall" unique_id=952719911]
 custom_minimum_size = Vector2(55, 0)
@@ -349,7 +359,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_11pmb")
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = ExtResource("11_rjxjb")
-text = "$1000"
+text = "$800"
 horizontal_alignment = 1
 vertical_alignment = 2
 uppercase = true

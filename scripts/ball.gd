@@ -28,44 +28,46 @@ func _ready() -> void:
 	print("BALL READY - script is loaded correctly")
 	add_to_group("ball")
 	velocity = Vector2(speed * -1, speed)
-	
+
+
 func _physics_process(delta: float) -> void:
-	if is_active:
-		
-		velocity.y += gravity * delta
-		
-		var collision = move_and_collide(velocity * delta)
-		
-		if collision:
-			
-			var collider = collision.get_collider()
-			var brick = collider.get_parent() if not collider.is_in_group("bricks") else collider
-				
-			if brick.is_in_group("bricks"):
-						# Lava brick destroys the ball instantly
-				if brick.has_method("is_lava") and brick.is_lava():
-					print("lava brick hit!")
-					brick.take_damage(1, self)
-					ball_died.emit()
-					queue_free()
-					return
-					
-				# Normal brick damage
-				brick.take_damage(1, self)
-				ball_health -= 1
-			else:
-				ball_health -= 1
-			if ball_health <= 0:
+	if not is_active:
+		return
+
+	velocity.y += gravity * delta
+
+	var collision = move_and_collide(velocity * delta)
+
+	if collision:
+		var collider = collision.get_collider()
+		var brick = collider.get_parent() if not collider.is_in_group("bricks") else collider
+
+		if brick.is_in_group("bricks"):
+			if brick.is_lava():
+				print("lava brick hit!")
+				brick.take_damage(1)
 				ball_died.emit()
 				queue_free()
 				return
-				
-			velocity = velocity.bounce(collision.get_normal())
-		
+
+			# Normal brick damage
+			brick.take_damage(1)
+			ball_health -= 1
+		else:
+			ball_health -= 1
+
+		if ball_health <= 0:
+			ball_died.emit()
+			queue_free()
+			return
+
+		velocity = velocity.bounce(collision.get_normal())
+
 
 func add_bounce() -> void:
 	total_bounces += 1
 	print("Total bounces: ", total_bounces)
+
 
 func upgrade() -> void:
 	upgrade_level += 1

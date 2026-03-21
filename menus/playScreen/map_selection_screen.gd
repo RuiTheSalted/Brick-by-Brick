@@ -108,7 +108,7 @@ func _on_tile_gui_input(tile_index: int, event: InputEvent) -> void:
 		var scene_path: String = map_data["scene"]
 		print("Loading map:", selected_map_index, "->", scene_path)
 
-		get_tree().change_scene_to_file(scene_path)
+		get_tree().change_scene_to_file("res://scenes/levelWithUI/levelWithUi.tscn")
 
 # WHEN LEFT ARROW CLICKED, GO LEFT
 func _on_left_arrow_pressed() -> void:

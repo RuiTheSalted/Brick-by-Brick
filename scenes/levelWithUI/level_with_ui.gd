@@ -7,7 +7,7 @@
 extends Control
 
 # Set this in the Inspector to whichever map/level scene you want to test.
-@export var default_map_path: String = "res://scenes/level.tscn"
+@export var default_map_path: String = "res://scenes/regularLevel/level.tscn"
 
 # Paths inside LevelWithUi.tscn (rename these constants if your node names differ)
 const GAME_FRAME_PATH := "mainRow/centerMap/gameFrame"

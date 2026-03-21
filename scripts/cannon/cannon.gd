@@ -7,11 +7,8 @@ extends CharacterBody2D
 @export var cannon_delay: float = 0.25
 
 # Ball limit
-@export var max_balls: int = 5
+@export var max_balls: int = 50 #this is in cannon.tscn inspector
 var current_balls: int = 0
-
-# Bullet Scene
-@export var cannon_scene: PackedScene
 
 # Cannon tip
 @export var cannonBall_spawn: Node2D
@@ -45,8 +42,6 @@ func _ready():
 
 	if not cannonBall_spawn:
 		push_error("cannonBall_spawn Node2D is not assigned!")
-	if not cannon_scene:
-		push_warning("cannon_scene is not assigned. Shooting will not work!")
 
 	if has_node("Rotator"):
 		_rotator = $Rotator
@@ -194,9 +189,12 @@ func _draw_dashed_line(from: Vector2, to: Vector2, color: Color, width: float):
 		drawing = not drawing
 
 func shoot():
-	if not cannon_scene:
-		push_warning("Cannot shoot: cannon_scene is not assigned!")
+	var stats = get_tree().get_first_node_in_group("gamestats")
+
+	if not stats or not stats.ammo_scene:
+		push_warning("Cannot shoot: ammo_scene not found in GameStats!")
 		return
+
 	if not cannonBall_spawn:
 		push_warning("Cannot shoot: cannonBall_spawn is not assigned!")
 		return
@@ -208,7 +206,7 @@ func shoot():
 	if anim_player:
 		anim_player.play("shake")
 
-	var cannonBall = cannon_scene.instantiate()
+	var cannonBall = stats.ammo_scene.instantiate()
 	get_parent().add_child(cannonBall)
 	cannonBall.global_position = cannonBall_spawn.global_position
 

@@ -15,14 +15,6 @@ run/main_scene="uid://mkpkvd5s2s23"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
-[autoload]
-
-CurrencyManager="*uid://dpkshr51xy0oa"
-HudCurrency="*uid://d324c0rmw5ei8"
-UpgradeManager="*res://scripts/cannon/UpgradeManager.gd"
-BallTypeManager="*res://scripts/BallTypeManager.gd"
-ScoreManager="*uid://dlybcvqa7yh8b"
-
 [display]
 
 window/size/viewport_width=1280
