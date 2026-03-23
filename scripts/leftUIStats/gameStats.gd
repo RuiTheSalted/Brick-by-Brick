@@ -7,40 +7,57 @@ signal round_changed(current, total)
 signal ammo_type_changed(name, icon)
 
 
-# Match State & Starting Variables
-var hp: int = 100
-var currency: int = 1000
-
-var round_current: int = 1
-var round_total: int = 40
-
-
 # TYPES OF AMMO
 var ammo_data := {
 	"Basic Ball": {
 		"scene": preload("res://scenes/ballsCollision/basicBallCollision.tscn"),
 		"icon": preload("res://assets/spritesArt/ball/ball.png"),
-		"price": 0
+		"price": 0,
+		"damage": 1,
+		"bounces": 5,
+		"speed": 800.0, 
+		"size": 1.0, 
+		"shootSpeed": 0.5
 	},
 	"Ice Ball": {
 		"scene": preload("res://scenes/ballsCollision/iceBallCollision.tscn"),
 		"icon": preload("res://assets/spritesArt/ball/iceball.png"),
-		"price": 1000
+		"price": 1000,
+		"damage": 1,
+		"bounces": 5,
+		"speed": 800.0, 
+		"size": 1.0, 
+		"shootSpeed": 1.0
 	},
 	"Cannon Ball": {
 		"scene": preload("res://scenes/ballsCollision/cannonBallCollision.tscn"),
 		"icon": preload("res://assets/spritesArt/ball/Cannon_Ball_Big.png"),
-		"price": 800
+		"price": 800,
+		"damage": 4,
+		"bounces": 1,
+		"speed": 600.0,
+		"size": 1.25,
+		"shootSpeed": 2.0
 	},
 	"Beach Ball": {
 		"scene": preload("res://scenes/ballsCollision/beachBallCollision.tscn"),
 		"icon": preload("res://assets/spritesArt/ball/BeachBall.png"),
-		"price": 250
+		"price": 250,
+		"damage": 1,
+		"bounces": 15,
+		"speed": 400.0,
+		"size": 2.0,
+		"shootSpeed": 3.0
 	},
 	"Tennis Ball": {
 		"scene": preload("res://scenes/ballsCollision/tennisBallCollision.tscn"),
 		"icon": preload("res://assets/spritesArt/ball/tennisBall.png"),
-		"price": 625
+		"price": 625,
+		"damage": 1,
+		"bounces": 7,
+		"speed": 1200.0, 
+		"size": 0.5,
+		"shootSpeed": 0.667
 	}
 }
 
@@ -50,11 +67,16 @@ var owned_ammo := {
 	"Basic Ball": true
 }
 
+# Match State & Starting Variables
+var hp: int = 100
+var currency: int = 1000
+
+var round_current: int = 1
+var round_total: int = 40
 
 var ammo_name: String = "Basic Ball"
-var ammo_scene: PackedScene = ammo_data["Basic Ball"]["scene"]
 var ammo_icon: Texture2D = ammo_data["Basic Ball"]["icon"]
-
+var ammo_scene: PackedScene = ammo_data["Basic Ball"]["scene"]
 
 # Setup
 func _ready():
@@ -99,27 +121,27 @@ func reset_round():
 	round_changed.emit(round_current, round_total)
 
 
-func buy_ammo(name: String):
-	if not ammo_data.has(name):
+func buy_ammo(ammo_name_str: String):
+	if not ammo_data.has(ammo_name_str):
 		return
 
-	if owned_ammo.get(name, false):
+	if owned_ammo.get(ammo_name_str, false):
 		return  # Already owned
 
-	var price = ammo_data[name]["price"]
+	var price = ammo_data[ammo_name_str]["price"]
 
 	if currency >= price:
 		spend_currency(price)
-		owned_ammo[name] = true
+		owned_ammo[ammo_name_str] = true
 
 
 # Ammo Type Function; Update ammo name, icon, and scene, then broadcast changes. 
-func set_ammo_type(name: String):
-	if not owned_ammo.get(name, false):
+func set_ammo_type(ammo_name_str: String):
+	if not owned_ammo.get(ammo_name_str, false):
 		return
 
-	ammo_name = name
-	ammo_scene = ammo_data[name]["scene"]
-	ammo_icon = ammo_data[name]["icon"]
+	ammo_name = ammo_name_str
+	ammo_scene = ammo_data[ammo_name_str]["scene"]
+	ammo_icon = ammo_data[ammo_name_str]["icon"]
 
 	ammo_type_changed.emit(ammo_name, ammo_icon)

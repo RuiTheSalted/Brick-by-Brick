@@ -38,7 +38,7 @@ var _rotator: Node2D = null
 
 
 func _ready():
-	add_to_group("cannons")  # Allows CurrencyManager to find and sync this cannon
+	add_to_group("cannons")
 
 	if not cannonBall_spawn:
 		push_error("cannonBall_spawn Node2D is not assigned!")
@@ -47,22 +47,17 @@ func _ready():
 		_rotator = $Rotator
 
 	update_directional_force()
-
-	# Sync ammo from UpgradeManager on scene load
-	if get_tree().root.has_node("UpgradeManager"):
-		var um = get_tree().root.get_node("UpgradeManager")
-		max_balls = um.get_max_balls()
-		um.ammo_upgraded.connect(_on_ammo_upgraded)
-
+	
+	var stats = get_tree().get_first_node_in_group("gamestats")
+	if stats:
+		stats.ammo_type_changed.connect(_on_ammo_changed)
+	apply_ammo_stats()
 
 func _input(event):
 	if event.is_action_pressed("ui_select") or event.is_action_pressed("ui_accept"):
 		shooting = true
-		waited = cannon_delay
 	elif event.is_action_released("ui_select") or event.is_action_released("ui_accept"):
 		shooting = false
-		waited = 0.0
-
 
 func _process(delta):
 	if _rotator and not Engine.is_editor_hint():
@@ -77,12 +72,11 @@ func _process(delta):
 	if Engine.is_editor_hint() or preview_ingame:
 		queue_redraw()
 
-	if shooting and current_balls < max_balls:
 		waited += delta
-		if waited >= cannon_delay:
-			shoot()
-			waited = 0.0
-
+		if shooting and current_balls < max_balls:
+			if waited >= cannon_delay:
+				shoot()
+				waited = 0.0
 
 func update_directional_force():
 	if cannonBall_spawn:
@@ -96,7 +90,6 @@ func update_directional_force():
 		directional_force = direction.normalized() * cannon_velocity
 	else:
 		directional_force = Vector2.ZERO
-
 
 func _build_trajectory_no_raycast():
 	var pos = cannonBall_spawn.global_position
@@ -112,7 +105,6 @@ func _build_trajectory_no_raycast():
 		vel = Vector2(vel.x, vel.y + grav * t)
 		_trajectory_points.append({ "pos": next_pos, "bounce": false })
 		pos = next_pos
-
 
 func _update_trajectory():
 	_trajectory_points.clear()
@@ -161,7 +153,6 @@ func _update_trajectory():
 			vel = next_vel
 			steps_remaining -= 1
 
-
 func _draw():
 	if _trajectory_points.size() < 2:
 		return
@@ -170,7 +161,6 @@ func _draw():
 		var to = to_local(_trajectory_points[i].pos)
 		var color = preview_bounce_color if _trajectory_points[i].bounce else preview_line_color
 		_draw_dashed_line(from, to, color, 2)
-
 
 func _draw_dashed_line(from: Vector2, to: Vector2, color: Color, width: float):
 	var dash_length: float = 8.0
@@ -205,31 +195,34 @@ func shoot():
 
 	if anim_player:
 		anim_player.play("shake")
-
+		
+	var ammo_stats = stats.ammo_data[stats.ammo_name]
 	var cannonBall = stats.ammo_scene.instantiate()
+	
+	cannonBall.damage = ammo_stats["damage"]
+	cannonBall.max_bounces = ammo_stats["bounces"]
+	cannonBall.ball_speed = ammo_stats["speed"]
+	cannonBall.scale = Vector2(ammo_stats["size"], ammo_stats["size"])
+
 	get_parent().add_child(cannonBall)
 	cannonBall.global_position = cannonBall_spawn.global_position
 
 	if cannonBall.has_method("shoot"):
 		cannonBall.shoot(directional_force, cannon_gravity)
 		current_balls += 1
-		print("Cannon: Ball fired | Balls in play: ", current_balls, "/", max_balls)
 		cannonBall.ball_died.connect(_on_ball_died)
 	else:
 		push_warning("Cannonball scene does not have a 'shoot' method!")
 
-
 func _on_ball_died():
 	current_balls -= 1
+
+func apply_ammo_stats():
+		var stats = get_tree().get_first_node_in_group("gamestats")
+		if stats and stats.ammo_data.has(stats.ammo_name):
+			cannon_delay = stats.ammo_data[stats.ammo_name]["shootSpeed"]
+			print("cannon_delay set to: ", cannon_delay)
+
+func _on_ammo_changed(_name, _icon):
+	apply_ammo_stats()
 	print("Cannon: Ball returned | Balls in play: ", current_balls, "/", max_balls)
-
-
-# Called by UpgradeManager when ammo is upgraded
-func sync_ammo(new_max_balls: int) -> void:
-	max_balls = new_max_balls
-	print("Cannon: Ammo upgraded | Max balls: ", max_balls)
-
-
-func _on_ammo_upgraded(_level: int) -> void:
-	if get_tree().root.has_node("UpgradeManager"):
-		sync_ammo(get_tree().root.get_node("UpgradeManager").get_max_balls())

@@ -1,24 +1,18 @@
-[gd_scene format=3 uid="uid://ck3aw8crmpkhh"]
+[gd_scene format=3 uid="uid://clawxw13eoh7l"]
 
-[ext_resource type="Script" uid="uid://bsggaj3w2mr3i" path="res://scripts/cannon/cannon_ball.gd" id="1_q5isx"]
-[ext_resource type="Texture2D" uid="uid://dcerftqfui753" path="res://assets/spritesArt/ball/Cannon_Ball.png" id="2_nh757"]
+[ext_resource type="Script" uid="uid://di716arx4x6xs" path="res://scripts/ball.gd" id="1_q5isx"]
+[ext_resource type="Texture2D" uid="uid://bwoohj6dxks0r" path="res://assets/spritesArt/ball/Cannon_Ball_Big.png" id="2_q5isx"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_iw1mh"]
-radius = 11.045361
+[sub_resource type="CircleShape2D" id="CircleShape2D_cxlvu"]
+radius = 159.99998
 
-[node name="cannon_ball" type="CharacterBody2D" unique_id=117075033 groups=["ball"]]
-collision_layer = 6
-collision_mask = 5
+[node name="Ball" type="CharacterBody2D" unique_id=777500282]
 script = ExtResource("1_q5isx")
 
-[node name="cannonBall" type="Sprite2D" parent="." unique_id=1719184776]
-scale = Vector2(0.034266587, 0.03306878)
-texture = ExtResource("2_nh757")
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=101104206]
+scale = Vector2(0.078431375, 0.078431375)
+texture = ExtResource("2_q5isx")
 
-[node name="cannon_collision" type="CollisionShape2D" parent="." unique_id=547695744]
-shape = SubResource("CircleShape2D_iw1mh")
-
-[node name="visibility_notifier" type="VisibleOnScreenNotifier2D" parent="." unique_id=1852563739]
-rect = Rect2(-16, -16, 32, 32)
-
-[connection signal="screen_exited" from="visibility_notifier" to="." method="_on_visibility_notifier_screen_exited"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1073249583]
+scale = Vector2(0.1, 0.1)
+shape = SubResource("CircleShape2D_cxlvu")

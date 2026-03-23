@@ -10,10 +10,8 @@ radius = 159.99998
 script = ExtResource("1_jncam")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=101104206]
-position = Vector2(-0.78431404, -0.7843145)
 scale = Vector2(0.078431375, 0.078431375)
 texture = ExtResource("2_nrkqd")
-offset = Vector2(10, 10)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1073249583]
 scale = Vector2(0.1, 0.1)
