@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://12jt8jsecgc2"
-path="res://.godot/imported/GrassBackground.png-eef9554418b27b5f627ba0b8062d7023.ctex"
+uid="uid://oq5mqaev4xdm"
+path="res://.godot/imported/curve.png-a90b41cf617d413b62efb9497cd76a1e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://maps/easyMaps/GrassBackground.png"
-dest_files=["res://.godot/imported/GrassBackground.png-eef9554418b27b5f627ba0b8062d7023.ctex"]
+source_file="res://maps/easyMaps/mapsSprites/grassLevel2/curve.png"
+dest_files=["res://.godot/imported/curve.png-a90b41cf617d413b62efb9497cd76a1e.ctex"]
 
 [params]
 

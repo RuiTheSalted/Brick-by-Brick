@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://boick334hnq70"]
 
-[ext_resource type="Texture2D" uid="uid://12jt8jsecgc2" path="res://maps/easyMaps/GrassBackground.png" id="1_crghk"]
+[ext_resource type="Texture2D" uid="uid://12jt8jsecgc2" path="res://maps/easyMaps/mapsSprites/grassLevelOne/GrassBackground (2).png" id="1_crghk"]
 [ext_resource type="PackedScene" uid="uid://dtlu1ys4mvur7" path="res://scenes/ball_spawner.tscn" id="3_0viti"]
 [ext_resource type="PackedScene" uid="uid://bk7yo1rdc6sji" path="res://scenes/cannon/enemy.tscn" id="4_e040q"]
 [ext_resource type="PackedScene" uid="uid://dwqqquosf3rgt" path="res://scenes/cannon/cannon.tscn" id="7_sd1ye"]
