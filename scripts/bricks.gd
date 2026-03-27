@@ -21,6 +21,11 @@ var brickTextures = [
 
 var lavaBrickTexture = preload("res://assets/spritesArt/bricks/Lava Brick.png")
 
+var is_slowed: bool = false
+var slow_timer: float = 0.0
+var slow_duration: float = 2.0 #ICEBALL SLOW DURATION
+var slow_multiplier: float = 0.5 #SLOWS BRICKS TO HALF SPEED
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	add_to_group("bricks")	# Add brick to group for easy detection
@@ -32,9 +37,9 @@ func take_damage(amount: int) -> void:
 	var stats = get_tree().get_first_node_in_group("gamestats")
 	if stats: 
 		if brick_type == BrickType.Lava:
-			stats.add_currency(2)
+			stats.add_currency(amount * 2)
 		else: 
-			stats.add_currency(1)
+			stats.add_currency(amount)
 	else: 
 		push_error("Gamestats not found in group 'gamestats'")
 	
@@ -70,8 +75,21 @@ func _update_label()-> void:
 		$HealthLabel.text = str(health)
 
 func _physics_process(delta):
+	if is_slowed:
+		slow_timer -= delta
+		if slow_timer <= 0:
+			is_slowed = false
+	
 	var path_follow = get_parent()
-	path_follow.progress += speed * delta
+	var current_speed = speed
+	if is_slowed:
+		current_speed *= slow_multiplier
+	path_follow.progress += current_speed * delta
+	
+	if is_slowed:
+		$Sprite2D.modulate = Color(0.6, 0.8, 1.0)
+	else:
+		$Sprite2D.modulate = Color(1, 1, 1)
 	
 	# Detect reaching end of path & dying
 	if not _reached_end and path_follow.progress_ratio >= 1.0:
@@ -85,3 +103,7 @@ func _physics_process(delta):
 
 func is_lava():
 	return brick_type == BrickType.Lava
+
+func apply_slow():
+	is_slowed = true
+	slow_timer = slow_duration

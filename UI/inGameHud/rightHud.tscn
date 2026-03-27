@@ -683,5 +683,7 @@ visible = false
 layout_mode = 1
 offset_left = -1070.0
 
+[connection signal="pressed" from="MarginContainer/stack/upgradeButton" to="." method="_on_upgrade_button_pressed"]
+[connection signal="pressed" from="MarginContainer/stack/selectBallArea/listOfEntitys/vEntryHolder/rowOne/cannon" to="." method="_on_cannon_pressed"]
 [connection signal="pressed" from="MarginContainer/stack/buttonRow/settingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="MarginContainer/stack/buttonRow/playButton" to="." method="_on_play_button_pressed"]

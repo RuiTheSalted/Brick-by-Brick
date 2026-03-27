@@ -72,11 +72,11 @@ func _process(delta):
 	if Engine.is_editor_hint() or preview_ingame:
 		queue_redraw()
 
-		waited += delta
-		if shooting and current_balls < max_balls:
-			if waited >= cannon_delay:
-				shoot()
-				waited = 0.0
+	waited += delta
+	if shooting and current_balls < max_balls:
+		if waited >= cannon_delay:
+			shoot()
+			waited = 0.0
 
 func update_directional_force():
 	if cannonBall_spawn:
@@ -203,6 +203,9 @@ func shoot():
 	cannonBall.max_bounces = ammo_stats["bounces"]
 	cannonBall.ball_speed = ammo_stats["speed"]
 	cannonBall.scale = Vector2(ammo_stats["size"], ammo_stats["size"])
+# ICE BALL ABILITIES
+	cannonBall.ignore_lava = ammo_stats.get("lavaResist", false)
+	cannonBall.slow_effect = ammo_stats.get("slowEffect", false)
 
 	get_parent().add_child(cannonBall)
 	cannonBall.global_position = cannonBall_spawn.global_position

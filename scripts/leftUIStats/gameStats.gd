@@ -27,7 +27,9 @@ var ammo_data := {
 		"bounces": 5,
 		"speed": 800.0, 
 		"size": 1.0, 
-		"shootSpeed": 1.0
+		"shootSpeed": 1.0,
+		"lavaResist": true,
+		"slowEffect": true
 	},
 	"Cannon Ball": {
 		"scene": preload("res://scenes/ballsCollision/cannonBallCollision.tscn"),
@@ -68,8 +70,8 @@ var owned_ammo := {
 }
 
 # Match State & Starting Variables
-var hp: int = 100
-var currency: int = 1000
+var hp: int = 10000
+var currency: int = 10000
 
 var round_current: int = 1
 var round_total: int = 40
@@ -77,6 +79,8 @@ var round_total: int = 40
 var ammo_name: String = "Basic Ball"
 var ammo_icon: Texture2D = ammo_data["Basic Ball"]["icon"]
 var ammo_scene: PackedScene = ammo_data["Basic Ball"]["scene"]
+
+var upgrade_target: String = "ball"
 
 # Setup
 func _ready():
