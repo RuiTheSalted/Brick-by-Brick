@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cjm36a8ysgf4b"
-path="res://.godot/imported/GrassBackground.png-8a815e127401eb6cbcfe1c7c3d0e879f.ctex"
+uid="uid://bbr1kar1k1y7v"
+path="res://.godot/imported/bush.png-ce0a7f53cc5bb991b7692f3dc8e0e1d9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://maps/easyMaps/mapsSprites/grassLevelOne/GrassBackground.png"
-dest_files=["res://.godot/imported/GrassBackground.png-8a815e127401eb6cbcfe1c7c3d0e879f.ctex"]
+source_file="res://maps/easyMaps/mapsSprites/map3/bush.png"
+dest_files=["res://.godot/imported/bush.png-ce0a7f53cc5bb991b7692f3dc8e0e1d9.ctex"]
 
 [params]
 
