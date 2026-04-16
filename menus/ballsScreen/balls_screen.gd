@@ -37,6 +37,8 @@ func _ready() -> void:
 
 	_spawn_slots() # CREATE THE VISIBLE SLOTS
 	_update_slots(true) # POSITION WITH ANIMATION
+	
+	_apply_hover_to_all_buttons(self)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -75,6 +77,8 @@ func _spawn_slots() -> void:
 
 		# BIND SLOT INDEX SAFELY (no lambdas)
 		item.pressed.connect(Callable(self, "_on_slot_pressed").bind(s))
+		
+		add_hover_effect(item)
 
 		carousel_root.add_child(item)
 		slot_nodes.append(item)
@@ -158,3 +162,19 @@ func _update_slots(animated: bool) -> void:
 # EXIT TO MAIN SCREEN
 func _on_exit_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://menus/titleScreen/mainScreen.tscn")
+
+
+func add_hover_effect(btn: BaseButton):
+	btn.mouse_entered.connect(func():
+		btn.modulate = Color(1.2, 1.2, 1.2, 1)
+	)
+
+	btn.mouse_exited.connect(func():
+		btn.modulate = Color(1, 1, 1, 1)
+	)
+
+func _apply_hover_to_all_buttons(node):
+	for child in node.get_children():
+		if child is BaseButton:
+			add_hover_effect(child)
+		_apply_hover_to_all_buttons(child)

@@ -3,6 +3,11 @@ extends Control
 # VARIABLES FOR ARROWS
 @onready var left_arrow: TextureButton = $background/margin/main/mapArea/leftArrow
 @onready var right_arrow: TextureButton = $background/margin/main/mapArea/rightArrow
+@onready var back_button: TextureButton = $background/margin/main/topBar/exitButton
+@onready var easy_button: TextureButton = $background/margin/main/difficultyRow/difficultyButtons/easyMaps
+@onready var medium_button: TextureButton = $background/margin/main/difficultyRow/difficultyButtons/normalMaps
+@onready var hard_button: TextureButton = $background/margin/main/difficultyRow/difficultyButtons/hardMaps
+@onready var special_button: TextureButton = $background/margin/main/difficultyRow/difficultyButtons/specialMaps
 
 # FORMATS 6 MAPS PER SCREEN (dont update this)
 @onready var tiles: Array[Control] = [
@@ -36,7 +41,15 @@ func _ready() -> void:
 	# MAKE MAPS CLICKABLE (requires Mouse Filter = Stop on map1..mapN)
 	for i in range(tiles.size()):
 		tiles[i].gui_input.connect(func(event): _on_tile_gui_input(i, event))
+		add_hover_to_tile(tiles[i]) #
 	_refresh_page()
+	add_hover_effect(left_arrow)
+	add_hover_effect(right_arrow)
+	add_hover_effect(back_button)
+	add_hover_effect(easy_button)
+	add_hover_effect(medium_button)
+	add_hover_effect(hard_button)
+	add_hover_effect(special_button)
 
 # SEES HOW MANY PAGES WE HAVE
 func _wrap_page(new_page: int) -> int:
@@ -123,3 +136,20 @@ func _on_right_arrow_pressed() -> void:
 # WHEN EXIT CLICKED, GO TO TITLE SCREEN
 func _on_exit_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://menus/titleScreen/mainScreen.tscn")
+
+func add_hover_effect(btn: BaseButton):
+	btn.mouse_entered.connect(func():
+		btn.modulate = Color(1.2, 1.2, 1.2, 1)
+	)
+	
+	btn.mouse_exited.connect(func():
+		btn.modulate = Color(1, 1, 1, 1)
+	)
+
+func add_hover_to_tile(tile: Control):
+	tile.mouse_entered.connect(func():
+		tile.modulate = Color(1.1, 1.1, 1.1, 1)
+	)
+	tile.mouse_exited.connect(func():
+		tile.modulate = Color(1, 1, 1, 1)
+)

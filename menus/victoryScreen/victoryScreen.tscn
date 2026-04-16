@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bb3fluwqgpvxf" path="res://assets/spritesArt/bricks/placeholderBrick.png" id="3_kl7in"]
 [ext_resource type="Texture2D" uid="uid://cli4t4alnf4xq" path="res://assets/spritesArt/buttonArt/Home Button.png" id="4_qwbor"]
 [ext_resource type="Texture2D" uid="uid://cgts3mqwndvq6" path="res://assets/spritesArt/buttonArt/Freeplay Button.png" id="5_cftvp"]
+[ext_resource type="Texture2D" uid="uid://ckymlg2r01bh0" path="res://assets/spritesArt/buttonArt/Restart Button.png" id="6_b577q"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qwbor"]
 bg_color = Color(1, 0.8862745, 0.69803923, 1)
@@ -179,6 +180,13 @@ alignment = 1
 custom_minimum_size = Vector2(54, 54)
 layout_mode = 2
 texture_normal = ExtResource("4_qwbor")
+ignore_texture_size = true
+stretch_mode = 6
+
+[node name="restartButton" type="TextureButton" parent="center/Panel/VBoxContainer/buttonsRow" unique_id=24162623]
+custom_minimum_size = Vector2(54, 54)
+layout_mode = 2
+texture_normal = ExtResource("6_b577q")
 ignore_texture_size = true
 stretch_mode = 6
 

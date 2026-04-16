@@ -9,6 +9,7 @@ extends Control
 # UPON LOADING ACHIEVEMENTS SCREEN, LOAD ACHIEVMENT FOLDER
 func _ready() -> void:
 	loadAchievements(achievementFolder)
+	_apply_hover_to_buttons(self)
 
 # LOAD THE ACHIEVEMENTS ONTO SCREEN
 func loadAchievements(folder_path: String) -> void:
@@ -35,6 +36,8 @@ func loadAchievements(folder_path: String) -> void:
 				var scene: PackedScene = packed #blueprint
 				var inst: Node = scene.instantiate() #real object now
 				grid.add_child(inst) #added to grid
+				# Apply hover to any buttons inside the achievement
+				_apply_hover_to_buttons(inst)
 
 #NEXT FILE
 		file_name = dir.get_next() 
@@ -45,3 +48,18 @@ func loadAchievements(folder_path: String) -> void:
 # WHEN EXIT CLICKED, LOAD TITLE SCREEN
 func _on_exit_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://menus/titleScreen/mainScreen.tscn")
+	
+
+func add_hover_effect(btn: BaseButton):
+	btn.mouse_entered.connect(func():
+		btn.modulate = Color(1.2, 1.2, 1.2, 1)
+	)
+	btn.mouse_exited.connect(func():
+		btn.modulate = Color(1, 1, 1, 1)
+	)
+
+func _apply_hover_to_buttons(node):
+	for child in node.get_children():
+		if child is BaseButton:
+			add_hover_effect(child)
+		_apply_hover_to_buttons(child)

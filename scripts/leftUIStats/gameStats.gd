@@ -70,8 +70,8 @@ var owned_ammo := {
 }
 
 # Match State & Starting Variables
-var hp: int = 10000
-var currency: int = 10000
+var hp: int = 100
+var currency: int = 2000
 
 var round_current: int = 1
 var round_total: int = 40
