@@ -16,6 +16,7 @@
 [ext_resource type="Script" uid="uid://ry7c582uhyye" path="res://scenes/spawningAndPathing/path_2d.gd" id="15_xckoj"]
 [ext_resource type="Script" uid="uid://ckj4i78vxpe1v" path="res://scenes/spawningAndPathing/brick_spawner.gd" id="16_uuqg7"]
 [ext_resource type="PackedScene" uid="uid://c45kb77sh2kav" path="res://scenes/brickCollision/greenBrickCollision.tscn" id="17_830qo"]
+[ext_resource type="PackedScene" uid="uid://cby1ieng4g625" path="res://scenes/brickCollision/metalBrickCollision.tscn" id="18_metal"]
 [ext_resource type="Texture2D" uid="uid://diyfiptv2f3pg" path="res://maps/easyMaps/mapsSprites/grassLevelOne/smallRocks.png" id="19_iijp3"]
 [ext_resource type="Texture2D" uid="uid://sgfauw5lwcku" path="res://maps/easyMaps/mapsSprites/grassLevelOne/fallenLog.png" id="20_5ivyi"]
 [ext_resource type="Texture2D" uid="uid://bwtxphpbip767" path="res://maps/easyMaps/mapsSprites/grassLevel2/tent.png" id="21_xdxds"]
@@ -594,3 +595,4 @@ script = ExtResource("15_xckoj")
 [node name="Brick_spawner" type="Node2D" parent="." unique_id=235322567]
 script = ExtResource("16_uuqg7")
 brick_scene = ExtResource("17_830qo")
+unbreakable_brick_scene = ExtResource("18_metal")

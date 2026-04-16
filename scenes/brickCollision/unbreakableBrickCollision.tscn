@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://dbnyejadik2n4"]
+
+[ext_resource type="Script" uid="uid://djjsaced8a0h6" path="res://scripts/bricks.gd" id="1_unbk"]
+[ext_resource type="Texture2D" uid="uid://cplab5dfikhsm" path="res://assets/spritesArt/bricks/Metal Brick.png" id="2_hp4ik"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_unbk"]
+size = Vector2(53.84616, 15.384618)
+
+[node name="bricks" type="StaticBody2D" unique_id=-993021776 groups=["bricks"]]
+scale = Vector2(1.3, 1.3)
+script = ExtResource("1_unbk")
+health = null
+speed = null
+brick_type = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=-1193621694]
+scale = Vector2(0.326, 0.309)
+texture = ExtResource("2_hp4ik")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=-797044161]
+position = Vector2(-0.38461596, -0.3846157)
+shape = SubResource("RectangleShape2D_unbk")
+
+[node name="HealthLabel" type="Label" parent="." unique_id=-690143361]
+offset_left = -20.000002
+offset_top = -12.3076935
+offset_right = 19.999998
+offset_bottom = 10.6923065
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://ry7c582uhyye" path="res://scenes/spawningAndPathing/path_2d.gd" id="12_4yn22"]
 [ext_resource type="Script" uid="uid://ckj4i78vxpe1v" path="res://scenes/spawningAndPathing/brick_spawner.gd" id="13_plg07"]
 [ext_resource type="PackedScene" uid="uid://c45kb77sh2kav" path="res://scenes/brickCollision/greenBrickCollision.tscn" id="14_n24np"]
+[ext_resource type="PackedScene" uid="uid://cby1ieng4g625" path="res://scenes/brickCollision/metalBrickCollision.tscn" id="15_metal"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w7c3h"]
 size = Vector2(215, 733)
@@ -367,3 +368,4 @@ script = ExtResource("12_4yn22")
 [node name="Brick_spawner" type="Node2D" parent="." unique_id=235322567]
 script = ExtResource("13_plg07")
 brick_scene = ExtResource("14_n24np")
+unbreakable_brick_scene = ExtResource("15_metal")

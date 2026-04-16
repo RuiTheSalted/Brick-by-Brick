@@ -1,7 +1,5 @@
 [gd_scene format=3 uid="uid://boick334hnq70"]
 
-[ext_resource type="Texture2D" uid="uid://12jt8jsecgc2" path="res://maps/easyMaps/mapsSprites/grassLevelOne/GrassBackground (2).png" id="1_crghk"]
-[ext_resource type="PackedScene" uid="uid://dtlu1ys4mvur7" path="res://scenes/ball_spawner.tscn" id="3_0viti"]
 [ext_resource type="PackedScene" uid="uid://bk7yo1rdc6sji" path="res://scenes/cannon/enemy.tscn" id="4_e040q"]
 [ext_resource type="PackedScene" uid="uid://dwqqquosf3rgt" path="res://scenes/cannon/cannon.tscn" id="7_sd1ye"]
 
@@ -21,9 +19,8 @@ size = Vector2(1280.5, 22)
 
 [node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1991968973]
 position = Vector2(638, 362)
-texture = ExtResource("1_crghk")
 
-[node name="BallSpawner" parent="." unique_id=478855960 instance=ExtResource("3_0viti")]
+[node name="BallSpawner" parent="." unique_id=478855960]
 position = Vector2(24, 31)
 
 [node name="Cannon" parent="." unique_id=855465672 instance=ExtResource("7_sd1ye")]
@@ -33,6 +30,7 @@ position = Vector2(639, 638)
 position = Vector2(639, 360)
 
 [node name="Walls" type="StaticBody2D" parent="." unique_id=699938017]
+position = Vector2(-2, -1)
 
 [node name="Left Wall" type="CollisionShape2D" parent="Walls" unique_id=712070755]
 position = Vector2(-10, 357)
