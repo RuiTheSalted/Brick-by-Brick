@@ -45,8 +45,14 @@ func _ready() -> void:
 func take_damage(amount: int) -> void:
 	if brick_type == BrickType.Unbreakable:
 		return
-
 	health -= amount
+	
+	# Plays break sound if dying, damage sound if surviviing
+	if health <= 0:
+		AudioManager.play_sfx(SoundBank.BRICK_BREAK)
+	else:
+		AudioManager.play_sfx(SoundBank.BRICK_DAMAGE, true)
+	
 	var stats = get_tree().get_first_node_in_group("gamestats")
 	if stats:
 		if brick_type == BrickType.Lava:

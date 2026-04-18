@@ -59,6 +59,8 @@ func _unhandled_input(event: InputEvent) -> void:
 func _move(dir: int) -> void:
 	if balls.is_empty():
 		return
+	# Audio
+	AudioManager.play_ui_click(2)
 # ALLOWS FOR LOOPING & UPDATE WITH ANIMATION
 	selected_index = wrapi(selected_index + dir, 0, balls.size())
 	_update_slots(true)
@@ -87,7 +89,8 @@ func _spawn_slots() -> void:
 func _on_slot_pressed(slot_i: int) -> void:
 	if balls.is_empty():
 		return
-
+	# Audio
+	AudioManager.play_ui_click(2)
 	var center_slot: int = visible_slots >> 1 # INT DIVISION BY 2
 	var offset: int = slot_i - center_slot
 
@@ -161,6 +164,8 @@ func _update_slots(animated: bool) -> void:
 
 # EXIT TO MAIN SCREEN
 func _on_exit_button_pressed() -> void:
+	# Audio
+	AudioManager.play_ui_click(2)
 	get_tree().change_scene_to_file("res://menus/titleScreen/mainScreen.tscn")
 
 

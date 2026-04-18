@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://cvft8wldg8rbn"]
+
+[ext_resource type="Script" uid="uid://bs2v41w63n1ab" path="res://scripts/cannon/cannon.gd" id="1_34e74"]
+[ext_resource type="PackedScene" uid="uid://ck3aw8crmpkhh" path="res://scenes/cannon/cannon_ball.tscn" id="2_fo4op"]
+[ext_resource type="Texture2D" uid="uid://3xltrr51rktv" path="res://assets/spritesArt/cannon/Cannon_Static-1.png" id="3_isswg"]
+[ext_resource type="AudioStream" uid="uid://cs6bg8mqhkqpb" path="res://assets/audio/sfx/cannon_shot.mp3" id="4_75dbf"]
+
+[sub_resource type="Animation" id="Animation_s14hi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_lb0lo"]
+resource_name = "shake"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.04, 0.08, 0.12, 0.16, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-13, 16), Vector2(20, -14), Vector2(4, 4), Vector2(7, -4), Vector2(2, -14)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xrbou"]
+_data = {
+&"RESET": SubResource("Animation_s14hi"),
+&"shake": SubResource("Animation_lb0lo")
+}
+
+[node name="Cannon" type="CharacterBody2D" unique_id=855465672 node_paths=PackedStringArray("cannonBall_spawn", "cannon_sound", "anim_player")]
+collision_layer = 2
+script = ExtResource("1_34e74")
+max_balls = 10
+cannon_scene = ExtResource("2_fo4op")
+cannonBall_spawn = NodePath("Rotator/cannonBall_spawn")
+cannon_sound = NodePath("cannon_sound")
+anim_player = NodePath("Camera/anim_player")
+preview_ingame = true
+preview_line_count = 2
+preview_max_bounces = 0
+
+[node name="Rotator" type="Node2D" parent="." unique_id=1221863442]
+rotation = 1.5707964
+
+[node name="cannon_sprite" type="Sprite2D" parent="Rotator" unique_id=1413947234]
+position = Vector2(-1.9073486e-06, 0.9999995)
+scale = Vector2(0.16833434, 0.14930554)
+texture = ExtResource("3_isswg")
+
+[node name="cannonBall_spawn" type="Marker2D" parent="Rotator" unique_id=210365810]
+position = Vector2(0, -61)
+
+[node name="cannon_Collision" type="CollisionPolygon2D" parent="." unique_id=945264720]
+position = Vector2(-16.174696, -19.84505)
+scale = Vector2(0.1662309, 0.14743985)
+polygon = PackedVector2Array(-11.615372, -162.96431, -9.712624, -111.47826, 7.412117, -44.97548, -4.0043793, 75.15859, -19.226364, 167.4044, -89.62805, 167.4044, -146.7105, 212.45468, -146.7105, 354.04126, -70.60057, 405.52728, -68.697815, 544.9686, 7.412117, 549.2591, 9.314865, 459.15857, 150.11824, 463.4491, 155.82648, 549.2591, 235.74191, 547.1139, 237.64467, 403.38202, 321.3656, 345.46027, 323.26834, 206.01892, 252.86665, 165.25914, 190.07596, 152.38763, 176.75671, -42.83023, 188.17322, -128.64027, 184.3677, -171.5453, 131.09076, -150.09279, 60.689068, -150.09279)
+
+[node name="cannon_sound" type="AudioStreamPlayer2D" parent="." unique_id=247758774]
+stream = ExtResource("4_75dbf")
+
+[node name="Camera" type="Camera2D" parent="." unique_id=43757634]
+position = Vector2(0, -282)
+
+[node name="anim_player" type="AnimationPlayer" parent="Camera" unique_id=159724826]
+libraries/ = SubResource("AnimationLibrary_xrbou")

@@ -203,6 +203,8 @@ func shoot():
 	cannonBall.max_bounces = ammo_stats["bounces"]
 	cannonBall.ball_speed = ammo_stats["speed"]
 	cannonBall.scale = Vector2(ammo_stats["size"], ammo_stats["size"])
+	cannonBall.ball_type = stats.ammo_name
+	
 # ICE BALL ABILITIES
 	cannonBall.ignore_lava = ammo_stats.get("lavaResist", false)
 	cannonBall.slow_effect = ammo_stats.get("slowEffect", false)
