@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 SoundBank="*uid://bbm6vnw0ye3rr"
 AudioManager="*uid://keeddls7yutk"
+GameStats="*uid://c3ggoua7psjp6"
 
 [display]
 
