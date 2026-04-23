@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://hppu1j2rywla"]
 
 [ext_resource type="Script" uid="uid://dsin6u8lewrlf" path="res://scenes/regularLevels/level.gd" id="1_pnr0o"]
-[ext_resource type="Texture2D" uid="uid://dl045exidth5e" path="res://maps/easyMaps/mapsSprites/grassLevelOne/GrassBackgroundRESIZE.png" id="2_ub7sk"]
+[ext_resource type="Texture2D" uid="uid://dl045exidth5e" path="res://maps/easyMaps/mapsSprites/grassLevelOne/GrassBackground.png" id="2_ub7sk"]
 [ext_resource type="Texture2D" uid="uid://eemue63q7n5x" path="res://maps/easyMaps/mapsSprites/grassLevelOne/pineTree.png" id="3_hmssm"]
 [ext_resource type="Texture2D" uid="uid://c0h23gn43txwl" path="res://maps/easyMaps/mapsSprites/grassLevelOne/Grass.png" id="4_xrxcw"]
 [ext_resource type="Texture2D" uid="uid://dvqguhd5is4im" path="res://maps/easyMaps/mapsSprites/grassLevelOne/rockWithGrass.png" id="5_4u2jr"]
@@ -14,7 +14,7 @@
 [ext_resource type="Script" uid="uid://ry7c582uhyye" path="res://scenes/spawningAndPathing/path_2d.gd" id="12_4yn22"]
 [ext_resource type="Script" uid="uid://ckj4i78vxpe1v" path="res://scenes/spawningAndPathing/brick_spawner.gd" id="13_plg07"]
 [ext_resource type="PackedScene" uid="uid://c45kb77sh2kav" path="res://scenes/brickCollision/greenBrickCollision.tscn" id="14_n24np"]
-[ext_resource type="PackedScene" uid="uid://cby1ieng4g625" path="res://scenes/brickCollision/metalBrickCollision.tscn" id="15_metal"]
+[ext_resource type="PackedScene" uid="uid://c1xpiuojrfjh6" path="res://scenes/brickCollision/metalBrickCollision.tscn" id="15_metal"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w7c3h"]
 size = Vector2(215, 733)

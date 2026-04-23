@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://cssvucwpsy2c8"]
 
-[ext_resource type="Texture2D" uid="uid://cjm36a8ysgf4b" path="res://maps/easyMaps/mapsSprites/grassLevelOne/GrassBackground.png" id="1_fjtep"]
 [ext_resource type="Script" uid="uid://4fnm3rai2pf3" path="res://menus/ballsScreen/balls_screen.gd" id="1_nwaby"]
 [ext_resource type="PackedScene" uid="uid://i3x8pvsdri2m" path="res://menus/ballsScreen/balls/ballItem.tscn" id="2_r3p66"]
 [ext_resource type="Texture2D" uid="uid://oujfwkkpq5qx" path="res://assets/spritesArt/buttonArt/Back Button.png" id="4_4fwmi"]
@@ -22,7 +21,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_fjtep")
 expand_mode = 1
 
 [node name="CarouselRoot" type="Control" parent="." unique_id=231056555]

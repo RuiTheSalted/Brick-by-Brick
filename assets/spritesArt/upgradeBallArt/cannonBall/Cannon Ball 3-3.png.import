@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dl045exidth5e"
-path="res://.godot/imported/GrassBackgroundRESIZE.png-69df5d28d9ea54e5763a44f7775a006e.ctex"
+uid="uid://5o4ji6d641ua"
+path="res://.godot/imported/Cannon Ball 3-3.png-870ad8c783d5fd2e03c4e731a01a983c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://maps/easyMaps/mapsSprites/grassLevelOne/GrassBackgroundRESIZE.png"
-dest_files=["res://.godot/imported/GrassBackgroundRESIZE.png-69df5d28d9ea54e5763a44f7775a006e.ctex"]
+source_file="res://assets/spritesArt/upgradeBallArt/cannonBall/Cannon Ball 3-3.png"
+dest_files=["res://.godot/imported/Cannon Ball 3-3.png-870ad8c783d5fd2e03c4e731a01a983c.ctex"]
 
 [params]
 
