@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="BallStats" format=3 uid="uid://bh0ykw20gi3o"]
+
+[ext_resource type="Script" uid="uid://5i47ccefwwyb" path="res://scenes/cannon/ball type/BallStats.gd" id="1_qt3dy"]
+
+[resource]
+script = ExtResource("1_qt3dy")
+ball_name = "Heavy"
+ball_color = Color(0.8949248, 0.40390456, 0, 1)
+base_damage = 75
+base_speed = 400.0
+base_max_bounces = 5
+currency_per_hit = 25

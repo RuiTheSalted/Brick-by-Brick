@@ -4,10 +4,11 @@ extends Node2D
 @export var speed: float = 100
 @export var brick_type : BrickType = BrickType.Normal
 
+signal died
+
 enum BrickType {
 	Normal,
 	Lava,
-	Strong,
 	Unbreakable
 }
 
@@ -16,17 +17,17 @@ var _reached_end: bool = false
 
 # Color progression per hit: healthy -> damaged -> critical health
 var brickTextures = [
-	preload("res://assets/spritesArt/bricks/Green Brick.png"),
-	preload("res://assets/spritesArt/bricks/Orange Brick.png"),
 	preload("res://assets/spritesArt/bricks/Red Brick.png"),
+	preload("res://assets/spritesArt/bricks/Orange Brick.png"),
+	preload("res://assets/spritesArt/bricks/Yellow Brick.png"),
+	preload("res://assets/spritesArt/bricks/Green Brick.png"),
+	preload("res://assets/spritesArt/bricks/Blue Brick.png"),
+	preload("res://assets/spritesArt/bricks/Purple Brick.png"),
 ]
 
 var lavaBrickTexture = preload("res://assets/spritesArt/bricks/Lava Brick.png")
 # Strong brick: purple when full, red when half health stripped
-var strongBrickTextures = [
-	preload("res://assets/spritesArt/bricks/Purple Brick.png"),
-	preload("res://assets/spritesArt/bricks/Red Brick.png"),
-]
+
 var unbreakableBrickTexture = preload("res://assets/spritesArt/bricks/Metal Brick.png")
 
 var is_slowed: bool = false
@@ -37,16 +38,20 @@ var slow_multiplier: float = 0.5 #SLOWS BRICKS TO HALF SPEED
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	add_to_group("bricks")	# Add brick to group for easy detection
-	if brick_type == BrickType.Strong:
-		health = 20
 	_update_visuals()
 	_update_label()
 	
 func take_damage(amount: int) -> void:
 	if brick_type == BrickType.Unbreakable:
 		return
-
 	health -= amount
+	
+	# Plays break sound if dying, damage sound if surviviing
+	if health <= 0:
+		AudioManager.play_sfx(SoundBank.BRICK_BREAK)
+	else:
+		AudioManager.play_sfx(SoundBank.BRICK_DAMAGE, true)
+	
 	var stats = get_tree().get_first_node_in_group("gamestats")
 	if stats:
 		if brick_type == BrickType.Lava:
@@ -57,7 +62,8 @@ func take_damage(amount: int) -> void:
 		push_error("Gamestats not found in group 'gamestats'")
 
 	if health <= 0:
-		queue_free()
+		died.emit()
+		get_parent().queue_free()
 	else:
 		_update_visuals()
 		_update_label()
@@ -73,23 +79,25 @@ func _update_visuals() -> void:
 		BrickType.Unbreakable:
 			$Sprite2D.texture = unbreakableBrickTexture
 			return
-		BrickType.Strong:
-			# Changes appearance once first 10 HP are stripped
-			if health > 10:
-				$Sprite2D.texture = strongBrickTextures[0]
-			else:
-				$Sprite2D.texture = strongBrickTextures[1]
-			return
+		
 
 	# Normal: color progression in thirds
-	var thirds = 10.0 / 3.0
-	if health > thirds * 2.0:
-		$Sprite2D.texture = brickTextures[0]
-	elif health > thirds:
-		$Sprite2D.texture = brickTextures[1]
-	else:
-		$Sprite2D.texture = brickTextures[2]
-
+	var index := 0 
+	
+	if health <= 3:
+		index = 0 #Red
+	elif health <= 6:
+		index = 1 #Orange
+	elif health <= 9:
+		index = 2 #Yellow
+	elif health <= 12: 
+		index = 3 #Green
+	elif health <= 15:
+		index = 4 #Blue
+	else: 
+		index = 5 #Purple
+	
+	$Sprite2D.texture = brickTextures[index]
 
 func _update_label() -> void:
 	if has_node("HealthLabel"):
@@ -128,6 +136,7 @@ func _physics_process(delta):
 				stats.set_hp(stats.hp - health)
 			else:
 				push_error("GameStats not found in group 'gamestats'")
+		died.emit()
 		path_follow.queue_free()
 
 func is_lava():

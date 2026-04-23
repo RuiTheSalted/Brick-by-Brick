@@ -47,6 +47,8 @@ func loadAchievements(folder_path: String) -> void:
 
 # WHEN EXIT CLICKED, LOAD TITLE SCREEN
 func _on_exit_button_pressed() -> void:
+	# Audio
+	AudioManager.play_ui_click(1)
 	get_tree().change_scene_to_file("res://menus/titleScreen/mainScreen.tscn")
 	
 

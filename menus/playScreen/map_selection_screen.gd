@@ -103,6 +103,8 @@ func _apply_tile(tile: Control, preview: Texture2D, completed: bool) -> void:
 func _on_tile_gui_input(tile_index: int, event: InputEvent) -> void:
 # IF LEFT MOUSE CLICKED
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		#Audio
+		AudioManager.play_ui_click(1)
 		selected_map_index = page * 6 + tile_index
 
 		# IF ITS "coming soon" STOP HERE
@@ -125,16 +127,20 @@ func _on_tile_gui_input(tile_index: int, event: InputEvent) -> void:
 
 # WHEN LEFT ARROW CLICKED, GO LEFT
 func _on_left_arrow_pressed() -> void:
+	# Audio 
+	AudioManager.play_ui_click(0)
 	page = _wrap_page(page - 1)
 	_refresh_page()
 
 # WHEN RIGHT ARROW CLICKED, GO RIGHT
 func _on_right_arrow_pressed() -> void:
+	AudioManager.play_ui_click(1)
 	page = _wrap_page(page + 1)
 	_refresh_page()
 
 # WHEN EXIT CLICKED, GO TO TITLE SCREEN
 func _on_exit_button_pressed() -> void:
+	AudioManager.play_ui_click(3)
 	get_tree().change_scene_to_file("res://menus/titleScreen/mainScreen.tscn")
 
 func add_hover_effect(btn: BaseButton):

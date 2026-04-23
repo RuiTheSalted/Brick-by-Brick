@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 signal ball_died
 
+# Identier for ball
+var ball_type: String = "Basic Ball"
 var ignore_lava: bool = false
 var slow_effect: bool = false
 
@@ -23,10 +25,13 @@ func _physics_process(delta: float) -> void:
 		return
 
 	velocity.y += gravity * delta
-
+	
 	var collision = move_and_collide(velocity * delta)
 
 	if collision:
+		# Audio queue
+		AudioManager.play_ball_sfx(ball_type)
+		
 		var collider = collision.get_collider()
 		var brick = collider if collider.is_in_group("bricks") else collider.get_parent()
 		if brick and brick.is_in_group("bricks"):
@@ -35,6 +40,8 @@ func _physics_process(delta: float) -> void:
 				if slow_effect and brick.has_method("apply_slow"):
 						brick.apply_slow()
 				if not ignore_lava:
+					#AudioManager
+					AudioManager.play_ball_lost()
 					ball_died.emit()
 					queue_free()
 					return
@@ -46,6 +53,8 @@ func _physics_process(delta: float) -> void:
 		bounce_count += 1
 
 		if bounce_count >= max_bounces:
+			#Audio Queue
+			AudioManager.play_ball_lost()
 			ball_died.emit()
 			queue_free()
 			return

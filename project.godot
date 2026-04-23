@@ -15,6 +15,12 @@ run/main_scene="uid://mkpkvd5s2s23"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+SoundBank="*uid://bbm6vnw0ye3rr"
+AudioManager="*uid://keeddls7yutk"
+GameStats="*uid://c3ggoua7psjp6"
+
 [display]
 
 window/size/viewport_width=1280
@@ -25,6 +31,7 @@ window/stretch/mode="viewport"
 
 folder_colors={
 "res://assets/": "red",
+"res://autoload/": "gray",
 "res://maps/": "yellow",
 "res://menus/": "blue",
 "res://scenes/": "purple",

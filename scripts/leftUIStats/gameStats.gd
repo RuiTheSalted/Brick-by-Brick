@@ -6,6 +6,8 @@ signal currency_changed(value)
 signal round_changed(current, total)
 signal ammo_type_changed(name, icon)
 
+var is_game_over: bool = false
+
 
 # TYPES OF AMMO
 var ammo_data := {
@@ -180,12 +182,13 @@ func set_hp(value: int):
 	hp = value
 	hp_changed.emit(hp)
 	
-	if hp <= 0:
+	if hp <= 0 and not is_game_over:
 		trigger_defeat()
 
 
 # If Lose, Go GameOverScreen
 func trigger_defeat():
+	is_game_over = true
 	get_tree().change_scene_to_file("res://menus/gameOverScreen/gameOverScreen.tscn")
 
 

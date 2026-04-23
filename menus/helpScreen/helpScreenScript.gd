@@ -26,6 +26,8 @@ func _ready():
 
 # HIDE HELP SCREEN AND RETURN TO TITLE
 func _on_exit_button_pressed() -> void:
+	#Audio
+	AudioManager.play_ui_click(2)
 	hide()
 
 # LEFT ARROW
@@ -33,13 +35,16 @@ func _on_left_arrow_pressed() -> void:
 	if animating:
 		return
 	
+	#Audio
+	AudioManager.play_ui_click(1)
 	changeSlide(index - 1, -1)
 
 # RIGHT ARROW
 func _on_right_arrow_pressed() -> void:
 	if animating:
 		return
-	
+	#Audio
+	AudioManager.play_ui_click(1)
 	changeSlide(index + 1, 1)
 
 # CHANGE RECTANGLE LOGIC (SLIDES)

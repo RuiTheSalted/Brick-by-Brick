@@ -23,6 +23,8 @@ var current_level_path: String = ""
 
 
 func _ready() -> void:
+	# audio
+	AudioManager.play_music(SoundBank.MUSIC_LEVEL_FOREST_1)
 	# Basic safety checks
 	if game_frame == null:
 		push_error("LevelWithUi: Missing node at '%s' (your center frame)." % GAME_FRAME_PATH)

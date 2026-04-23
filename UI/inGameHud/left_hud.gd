@@ -34,6 +34,6 @@ func update_round(current, total):
 	$MarginContainer/stack/roundSection/roundRow/roundCounter.text = "Round:\n" + str(current) + "/" + str(total)
 
 
-func update_ammo(name, icon):
-	$MarginContainer/stack/ammoSection/ammoRow/ammoName.text = name
+func update_ammo(ammo_name, icon):
+	$MarginContainer/stack/ammoSection/ammoRow/ammoName.text = ammo_name
 	$MarginContainer/stack/ammoSection/ammoRow/ammoIcon.texture = icon
