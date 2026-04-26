@@ -41,7 +41,7 @@ func _physics_process(delta: float) -> void:
 						brick.apply_slow()
 				if not ignore_lava:
 					#AudioManager
-					AudioManager.play_ball_lost()
+					#AudioManager.play_ball_lost()
 					ball_died.emit()
 					queue_free()
 					return
@@ -54,7 +54,7 @@ func _physics_process(delta: float) -> void:
 
 		if bounce_count >= max_bounces:
 			#Audio Queue
-			AudioManager.play_ball_lost()
+			#AudioManager.play_ball_lost()
 			ball_died.emit()
 			queue_free()
 			return
