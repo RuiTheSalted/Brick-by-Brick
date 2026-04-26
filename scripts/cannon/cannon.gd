@@ -205,6 +205,11 @@ func shoot():
 	cannonBall.scale = Vector2(ammo_stats["size"], ammo_stats["size"])
 	cannonBall.ball_type = stats.ammo_name
 	
+	if ammo_stats.has("currentIcon"):
+		var sprite = cannonBall.get_node_or_null("Sprite2D")
+		if sprite:
+			sprite.texture = ammo_stats["currentIcon"]
+
 # ICE BALL ABILITIES
 	cannonBall.ignore_lava = ammo_stats.get("lavaResist", false)
 	cannonBall.slow_effect = ammo_stats.get("slowEffect", false)

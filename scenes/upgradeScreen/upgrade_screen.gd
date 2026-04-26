@@ -7,6 +7,17 @@ var stats
 # Empty dict means nothing is selected yet
 var selected_upgrade: Dictionary = {}
 
+var selected_path_key: String = ""
+var selected_tier: int = -1
+
+# Placeholder locked texture — replace with your real one later
+var locked_texture = preload("res://assets/spritesArt/bricks/placeholderBrick.png")
+
+# POPUPS
+@onready var confirmResetPopup = $confirmReset
+@onready var confirmResetText = $confirmReset/center/Panel/content/topText
+@onready var noUpgradesPopup = $declineReset
+
 # Top + Bottom 
 @onready var entityLabel = $VBoxContainer/topBar/ballNameLabel
 @onready var currencyLabel = $VBoxContainer/bottomBar/currencyLabel
@@ -14,6 +25,7 @@ var selected_upgrade: Dictionary = {}
 
 # Left Panel
 @onready var buyButton = $VBoxContainer/upgradePanel/leftPanel/buyButton
+@onready var buyButtonText = $VBoxContainer/upgradePanel/leftPanel/buyButton/buyText
 @onready var resetButton = $VBoxContainer/upgradePanel/leftPanel/resetButton
 @onready var entityArt = $VBoxContainer/upgradePanel/leftPanel/ballArt
 @onready var upgradeName = $VBoxContainer/upgradePanel/leftPanel/upgradeName
@@ -44,6 +56,7 @@ var selected_upgrade: Dictionary = {}
 
 func _ready():
 	stats = get_tree().get_first_node_in_group("gamestats")
+	confirmResetPopup.confirmed.connect(_on_confirm_reset_popup_confirmed)
 
 # QUICK IF ELSE CHECK TO SEE IF BALL OR CANNON
 	if stats.upgrade_target == "ball":
@@ -55,10 +68,6 @@ func _ready():
 
 # Set default state before anything is selected
 	clear_left_panel()
-
-
-	# Listen for currency changes so bottom label stays accurate
-	stats.currency_changed.connect(update_currency)
 
 	# Load all 9 upgrade node icons and connect their click signals
 	# Only runs for balls since cannon upgrades will be different
@@ -73,11 +82,15 @@ func _ready():
 
 func load_upgrade_nodes():
 	# Get the upgrade data for whichever ball is currently equipped
-	var ball_upgrades = stats.upgrade_data.get(stats.ammo_name, {})
+	var ball_name = stats.ammo_name
+	var ball_upgrades = stats.upgrade_data.get(ball_name, {})
+	var chosen_path = stats.chosen_paths.get(ball_name, "")
+	var purchased_tier = stats.purchased_tiers.get(ball_name, 0)
 
 	for path_key in upgrade_nodes.keys():
 		var path_data = ball_upgrades.get(path_key, [])
 		var nodes = upgrade_nodes[path_key]
+		var is_locked_path = chosen_path != "" and chosen_path != path_key
 
 		for i in range(nodes.size()):
 			var node = nodes[i]
@@ -85,25 +98,50 @@ func load_upgrade_nodes():
 			if i < path_data.size():
 				# Assign the upgrade icon to the TextureButton
 				var upgrade = path_data[i]
-				node.texture_normal = upgrade["icon"]
-				node.modulate = Color(0.6, 0.6, 0.6) 
+				var is_purchased = (path_key == chosen_path and i < purchased_tier)
+				var is_locked_tier = (path_key == chosen_path and i > 0 and i >= purchased_tier + 1 and purchased_tier == 0) or (path_key == chosen_path and i > purchased_tier)
+				
+				if is_locked_path:
+					# Wrong path — show locked texture and disable
+					node.texture_normal = locked_texture
+					node.modulate = Color(0.4, 0.4, 0.4)
+					node.disabled = true
+				elif is_purchased:
+					# Already purchased — show at full brightness
+					node.texture_normal = upgrade["icon"]
+					node.modulate = Color(1, 1, 1)
+					node.disabled = false
+				else:
+					# Available or locked tier — gray out
+					node.texture_normal = upgrade["icon"]
+					node.modulate = Color(0.6, 0.6, 0.6)
 
-				# Connect this node's press to our handler
-				# We pass path_key and tier so we know which upgrade was clicked
-				node.pressed.connect(_on_upgrade_pressed.bind(path_key, i))
+					# Only enable if previous tier is purchased or this is tier 0
+					if i == 0 or (path_key == chosen_path and i <= purchased_tier):
+						node.disabled = false
+					else:
+						node.disabled = true
+
+				# Connect press signal only if not already connected
+				if not node.pressed.is_connected(_on_upgrade_pressed.bind(path_key, i)):
+					node.pressed.connect(_on_upgrade_pressed.bind(path_key, i))
 			else:
-				# No upgrade data for this slot so disable and dim it
 				node.disabled = true
 				node.modulate = Color(0.3, 0.3, 0.3)
 
 
 func _on_upgrade_pressed(path_key: String, tier: int):
-	# Look up the specific upgrade that was clicked
-	var ball_upgrades = stats.upgrade_data.get(stats.ammo_name, {})
+	var ball_name = stats.ammo_name
+	var ball_upgrades = stats.upgrade_data.get(ball_name, {})
 	var upgrade = ball_upgrades[path_key][tier]
+	var purchased_tier = stats.purchased_tiers.get(ball_name, 0)
+	var chosen_path = stats.chosen_paths.get(ball_name, "")
+	var already_purchased = (chosen_path == path_key and tier < purchased_tier)
 
 	# Store it so buy button knows what to purchase later
 	selected_upgrade = upgrade
+	selected_path_key = path_key
+	selected_tier = tier
 
 	# Update left panel with this upgrade's info
 	upgradeName.text = upgrade["name"]
@@ -112,6 +150,15 @@ func _on_upgrade_pressed(path_key: String, tier: int):
 
 	# Update bottom label to show this upgrade's cost vs current currency
 	currencyLabel.text = str(upgrade["cost"]) + " / " + str(stats.currency)
+	
+	
+	# Update buy button text
+	if already_purchased:
+		buyButtonText.text = "Purchased"
+		buyButton.disabled = true
+	else:
+		buyButtonText.text = "Purchase"
+		buyButton.disabled = false
 
 
 func update_currency(_value):
@@ -124,10 +171,26 @@ func update_currency(_value):
 
 
 func clear_left_panel():
-	# Default state before anything is clicked
-	upgradeName.text = "Select an upgrade"
-	upgradeDesc.text = ""
+	buyButton.disabled = false
 	currencyLabel.text = "? / " + str(stats.currency)
+
+	var ball_name = stats.ammo_name
+	var chosen_path = stats.chosen_paths.get(ball_name, "")
+	var purchased_tier = stats.purchased_tiers.get(ball_name, 0)
+
+	if chosen_path != "" and purchased_tier > 0:
+		var last_upgrade = stats.upgrade_data[ball_name][chosen_path][purchased_tier - 1]
+		entityArt.texture = last_upgrade["icon"]
+		upgradeName.text = last_upgrade["name"]
+		upgradeDesc.text = last_upgrade["desc"]
+		buyButtonText.text = "Purchased"
+		buyButton.disabled = true
+	else:
+		entityArt.texture = stats.ammo_icon
+		upgradeName.text = "Select an upgrade"
+		upgradeDesc.text = "No upgrade selected"
+		buyButtonText.text = "Purchase"
+		buyButton.disabled = false
 
 
 func _on_back_button_pressed():
@@ -137,8 +200,65 @@ func _on_back_button_pressed():
 
 
 func _on_buy_button_pressed():
-	pass # upgrade logic comes later
+	if selected_upgrade.is_empty():
+		print("No upgrade selected")
+		return
+
+	var ball_name = stats.ammo_name
+	var purchased_tier = stats.purchased_tiers.get(ball_name, 0)
+	var chosen_path = stats.chosen_paths.get(ball_name, "")
+
+	# Can't skip tiers
+	if selected_tier > purchased_tier:
+		print("Blocked: must buy previous tier")
+		return
+
+	# Can't switch paths
+	if chosen_path != "" and chosen_path != selected_path_key:
+		print("Blocked: path locked")
+		return
+
+	# Already purchased
+	if chosen_path == selected_path_key and selected_tier < purchased_tier:
+		print("Already purchased")
+		return
+
+	stats.purchase_upgrade(ball_name, selected_path_key, selected_tier)
+
+	# Refresh UI
+	load_upgrade_nodes()
+
+	# Update button
+	buyButtonText.text = "Purchased"
+	buyButton.disabled = true
 
 
 func _on_reset_button_pressed():
-	pass # reset logic comes later
+	var ball_name = stats.ammo_name
+	var purchased_tier = stats.purchased_tiers.get(ball_name, 0)
+
+	if purchased_tier == 0:
+		noUpgradesPopup.show()
+		return
+
+	# Calculate reset cost to show in popup
+	var chosen_path = stats.chosen_paths.get(ball_name, "")
+	var last_upgrade = stats.upgrade_data[ball_name][chosen_path][purchased_tier - 1]
+	var reset_cost = last_upgrade.get("reset_cost", 0)
+
+	confirmResetText.text = "Reset all upgrades for " + ball_name + "?\nThis will cost " + str(reset_cost) + " currency and cannot be undone."
+	confirmResetPopup.show()
+
+
+func _on_confirm_reset_popup_confirmed():
+	var ball_name = stats.ammo_name
+	var success = stats.reset_upgrades(ball_name)
+
+	if not success:
+		noUpgradesPopup.dialog_text = "Not enough currency to reset."
+		noUpgradesPopup.popup_centered()
+		return
+
+	# Refresh entire UI back to default state
+	load_upgrade_nodes()
+	clear_left_panel()

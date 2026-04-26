@@ -8,9 +8,11 @@
 [ext_resource type="Texture2D" uid="uid://drqrcwmauo8x8" path="res://assets/spritesArt/currency/CurrencySizeFix.png" id="6_eyhal"]
 [ext_resource type="Texture2D" uid="uid://6kv7khfq7qpi" path="res://assets/spritesArt/bricks/Green Block.png" id="6_wxof2"]
 [ext_resource type="Texture2D" uid="uid://dfitjubyf7dx2" path="res://assets/spritesArt/bricks/Red Block-1.png" id="7_wxof2"]
+[ext_resource type="PackedScene" uid="uid://cj1d3x5hq0lq1" path="res://menus/confirmReset/confirmResetScreen.tscn" id="9_1v2l7"]
+[ext_resource type="PackedScene" uid="uid://cvlogwya35e4" path="res://menus/declineReset/declineResetScreen.tscn" id="10_osxhv"]
 
 [node name="UpgradeScreen" type="Control" unique_id=816766905]
-process_mode = 2
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -26,6 +28,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 0
 texture = ExtResource("1_mwuwn")
 expand_mode = 1
 stretch_mode = 6
@@ -42,6 +45,7 @@ theme_override_constants/separation = 25
 [node name="topBar" type="HBoxContainer" parent="VBoxContainer" unique_id=1463149697]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
+mouse_filter = 0
 theme_override_constants/separation = -64
 alignment = 1
 
@@ -65,17 +69,20 @@ vertical_alignment = 1
 
 [node name="upgradePanel" type="HBoxContainer" parent="VBoxContainer" unique_id=1867129292]
 layout_mode = 2
+mouse_filter = 0
 theme_override_constants/separation = 20
 
 [node name="leftPanel" type="VBoxContainer" parent="VBoxContainer/upgradePanel" unique_id=1269642030]
 custom_minimum_size = Vector2(320, 520)
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/separation = 20
 alignment = 1
 
 [node name="ballArt" type="TextureRect" parent="VBoxContainer/upgradePanel/leftPanel" unique_id=1497206312]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
+mouse_filter = 0
 texture = ExtResource("2_tn5x4")
 expand_mode = 1
 stretch_mode = 5
@@ -164,11 +171,13 @@ uppercase = true
 custom_minimum_size = Vector2(0, 520)
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 theme_override_constants/separation = 50
 alignment = 1
 
 [node name="pathOne" type="HBoxContainer" parent="VBoxContainer/upgradePanel/rightPanel" unique_id=602763961]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/separation = 120
 alignment = 1
 
@@ -195,6 +204,7 @@ stretch_mode = 5
 
 [node name="pathTwo" type="HBoxContainer" parent="VBoxContainer/upgradePanel/rightPanel" unique_id=1714454104]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/separation = 120
 alignment = 1
 
@@ -221,6 +231,7 @@ stretch_mode = 5
 
 [node name="pathThree" type="HBoxContainer" parent="VBoxContainer/upgradePanel/rightPanel" unique_id=1651263666]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/separation = 120
 alignment = 1
 
@@ -247,12 +258,14 @@ stretch_mode = 5
 
 [node name="bottomBar" type="HBoxContainer" parent="VBoxContainer" unique_id=1214176788]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/separation = 10
 alignment = 1
 
 [node name="currencyIcon" type="TextureRect" parent="VBoxContainer/bottomBar" unique_id=257846917]
 custom_minimum_size = Vector2(84, 84)
 layout_mode = 2
+mouse_filter = 2
 texture = ExtResource("6_eyhal")
 expand_mode = 1
 stretch_mode = 5
@@ -267,4 +280,14 @@ text = "Upgrade Cost / Total Currency"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="confirmReset" parent="." unique_id=519139329 instance=ExtResource("9_1v2l7")]
+visible = false
+layout_mode = 1
+
+[node name="declineReset" parent="." unique_id=1143710270 instance=ExtResource("10_osxhv")]
+visible = false
+layout_mode = 1
+
 [connection signal="pressed" from="VBoxContainer/topBar/backButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/upgradePanel/leftPanel/buyButton" to="." method="_on_buy_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/upgradePanel/leftPanel/resetButton" to="." method="_on_reset_button_pressed"]
