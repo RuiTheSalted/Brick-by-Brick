@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://cq771mbk5dlyr"]
+
+[ext_resource type="Script" uid="uid://cb1u64n0nvxfp" path="res://maps/specialMaps/spiralLevel/scripts/spiral_level.gd" id="1_o774y"]
+[ext_resource type="Script" uid="uid://bj2vkqsg1uxey" path="res://maps/specialMaps/spiralLevel/scripts/tennis_court.gd" id="2_wxwsp"]
+[ext_resource type="Script" uid="uid://bwtqcwm344rnq" path="res://maps/specialMaps/spiralLevel/scripts/spiral_spawner.gd" id="3_ykvi4"]
+[ext_resource type="PackedScene" uid="uid://c45kb77sh2kav" path="res://scenes/brickCollision/greenBrickCollision.tscn" id="4_l4vqh"]
+[ext_resource type="PackedScene" uid="uid://dbnyejadik2n4" path="res://scenes/brickCollision/unbreakableBrickCollision.tscn" id="5_p6efe"]
+[ext_resource type="PackedScene" uid="uid://dwqqquosf3rgt" path="res://scenes/cannon/cannon.tscn" id="6_fefrp"]
+
+[sub_resource type="Curve2D" id="Curve2D_80ysh"]
+
+[node name="SpiralLevel" type="Node2D" unique_id=189045333]
+script = ExtResource("1_o774y")
+
+[node name="SpiralPath" type="Path2D" parent="." unique_id=1245635545]
+curve = SubResource("Curve2D_80ysh")
+
+[node name="TennisCourt" type="Node2D" parent="." unique_id=1158307378]
+script = ExtResource("2_wxwsp")
+
+[node name="Spawner" type="Node" parent="." unique_id=496854973]
+script = ExtResource("3_ykvi4")
+brick_scene = ExtResource("4_l4vqh")
+unbreakable_brick_scene = ExtResource("5_p6efe")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1162506751]
+
+[node name="WaveLabel" type="Label" parent="CanvasLayer" unique_id=2021732916]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -58.0
+offset_top = -24.0
+offset_right = 58.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Node2D" type="Node2D" parent="." unique_id=1151986515]
+
+[node name="Cannon" parent="Node2D" unique_id=855465672 instance=ExtResource("6_fefrp")]
+position = Vector2(640, 680)
