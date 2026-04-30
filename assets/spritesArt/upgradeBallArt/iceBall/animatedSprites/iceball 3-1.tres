@@ -1,0 +1,18 @@
+[gd_resource type="AnimatedTexture" format=3 uid="uid://b5yl7t4n31lhi"]
+
+[ext_resource type="Texture2D" uid="uid://3yyk7wd7m6ku" path="res://assets/spritesArt/upgradeBallArt/iceBall/animatedSprites/Iceball 3-1/sprite_0.png" id="1_dix5g"]
+[ext_resource type="Texture2D" uid="uid://cfs3uteflq6q4" path="res://assets/spritesArt/upgradeBallArt/iceBall/animatedSprites/Iceball 3-1/sprite_1.png" id="2_2o4xi"]
+[ext_resource type="Texture2D" uid="uid://ktq44dm8m1oa" path="res://assets/spritesArt/upgradeBallArt/iceBall/animatedSprites/Iceball 3-1/sprite_2.png" id="3_cqoh0"]
+[ext_resource type="Texture2D" uid="uid://7c64efqfa0" path="res://assets/spritesArt/upgradeBallArt/iceBall/animatedSprites/Iceball 3-1/sprite_3.png" id="4_q0ts5"]
+
+[resource]
+frames = 4
+speed_scale = 1.4
+frame_0/texture = ExtResource("1_dix5g")
+frame_0/duration = 0.15
+frame_1/texture = ExtResource("2_2o4xi")
+frame_1/duration = 0.15
+frame_2/texture = ExtResource("3_cqoh0")
+frame_2/duration = 0.15
+frame_3/texture = ExtResource("4_q0ts5")
+frame_3/duration = 0.15
