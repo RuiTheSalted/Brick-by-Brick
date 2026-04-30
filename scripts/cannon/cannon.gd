@@ -195,35 +195,57 @@ func shoot():
 
 	if anim_player:
 		anim_player.play("shake")
-		
+
 	var ammo_stats = stats.ammo_data[stats.ammo_name]
-	var cannonBall = stats.ammo_scene.instantiate()
-	
-	cannonBall.damage = ammo_stats["damage"]
-	cannonBall.max_bounces = ammo_stats["bounces"]
-	cannonBall.ball_speed = ammo_stats["speed"]
-	cannonBall.scale = Vector2(ammo_stats["size"], ammo_stats["size"])
-	cannonBall.ball_type = stats.ammo_name
-	
-	if ammo_stats.has("currentIcon"):
-		var sprite = cannonBall.get_node_or_null("Sprite2D")
-		if sprite:
-			sprite.texture = ammo_stats["currentIcon"]
 
-# ICE BALL ABILITIES
-	cannonBall.ignore_lava = ammo_stats.get("lavaResist", false)
-	cannonBall.slow_effect = ammo_stats.get("slowEffect", false)
-	cannonBall.weakening_effect = ammo_stats.get("royalWeakness", false)
+	# Number of projectiles (default = 1)
+	var projectile_count = ammo_stats.get("projectiles", 1)
 
-	get_parent().add_child(cannonBall)
-	cannonBall.global_position = cannonBall_spawn.global_position
+	# Spread angle (adjust this for wider/narrower shotgun)
+	var spread_angle = deg_to_rad(20)
 
-	if cannonBall.has_method("shoot"):
-		cannonBall.shoot(directional_force, cannon_gravity)
-		current_balls += 1
-		cannonBall.ball_died.connect(_on_ball_died)
-	else:
-		push_warning("Cannonball scene does not have a 'shoot' method!")
+	for i in range(projectile_count):
+		var cannonBall = stats.ammo_scene.instantiate()
+		
+		# BEFORE adding to scene:
+		if projectile_count > 1:
+			cannonBall.ignore_other_balls = true
+
+		cannonBall.damage = ammo_stats["damage"]
+		cannonBall.max_bounces = ammo_stats["bounces"]
+		cannonBall.ball_speed = ammo_stats["speed"]
+		cannonBall.scale = Vector2(ammo_stats["size"], ammo_stats["size"])
+		cannonBall.ball_type = stats.ammo_name
+
+		var keep_texture = ammo_stats.get("keep_base_texture", false)
+
+		if not keep_texture and ammo_stats.has("currentIcon"):
+			var sprite = cannonBall.get_node_or_null("Sprite2D")
+			if sprite:
+				sprite.texture = ammo_stats["currentIcon"]
+
+		# ICE BALL / OTHER EFFECTS
+		cannonBall.ignore_lava = ammo_stats.get("lavaResist", false)
+		cannonBall.slow_effect = ammo_stats.get("slowEffect", false)
+		cannonBall.weakening_effect = ammo_stats.get("royalWeakness", false)
+
+		get_parent().add_child(cannonBall)
+		cannonBall.global_position = cannonBall_spawn.global_position
+
+		# Spread calculation
+		var angle_offset = 0.0
+		if projectile_count > 1:
+			var t = float(i) / float(projectile_count - 1)
+			angle_offset = lerp(-spread_angle, spread_angle, t)
+
+		var new_force = directional_force.rotated(angle_offset)
+
+		if cannonBall.has_method("shoot"):
+			cannonBall.shoot(new_force, cannon_gravity)
+			current_balls += 1
+			cannonBall.ball_died.connect(_on_ball_died)
+		else:
+			push_warning("Cannonball scene does not have a 'shoot' method!")
 
 func _on_ball_died():
 	current_balls -= 1

@@ -12,6 +12,7 @@ var slides = [
 	preload("res://menus/helpScreen/tutorialSlides/slideTwo.tscn"),
 	preload("res://menus/helpScreen/tutorialSlides/slideThree.tscn"),
 	preload("res://menus/helpScreen/tutorialSlides/slideFour.tscn"),
+	preload("res://menus/helpScreen/tutorialSlides/slideFive.tscn")
 ]
 
 # TRACKS WHICH SLIDE WE ARE ON CURRENTLY, 0 THRU 3.

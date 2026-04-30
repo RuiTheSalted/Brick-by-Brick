@@ -17,6 +17,7 @@ var locked_texture = preload("res://assets/spritesArt/buttonArt/Locked Path.png"
 @onready var confirmResetPopup = $confirmReset
 @onready var confirmResetText = $confirmReset/center/Panel/content/topText
 @onready var noUpgradesPopup = $declineReset
+@onready var noUpgradesText = $declineReset/center/Panel/content/topText
 
 # Top + Bottom 
 @onready var entityLabel = $VBoxContainer/topBar/ballNameLabel
@@ -259,8 +260,8 @@ func _on_confirm_reset_popup_confirmed():
 	var success = stats.reset_upgrades(ball_name)
 
 	if not success:
-		noUpgradesPopup.dialog_text = "Not enough currency to reset."
-		noUpgradesPopup.popup_centered()
+		noUpgradesText.text = "\nNot enough currency to reset."
+		noUpgradesPopup.show()
 		return
 
 	# Refresh entire UI back to default state

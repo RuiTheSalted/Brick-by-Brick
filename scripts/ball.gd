@@ -21,11 +21,19 @@ var buildup_per_bounce = 1
 
 var weakening_effect: bool = false
 
+var ignore_other_balls: bool = false
+
 
 @onready var sprite = $Sprite2D
 
 func _ready():
 	add_to_group("ball")
+	
+	if ignore_other_balls:
+		for ball in get_tree().get_nodes_in_group("ball"):
+			if ball != self:
+				add_collision_exception_with(ball)
+				ball.add_collision_exception_with(self)
 
 	var stats = get_tree().get_first_node_in_group("gamestats")
 

@@ -402,7 +402,7 @@ var upgrade_data := {
 				"cost": 2750,
 				"reset_cost": 550,
 				"icon": preload("res://assets/spritesArt/upgradeBallArt/tennisBall/Tennis Ball 3-3.png"),
-				"stats": {"bounces": 18, "shootSpeed": 0.5, "speed": 1600.0, "ability": "tubeOfBalls", "tube_duration": 5.0, "tube_fire_rate": 0.15}
+				"stats": {"bounces": 18, "shootSpeed": 0.5, "speed": 1600.0, "ability": "tubeOfBalls", "tube_duration": 5.0, "tube_fire_rate": 0.1}
 			},
 		]
 	},
@@ -410,33 +410,33 @@ var upgrade_data := {
 		"path1": [
 			{
 				"name": "Grape Shot",
-				"desc": "Shoots two extra projectiles while slightly decreasing damage.",
+				"desc": "Shoots two extra projectiles while slightly decreasing damage. Balls are smaller, faster, and easier to fire.",
 				"cost": 1200,
 				"reset_cost": 140,
 				"icon": preload("res://assets/spritesArt/upgradeBallArt/cannonBall/Cannon Ball 2-1.png"),
-				"stats": {"damage": 3}
+				"stats": {"damage": 3, "shootSpeed": 1.75, "projectiles": 3, "size": 1, "speed": 750, "keep_base_texture": true}
 			},
 			{
 				"name": "Case of Grapes",
-				"desc": "Shoots four extra projectiles and restores original damage.",
+				"desc": "Shoots four extra projectiles and restores original damage. Balls are smaller and faster.",
 				"cost": 2400,
 				"reset_cost": 430,
 				"icon": preload("res://assets/spritesArt/upgradeBallArt/cannonBall/Cannon Ball 2-2.png"),
-				"stats": {"damage": 4}
+				"stats": {"damage": 4, "shootSpeed": 1.65, "projectiles": 5, "size": 0.8, "speed": 900, "keep_base_texture": true}
 			},
 			{
 				"name": "Basket of Grapes",
-				"desc": "Shoots six extra projectiles out. Gains a small damage buff.",
-				"cost": 4800,
+				"desc": "Shoots six extra projectiles out. Gains a small buff to all stats. Balls are even smaller.",
+				"cost": 3600,
 				"reset_cost": 1010,
 				"icon": preload("res://assets/spritesArt/upgradeBallArt/cannonBall/Cannon Ball 2-3.png"),
-				"stats": {"damage": 6}
+				"stats": {"damage": 6, "shootSpeed": 1.5, "projectiles": 7, "size": 0.6, "speed": 1000, "keep_base_texture": true}
 			},
 		],
 		"path2": [
 			{
 				"name": "Barshot",
-				"desc": "Converts cannon balls into barshot, doubling the impact.",
+				"desc": "Converts cannon balls into barshot, doubling the impact damage.",
 				"cost": 1500,
 				"reset_cost": 180,
 				"icon": preload("res://assets/spritesArt/upgradeBallArt/cannonBall/Cannon Ball 3-1.png"),
@@ -444,7 +444,7 @@ var upgrade_data := {
 			},
 			{
 				"name": "Chain Shot",
-				"desc": "Converts barshot into chain shot, allowing for slightly more nimble balls, increasing damage further.",
+				"desc": "Converts barshot into chain shot, allowing for slightly more nimble balls and increases damage further.",
 				"cost": 2800,
 				"reset_cost": 520,
 				"icon": preload("res://assets/spritesArt/upgradeBallArt/cannonBall/Cannon Ball 3-2.png"),
@@ -452,11 +452,11 @@ var upgrade_data := {
 			},
 			{
 				"name": "Shell Balls",
-				"desc": "Both cannon balls become shell balls. Damage increases slightly and shrapnel now dispenses.",
+				"desc": "Both cannon balls become shell balls, allowing for shrapnel. Damage increases slightly.",
 				"cost": 4100,
 				"reset_cost": 1010,
 				"icon": preload("res://assets/spritesArt/upgradeBallArt/cannonBall/Cannon Ball 3-3.png"),
-				"stats": {"damage": 13, "shrapnel": true} #will need to make shrapnel
+				"stats": {"damage": 14, "shrapnel": true} #will need to make shrapnel
 			},
 		],
 		"path3": [
@@ -522,7 +522,7 @@ func _ready():
 	add_to_group("gamestats")
 
 
-func _process(delta):
+func _process(delta): 
 	# Handle active ability duration
 	if ability_active:
 		ability_timer -= delta
@@ -722,13 +722,17 @@ func apply_upgrade_stats(ball_name: String, path_key: String, tier: int):
 	if s.has("tube_fire_rate"):
 		ammo_data[ball_name]["tube_fire_rate"] = s["tube_fire_rate"]
 
+	if s.has("projectiles"):
+		ammo_data[ball_name]["projectiles"] = s["projectiles"]
+	if s.has("keep_base_texture"):
+		ammo_data[ball_name]["keep_base_texture"] = s["keep_base_texture"]
+
+
 	# Store future stats for later systems
 	if s.has("fireDamage"):
 		ammo_data[ball_name]["fireDamage"] = s["fireDamage"]
 	if s.has("fireSpread"):
 		ammo_data[ball_name]["fireSpread"] = s["fireSpread"]
-	if s.has("projectileCount"):
-		ammo_data[ball_name]["projectileCount"] = s["projectileCount"] 
 	if s.has("shrapnel"):
 		ammo_data[ball_name]["shrapnel"] = s["shrapnel"]
 	if s.has("fireCannonEffect"):
