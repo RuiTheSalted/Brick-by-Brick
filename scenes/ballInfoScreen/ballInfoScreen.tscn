@@ -1,0 +1,196 @@
+[gd_scene format=3 uid="uid://cxr60ssekbhew"]
+
+[ext_resource type="Script" uid="uid://6xk17odh0ip8" path="res://scenes/ballInfoScreen/ballInfoScript.gd" id="1_6y04x"]
+[ext_resource type="Texture2D" uid="uid://clilqsbyq7vnc" path="res://assets/spritesArt/menuArtOutGame/Upgrade Panel Background.png" id="2_jqxy2"]
+[ext_resource type="Texture2D" uid="uid://oujfwkkpq5qx" path="res://assets/spritesArt/buttonArt/Back Button.png" id="3_rrdpi"]
+[ext_resource type="FontFile" uid="uid://c3eqo4rgsja0k" path="res://assets/fonts/Stepalange-x3BLm.otf" id="4_6jhsf"]
+[ext_resource type="Texture2D" uid="uid://dwv5hq8nqghna" path="res://assets/spritesArt/ball/ball.png" id="5_w60ye"]
+
+[node name="ballInfoScreen" type="Control" unique_id=816766905]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6y04x")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1116872222]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+texture = ExtResource("2_jqxy2")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1600095939]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 25
+
+[node name="topBar" type="HBoxContainer" parent="VBoxContainer" unique_id=1463149697]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+mouse_filter = 0
+theme_override_constants/separation = -64
+alignment = 1
+
+[node name="backButton" type="TextureButton" parent="VBoxContainer/topBar" unique_id=1897881766]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture_normal = ExtResource("3_rrdpi")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="ballNameLabel" type="Label" parent="VBoxContainer/topBar" unique_id=1489667063]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_6jhsf")
+theme_override_font_sizes/font_size = 26
+text = "\"Basic Ball\""
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="upgradePanel" type="HBoxContainer" parent="VBoxContainer" unique_id=1867129292]
+layout_mode = 2
+mouse_filter = 0
+theme_override_constants/separation = 20
+
+[node name="leftPanel" type="VBoxContainer" parent="VBoxContainer/upgradePanel" unique_id=1269642030]
+custom_minimum_size = Vector2(320, 520)
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 20
+
+[node name="ballArt" type="TextureRect" parent="VBoxContainer/upgradePanel/leftPanel" unique_id=1497206312]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+mouse_filter = 0
+texture = ExtResource("5_w60ye")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="upgradeName" type="Label" parent="VBoxContainer/upgradePanel/leftPanel" unique_id=1896507462]
+custom_minimum_size = Vector2(0, 23)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_6jhsf")
+theme_override_font_sizes/font_size = 24
+text = "\"Upgrade Name\""
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="upgradeDescription" type="Label" parent="VBoxContainer/upgradePanel/leftPanel" unique_id=683557788]
+custom_minimum_size = Vector2(1, 63)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_6jhsf")
+theme_override_font_sizes/font_size = 20
+text = "Upgrade Description about what the upgrade does. This text is filler so I can see how the wrapping does it's job."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="rightPanel" type="VBoxContainer" parent="VBoxContainer/upgradePanel" unique_id=1166378861]
+custom_minimum_size = Vector2(0, 520)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="pathOne" type="HBoxContainer" parent="VBoxContainer/upgradePanel/rightPanel" unique_id=602763961]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 120
+alignment = 1
+
+[node name="upgrade1A" type="TextureButton" parent="VBoxContainer/upgradePanel/rightPanel/pathOne" unique_id=1921601278]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture_normal = ExtResource("5_w60ye")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="upgrade1B" type="TextureButton" parent="VBoxContainer/upgradePanel/rightPanel/pathOne" unique_id=1433403164]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture_normal = ExtResource("5_w60ye")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="upgrade1C" type="TextureButton" parent="VBoxContainer/upgradePanel/rightPanel/pathOne" unique_id=1127386916]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture_normal = ExtResource("5_w60ye")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="pathTwo" type="HBoxContainer" parent="VBoxContainer/upgradePanel/rightPanel" unique_id=1714454104]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 120
+alignment = 1
+
+[node name="upgrade2A" type="TextureButton" parent="VBoxContainer/upgradePanel/rightPanel/pathTwo" unique_id=947561203]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture_normal = ExtResource("5_w60ye")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="upgrade2B" type="TextureButton" parent="VBoxContainer/upgradePanel/rightPanel/pathTwo" unique_id=894029116]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture_normal = ExtResource("5_w60ye")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="upgrade2C" type="TextureButton" parent="VBoxContainer/upgradePanel/rightPanel/pathTwo" unique_id=662421096]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture_normal = ExtResource("5_w60ye")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="pathThree" type="HBoxContainer" parent="VBoxContainer/upgradePanel/rightPanel" unique_id=1651263666]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 120
+alignment = 1
+
+[node name="upgrade3A" type="TextureButton" parent="VBoxContainer/upgradePanel/rightPanel/pathThree" unique_id=1549986235]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture_normal = ExtResource("5_w60ye")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="upgrade3B" type="TextureButton" parent="VBoxContainer/upgradePanel/rightPanel/pathThree" unique_id=269372779]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture_normal = ExtResource("5_w60ye")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="upgrade3C" type="TextureButton" parent="VBoxContainer/upgradePanel/rightPanel/pathThree" unique_id=1394721222]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture_normal = ExtResource("5_w60ye")
+ignore_texture_size = true
+stretch_mode = 5
+
+[connection signal="pressed" from="VBoxContainer/topBar/backButton" to="." method="_on_back_button_pressed"]

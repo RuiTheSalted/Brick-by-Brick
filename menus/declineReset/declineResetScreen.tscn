@@ -1,0 +1,98 @@
+[gd_scene format=3 uid="uid://cvlogwya35e4"]
+
+[ext_resource type="Script" uid="uid://x5k4i5mhlqoy" path="res://menus/declineReset/declineResetScript.gd" id="1_hhcay"]
+[ext_resource type="FontFile" uid="uid://c3eqo4rgsja0k" path="res://assets/fonts/Stepalange-x3BLm.otf" id="2_xilnf"]
+[ext_resource type="Texture2D" uid="uid://dxkl04pc1tr1n" path="res://assets/spritesArt/bricks/Orange Block.png" id="3_iw12t"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jb1oj"]
+bg_color = Color(1, 0.88581574, 0.6971606, 1)
+
+[node name="declineReset" type="Control" unique_id=519139329]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hhcay")
+
+[node name="dimmer" type="ColorRect" parent="." unique_id=603298491]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5019608)
+
+[node name="center" type="CenterContainer" parent="." unique_id=484053073]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="center" unique_id=638633913]
+custom_minimum_size = Vector2(420, 220)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jb1oj")
+
+[node name="content" type="VBoxContainer" parent="center/Panel" unique_id=46025482]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 24
+
+[node name="topText" type="Label" parent="center/Panel/content" unique_id=620761485]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_xilnf")
+theme_override_font_sizes/font_size = 32
+text = "
+
+Reset Unavailable"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="center/Panel/content" unique_id=818349357]
+layout_mode = 2
+
+[node name="button" type="HBoxContainer" parent="center/Panel/content/CenterContainer" unique_id=736715523]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="okayButton" type="TextureButton" parent="center/Panel/content/CenterContainer/button" unique_id=1962023531]
+custom_minimum_size = Vector2(84, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("3_iw12t")
+stretch_mode = 6
+
+[node name="okayText" type="Label" parent="center/Panel/content/CenterContainer/button/okayButton" unique_id=2007914453]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.35714287
+anchor_top = 0.3203125
+anchor_right = 0.64285713
+anchor_bottom = 0.6796875
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_xilnf")
+theme_override_font_sizes/font_size = 24
+text = "OKAY"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="center/Panel/content/CenterContainer/button/okayButton" to="." method="_on_okay_button_pressed"]
+[connection signal="pressed" from="center/Panel/content/CenterContainer/button/okayButton" to="." method="_on_no_button_pressed"]
