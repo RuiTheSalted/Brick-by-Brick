@@ -1,8 +1,11 @@
 [gd_scene format=3 uid="uid://cssvucwpsy2c8"]
 
 [ext_resource type="Script" uid="uid://4fnm3rai2pf3" path="res://menus/ballsScreen/balls_screen.gd" id="1_nwaby"]
+[ext_resource type="PackedScene" uid="uid://cxr60ssekbhew" path="res://scenes/ballInfoScreen/ballInfoScreen.tscn" id="2_0xyps"]
 [ext_resource type="PackedScene" uid="uid://i3x8pvsdri2m" path="res://menus/ballsScreen/balls/ballItem.tscn" id="2_r3p66"]
 [ext_resource type="Texture2D" uid="uid://oujfwkkpq5qx" path="res://assets/spritesArt/buttonArt/Back Button.png" id="4_4fwmi"]
+[ext_resource type="Texture2D" uid="uid://dhhliue08eybj" path="res://assets/spritesArt/specificUIArt/Entity Title Border.png" id="4_vh82i"]
+[ext_resource type="Texture2D" uid="uid://bv5b0hq83xfce" path="res://assets/spritesArt/buttonArt/Information i Button.png" id="6_vh82i"]
 
 [node name="BallsScreen" type="Control" unique_id=136443830]
 layout_mode = 3
@@ -12,6 +15,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_nwaby")
+ball_info_scene = ExtResource("2_0xyps")
 ball_item_scene = ExtResource("2_r3p66")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=795851733]
@@ -21,6 +25,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("4_vh82i")
 expand_mode = 1
 
 [node name="CarouselRoot" type="Control" parent="." unique_id=231056555]
@@ -32,14 +37,15 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="exitButtonSpacing" type="MarginContainer" parent="." unique_id=354460915]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 0
-theme_override_constants/margin_bottom = 0
+[node name="exitButtonSpacing" type="HBoxContainer" parent="." unique_id=1275802073]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 20.0
+offset_bottom = 84.0
+grow_horizontal = 2
+theme_override_constants/separation = 1120
+alignment = 1
 
 [node name="exitButton" type="TextureButton" parent="exitButtonSpacing" unique_id=470539955]
 custom_minimum_size = Vector2(64, 64)
@@ -48,4 +54,12 @@ texture_normal = ExtResource("4_4fwmi")
 ignore_texture_size = true
 stretch_mode = 6
 
+[node name="infoButton" type="TextureButton" parent="exitButtonSpacing" unique_id=1323646909]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture_normal = ExtResource("6_vh82i")
+ignore_texture_size = true
+stretch_mode = 6
+
 [connection signal="pressed" from="exitButtonSpacing/exitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="exitButtonSpacing/infoButton" to="." method="_on_info_button_pressed"]

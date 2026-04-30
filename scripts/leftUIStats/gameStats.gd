@@ -7,7 +7,23 @@ signal round_changed(current, total)
 signal ammo_type_changed(name, icon)
 
 var is_game_over: bool = false
+var info_target_ball: String = ""
 
+var ability_active: bool = false
+var ability_timer: float = 0.0
+var ability_duration: float = 0.0
+
+var ability_cooldown: float = 0.0
+var ability_cooldown_timer: float = 0.0
+
+var buildup_duration: float = 10.0
+var buildup_per_bounce: int = 1
+
+var knockback_hits_remaining: int = 0
+
+var tube_original_fire_rate: float = 0.0
+
+var ability_name: String = ""
 
 # TYPES OF AMMO
 var ammo_data := {
@@ -25,11 +41,14 @@ var ammo_data := {
 		"scene": preload("res://scenes/ballsCollision/iceBallCollision.tscn"),
 		"icon": preload("res://assets/spritesArt/ball/iceball.png"),
 		"price": 1000,
-		"damage": 1,
+		"damage": 2,
 		"bounces": 5,
 		"speed": 800.0, 
 		"size": 1.0, 
 		"shootSpeed": 1.0,
+		"freezeDuration": 2.0,
+		"freezeStrength": 4,
+		"freezeRadius": 0.0,
 		"lavaResist": true,
 		"slowEffect": true
 	},
@@ -49,14 +68,14 @@ var ammo_data := {
 		"price": 250,
 		"damage": 1,
 		"bounces": 15,
-		"speed": 400.0,
+		"speed": 500.0,
 		"size": 2.0,
 		"shootSpeed": 3.0
 	},
 	"Tennis Ball": {
 		"scene": preload("res://scenes/ballsCollision/tennisBallCollision.tscn"),
 		"icon": preload("res://assets/spritesArt/ball/tennisBall.png"),
-		"price": 625,
+		"price": 715,
 		"damage": 1,
 		"bounces": 7,
 		"speed": 1200.0, 
@@ -117,7 +136,7 @@ var upgrade_data := {
 				"cost": 4100, 
 				"reset_cost": 810,
 				"icon": preload("res://assets/spritesArt/upgradeBallArt/basicBall/Basic Ball 2-3.png"),
-				"stats": {"shootSpeed": 0.2, "damage": 3, "bounces": 7}
+				"stats": {"shootSpeed": 0.2, "damage": 3, "bounces": 6}
 			},
 		],
 		"path3": [
@@ -127,7 +146,7 @@ var upgrade_data := {
 				"cost": 650, 
 				"reset_cost": 78,
 				"icon": preload("res://assets/spritesArt/upgradeBallArt/basicBall/Basic Ball 3-1.png"), 
-				"stats": {"bounces": 8}
+				"stats": {"bounces": 7}
 			},
 			{
 				"name": "Efficient Ball", 
@@ -135,7 +154,7 @@ var upgrade_data := {
 				"cost": 1950, 
 				"reset_cost": 312,
 				"icon": preload("res://assets/spritesArt/upgradeBallArt/basicBall/Basic Ball 3-2.png"), 
-				"stats": {"bounces": 12, "speed": 900.0}
+				"stats": {"bounces": 12, "speed": 950.0}
 			},
 			{
 				"name": "Basic Ball Z", 
@@ -143,7 +162,7 @@ var upgrade_data := {
 				"cost": 3675, 
 				"reset_cost": 750,
 				"icon": preload("res://assets/spritesArt/upgradeBallArt/basicBall/Basic Ball 3-3.png"), 
-				"stats": {"bounces": 18, "speed": 1000.0} #ability here
+				"stats": {"bounces": 16, "speed": 1150.0, "ability": "buildup", "buildup_duration": 10.0, "buildup_per_bounce": 1}
 			},
 		]
 	},
@@ -155,15 +174,15 @@ var upgrade_data := {
 				"cost": 900,
 				"reset_cost": 110,
 				"icon": preload("res://assets/spritesArt/upgradeBallArt/iceBall/Iceball 1-1.png"),
-				"stats": {"freezeDuration": 2.0, "shootSpeed": 1.2}
+				"stats": {"freezeDuration": 3.0, "shootSpeed": 1.2}
 			},
 			{
 				"name": "Icicles",
-				"desc": "Cracks from the cold spot allow for even more freezing duration while also making bricks more fragile. Shoot speed is reverted.",
+				"desc": "Spreading cracks allow for even more freezing duration while making bricks more fragile. Shoot speed is reverted.",
 				"cost": 3000,
 				"reset_cost": 470,
 				"icon": preload("res://assets/spritesArt/upgradeBallArt/iceBall/Iceball 1-2.png"),
-				"stats": {"freezeDuration": 3.5, "damage": 2, "shootSpeed": 1.0}
+				"stats": {"freezeDuration": 4.5, "damage": 3, "shootSpeed": 1.0, "frozenDamageBonus": true}
 			},
 			{
 				"name": "Sea Sickness",
@@ -171,14 +190,14 @@ var upgrade_data := {
 				"cost": 5250,
 				"reset_cost": 1100,
 				"icon": preload("res://assets/spritesArt/upgradeBallArt/iceBall/Iceball 1-3.png"),
-				"stats": {"freezeDuration": -1, "damage": 3}
+				"stats": {"freezeDuration": -1, "damage": 4, "shootSpeed": 0.9, "frozenBonusDamage": true}
 			},
 		],
 		"path2": [
 			{
 				"name": "Extra Chilly",
 				"desc": "Small ice particles increase freeze duration slightly.",
-				"cost": 920,
+				"cost": 720,
 				"reset_cost": 110,
 				"icon": preload("res://assets/spritesArt/upgradeBallArt/iceBall/Iceball 2-1.png"),
 				"stats": {"freezeDuration": 2.5}
@@ -189,7 +208,7 @@ var upgrade_data := {
 				"cost": 2100,
 				"reset_cost": 360,
 				"icon": preload("res://assets/spritesArt/upgradeBallArt/iceBall/Iceball 2-2.png"),
-				"stats": {"freezeDuration": 3.0, "freezeStrength": 1} #this will be slowMultiplier likely
+				"stats": {"freezeDuration": 3.2, "freezeStrength": 6.5} 
 			},
 			{
 				"name": "Absolute Zero",
@@ -197,7 +216,7 @@ var upgrade_data := {
 				"cost": 4850,
 				"reset_cost": 940,
 				"icon": preload("res://assets/spritesArt/upgradeBallArt/iceBall/Iceball 2-3.png"),
-				"stats": {"freezeDuration": 4.0, "freezeStrength": 3} #this will be slowMuliplier likely
+				"stats": {"freezeDuration": 3.7, "freezeStrength": 10, "damage": 3}
 			},
 		],
 		"path3": [
@@ -206,24 +225,24 @@ var upgrade_data := {
 				"desc": "Increases the radius of the freeze effect.",
 				"cost": 1000,
 				"reset_cost": 120,
-				"icon": preload("res://assets/spritesArt/upgradeBallArt/iceBall/Iceball 3-1.png"),
-				"stats": {"freezeRadius": 50.0} #this must be created
+				"icon": preload("res://assets/spritesArt/upgradeBallArt/iceBall/animatedSprites/iceball 3-1.tres"),
+				"stats": {"freezeRadius": 50.0}
 			},
 			{
 				"name": "Snowstorm",
 				"desc": "Further increases freeze radius and adds more freeze duration.",
 				"cost": 2430,
 				"reset_cost": 410,
-				"icon": preload("res://assets/spritesArt/upgradeBallArt/iceBall/Iceball 3-2.png"),
-				"stats": {"freezeRadius": 100.0, "freezeDuration": 2.25} # this has to be made and likely slowDuration.
+				"icon": preload("res://assets/spritesArt/upgradeBallArt/iceBall/animatedSprites/iceball 3-2.tres"),
+				"stats": {"freezeRadius": 125.0, "freezeDuration": 2.6} # this has to be made and likely slowDuration.
 			},
 			{
 				"name": "Arctic Winds",
 				"desc": "Ice rays maximiz freeze radius, and unlocks a special mapwide ability.",
 				"cost": 4220,
 				"reset_cost": 920,
-				"icon": preload("res://assets/spritesArt/upgradeBallArt/iceBall/Iceball 3-3.png"),
-				"stats": {"freezeRadius": 175.0, "freezeDuration": 2.0} # this has to be made and likely slowDuration.
+				"icon": preload("res://assets/spritesArt/upgradeBallArt/iceBall/animatedSprites/iceball 3-3.tres"),
+				"stats": {"freezeRadius": 185.0, "freezeDuration": 2.9, "ability": "arctic_winds"}
 			},
 		]
 	},
@@ -235,49 +254,49 @@ var upgrade_data := {
 				"cost": 300,
 				"reset_cost": 40,
 				"icon": preload("res://assets/spritesArt/upgradeBallArt/beachBall/Beach Ball 1-1.png"),
-				"stats": {"speed": 550.0}
+				"stats": {"speed": 600.0}
 			},
 			{
 				"name": "Bigger and Better",
-				"desc": "Inner gold fillings on a bigger ball allow for more bounces.",
+				"desc": "Inner gold fillings on a bigger ball allow for more bounces, further speed increases and slight damage increases.",
 				"cost": 1200,
 				"reset_cost": 180,
 				"icon": preload("res://assets/spritesArt/upgradeBallArt/beachBall/Beach Ball 1-2.png"),
-				"stats": {"speed": 600.0, "size": 2.25, "bounces": 18}
+				"stats": {"speed": 650.0, "size": 2.25, "bounces": 19, "damage": 2}
 			},
 			{
 				"name": "Embrace the Beach",
-				"desc": "Fine materials further enhance ball speed and bounce capabilities, given a little size increase.",
+				"desc": "Fine materials further enhance ball speed, bounce capabilities, and damage..given a little size increase.",
 				"cost": 2210,
 				"reset_cost": 432,
 				"icon": preload("res://assets/spritesArt/upgradeBallArt/beachBall/Beach Ball 1-3.png"),
-				"stats": {"speed": 750.0, "size": 2.75, "bounces": 22}
+				"stats": {"speed": 750.0, "size": 2.75, "bounces": 23, "damage": 3}
 			},
 		],
 		"path2": [
 			{
 				"name": "Resistant Plastic",
 				"desc": "Beach Ball gains resistance to lava bricks.",
-				"cost": 1000,
-				"reset_cost": 120,
+				"cost": 500,
+				"reset_cost": 60,
 				"icon": preload("res://assets/spritesArt/upgradeBallArt/beachBall/Beach Ball 2-1.png"),
-				"stats": {"laveResist": true}
+				"stats": {"lavaResist": true}
 			},
 			{
 				"name": "Diamond Affinity",
-				"desc": "Earns more currency per hit.",
-				"cost": 2000,
-				"reset_cost": 360,
+				"desc": "Earns more currency upon hits and can fly further.",
+				"cost": 1200,
+				"reset_cost": 205,
 				"icon": preload("res://assets/spritesArt/upgradeBallArt/beachBall/Beach Ball 2-2.png"),
-				"stats": {"laveResist": true, "cashPerHit": 3} #cashPerHit will need to be made
+				"stats": {"lavaResist": true, "diamondAffinity": 8, "speed": 600}
 			},
 			{
 				"name": "Royal Weakness",
-				"desc": "Weakens bricks get cursed and take double damage. Beach Ball gains a small damage buff.",
-				"cost": 3500,
-				"reset_cost": 780,
+				"desc": "Hit bricks get cursed and take double damage. Beach Ball gains a small damage and currency buff.",
+				"cost": 2200,
+				"reset_cost": 470,
 				"icon": preload("res://assets/spritesArt/upgradeBallArt/beachBall/Beach Ball 2-3.png"),
-				"stats": {"laveResist": true, "cashPerHit": 5, "brickWeakening": true, "damage": 2} #cashPerHit and brickWeakening will need to be made
+				"stats": {"lavaResist": true, "diamondAffinity": 13, "royalWeakness": true, "speed": 650, "damage": 2} #cashPerHit and brickWeakening will need to be made
 			},
 		],
 		"path3": [
@@ -291,19 +310,19 @@ var upgrade_data := {
 			},
 			{
 				"name": "Metal Plating",
-				"desc": "Metal materials greatly increases damage.",
-				"cost": 2300,
-				"reset_cost": 360,
+				"desc": "Metal materials greatly increases damage, with slight speed and size optimizations.",
+				"cost": 1800,
+				"reset_cost": 300,
 				"icon": preload("res://assets/spritesArt/upgradeBallArt/beachBall/Beach Ball  3-2.png"),
-				"stats": {"size": 2.25, "damage": 4}
+				"stats": {"size": 2.35, "damage": 4, "speed": 530}
 			},
 			{
 				"name": "Metal Beach Ball",
-				"desc": "More metal, more damage. Gains the ability to knockback 6 bricks.",
-				"cost": 4500,
-				"reset_cost": 900,
+				"desc": "More metal, more damage, more optimazing. Gains the ability to knockback 6 bricks.",
+				"cost": 2650,
+				"reset_cost": 620,
 				"icon": preload("res://assets/spritesArt/upgradeBallArt/beachBall/Beach Ball  3-3.png"),
-				"stats": {"size": 2.25, "damage": 6, "knockbackAbility": true} #will need to add knockback ability.
+				"stats": {"size": 2.50, "speed": 570, "ability": "knockbackBall", "knockback_hits": 15, "knockback_force": 400}
 			},
 		]
 	},
@@ -311,27 +330,27 @@ var upgrade_data := {
 		"path1": [
 			{
 				"name": "Athletics Pro",
-				"desc": "These colors mimic a type of roadrunners.",
+				"desc": "These colors mimic a type of roadrunners, increasing speed, bounces, and damage.",
 				"cost": 2100,
 				"reset_cost": 250,
 				"icon": preload("res://assets/spritesArt/upgradeBallArt/tennisBall/Tennis Ball 1-1.png"),
-				"stats": {"speed": 1500.0, "bounces": 10, "damage": 3}
+				"stats": {"speed": 1500.0, "bounces": 9, "damage": 2}
 			},
 			{
 				"name": "PROfessor",
-				"desc": "Could've been D1, but is a humble man.",
+				"desc": "Could've been D1, but settled for more speed and bounces.",
 				"cost": 3600,
 				"reset_cost": 680,
 				"icon": preload("res://assets/spritesArt/upgradeBallArt/tennisBall/Tennis Ball 1-2.png"),
-				"stats": {"speed": 1800.0, "bounces": 13, "damage": 3}
+				"stats": {"speed": 1800.0, "bounces": 12, "damage": 3}
 			},
 			{
 				"name": "The Big J",
-				"desc": "Too big to fail.",
+				"desc": "Too big to fail. Greatly increased stats across the board.",
 				"cost": 5000,
 				"reset_cost": 1300,
 				"icon": preload("res://assets/spritesArt/upgradeBallArt/tennisBall/Tennis Ball 1-3.png"),
-				"stats": {"speed": 1800.0, "bounces": 15, "damage": 5}
+				"stats": {"speed": 1900.0, "bounces": 15, "damage": 5}
 			},
 		],
 		"path2": [
@@ -341,7 +360,7 @@ var upgrade_data := {
 				"cost": 1000,
 				"reset_cost": 120,
 				"icon": preload("res://assets/spritesArt/upgradeBallArt/tennisBall/Tennis Ball 2-1.png"),
-				"stats": {"shootSpeed": 0.4}
+				"stats": {"shootSpeed": 0.527}
 			},
 			{
 				"name": "Ultra-Blue",
@@ -349,15 +368,15 @@ var upgrade_data := {
 				"cost": 1895,
 				"reset_cost": 350,
 				"icon": preload("res://assets/spritesArt/upgradeBallArt/tennisBall/Tennis Ball 2-2.png"),
-				"stats": {"shootSpeed": 0.3, "bounces": 9}
+				"stats": {"shootSpeed": 0.407, "bounces": 9}
 			},
 			{
 				"name": "Pro-Penn",
-				"desc": "Pro balls bounce more.",
-				"cost": 2430,
+				"desc": "Pro balls bounce more, are more powerful, and shoot slightly quicker.",
+				"cost": 2730,
 				"reset_cost": 640,
 				"icon": preload("res://assets/spritesArt/upgradeBallArt/tennisBall/Tennis Ball 2-3.png"),
-				"stats": {"shootSpeed": 0.3, "bounces": 12}
+				"stats": {"shootSpeed": 0.385, "bounces": 12, "damage": 2}
 			},
 		],
 		"path3": [
@@ -367,23 +386,23 @@ var upgrade_data := {
 				"cost": 700,
 				"reset_cost": 80,
 				"icon": preload("res://assets/spritesArt/upgradeBallArt/tennisBall/Tennis Ball 3-1.png"),
-				"stats": {"bounces": 8}
+				"stats": {"bounces": 9}
 			},
 			{
 				"name": "Tennis Artistry",
 				"desc": "White bonds help balls bounce more and faster.",
-				"cost": 1100,
+				"cost": 1600,
 				"reset_cost": 220,
 				"icon": preload("res://assets/spritesArt/upgradeBallArt/tennisBall/Tennis Ball 3-2.png"),
-				"stats": {"bounces": 9, "speed": 1350.0}
+				"stats": {"bounces": 13, "speed": 1550.0}
 			},
 			{
 				"name": "Tube of Balls",
-				"desc": "Industry standard ballls bounce even more, and shoot out faster. Gains Plethora of Balls ability.",
+				"desc": "Industry standard balls bounce even more, and shoot out faster. Gains Tube of Balls ability.",
 				"cost": 2750,
 				"reset_cost": 550,
 				"icon": preload("res://assets/spritesArt/upgradeBallArt/tennisBall/Tennis Ball 3-3.png"),
-				"stats": {"bounces": 18, "shootSpeed": 0.5, "speed": 1500.0}
+				"stats": {"bounces": 18, "shootSpeed": 0.5, "speed": 1600.0, "ability": "tubeOfBalls", "tube_duration": 5.0, "tube_fire_rate": 0.15}
 			},
 		]
 	},
@@ -469,10 +488,14 @@ var upgrade_data := {
 	}
 }
 
+
 # WHICH AMMO ARE OWNED (start with basic ball always)
 var owned_ammo := {
 	"Basic Ball": true
 }
+
+
+var current_stats := {}
 
 # Match State & Starting Variables
 var hp: int = 100
@@ -493,9 +516,98 @@ var chosen_paths: Dictionary = {}
 # Tracks highest tier purchased per ball (0 = none)
 var purchased_tiers: Dictionary = {}
 
+
 # Setup
 func _ready():
 	add_to_group("gamestats")
+
+
+func _process(delta):
+	# Handle active ability duration
+	if ability_active:
+		ability_timer -= delta
+		if ability_timer <= 0:
+			ability_active = false
+			# Restore shoot speed if tube ability
+			if ability_name == "tubeOfBalls":
+				ammo_data[ammo_name]["shootSpeed"] = tube_original_fire_rate
+				# FORCE UPDATE
+				ammo_type_changed.emit(ammo_name, ammo_icon)
+
+	# Handle cooldown
+	if ability_cooldown_timer > 0:
+		ability_cooldown_timer -= delta
+		if ability_cooldown_timer < 0:
+			ability_cooldown_timer = 0
+
+		# SAVE back to current ball
+		ammo_data[ammo_name]["ability_cooldown_timer"] = ability_cooldown_timer
+
+
+func activate_ability():
+	if ability_cooldown_timer > 0:
+		print("ON COOLDOWN")
+		return
+
+	print("ABILITY ACTIVATED:", ability_name)
+
+	match ability_name:
+		"buildup":
+			ability_active = true
+			ability_duration = buildup_duration
+			ability_timer = ability_duration
+
+			ability_cooldown = 30.0
+			ability_cooldown_timer = ability_cooldown
+			ammo_data[ammo_name]["ability_cooldown_timer"] = ability_cooldown_timer
+			# APPLY TO ALL CURRENT BALLS
+			for ball in get_tree().get_nodes_in_group("ball"):
+				ball.buildup_active = true
+		"arctic_winds":
+			ability_active = true
+			ability_duration = 0.1
+			ability_timer = ability_duration
+			ability_cooldown = 42
+			ability_cooldown_timer = ability_cooldown
+			ammo_data[ammo_name]["ability_cooldown_timer"] = ability_cooldown_timer
+
+			var duration = 6.0
+			var strength = ammo_data[ammo_name].get("freezeStrength", 3)
+
+			# ❄️ FREEZE ALL BRICKS
+			for brick in get_tree().get_nodes_in_group("bricks"):
+				if not is_instance_valid(brick):
+					continue
+				if brick.has_method("apply_slow"):
+					brick.apply_slow(duration, strength)
+		"knockbackBall":
+			ability_active = true
+			ability_duration = 0.1  # not time-based, hit-based
+			ability_timer = ability_duration
+
+			ability_cooldown = 30.0
+			ability_cooldown_timer = ability_cooldown
+			ammo_data[ammo_name]["ability_cooldown_timer"] = ability_cooldown_timer
+
+			# Allow 15 knockbacks
+			knockback_hits_remaining = ammo_data[ammo_name].get("knockback_hits", 15)
+
+		"tubeOfBalls":
+			ability_active = true
+			ability_duration = ammo_data[ammo_name].get("tube_duration", 5.0)
+			ability_timer = ability_duration
+
+			ability_cooldown = 35.0
+			ability_cooldown_timer = ability_cooldown
+			ammo_data[ammo_name]["ability_cooldown_timer"] = ability_cooldown_timer
+
+			# Save original shoot speed
+			tube_original_fire_rate = ammo_data[ammo_name]["shootSpeed"]
+
+			# Apply rapid fire
+			ammo_data[ammo_name]["shootSpeed"] = ammo_data[ammo_name].get("tube_fire_rate", 0.2)
+
+	ammo_type_changed.emit(ammo_name, ammo_icon)
 
 
 # HP Setter Function; update Hp & broadcast said new Hp. 
@@ -568,30 +680,55 @@ func apply_upgrade_stats(ball_name: String, path_key: String, tier: int):
 		ammo_data[ball_name]["size"] = s["size"]
 	if s.has("shootSpeed"):
 		ammo_data[ball_name]["shootSpeed"] = s["shootSpeed"]
-	
-	# Store future stats for later systems
-	if s.has("freezeDuration"):
-		ammo_data[ball_name]["freezeDuration"] = s["freezeDuration"]
+
+	if s.has("ability"):
+		ammo_data[ball_name]["ability"] = s["ability"]
+		# APPLY IMMEDIATELY if this is the equipped ball
+		if ball_name == ammo_name:
+			ability_name = s["ability"]
+
+	if s.has("buildup_duration"):
+		ammo_data[ball_name]["buildup_duration"] = s["buildup_duration"]
+		if ball_name == ammo_name:
+			buildup_duration = s["buildup_duration"]
+	if s.has("buildup_per_bounce"):
+		ammo_data[ball_name]["buildup_per_bounce"] = s["buildup_per_bounce"]
+		if ball_name == ammo_name:
+			buildup_per_bounce = s["buildup_per_bounce"]
+
+	if s.has("lavaResist"):
+		ammo_data[ball_name]["lavaResist"] = s["lavaResist"]
+	if s.has("frozenDamageBonus"):
+		ammo_data[ball_name]["frozenDamageBonus"] = s["frozenDamageBonus"]
 	if s.has("freezeStrength"):
 		ammo_data[ball_name]["freezeStrength"] = s["freezeStrength"]
+	if s.has("freezeDuration"):
+		ammo_data[ball_name]["freezeDuration"] = s["freezeDuration"]
 	if s.has("freezeRadius"):
 		ammo_data[ball_name]["freezeRadius"] = s["freezeRadius"]
-	if s.has("fireResistance"):
-		ammo_data[ball_name]["fireResistance"] = s["fireResistance"]
-	if s.has("cashPerHit"):
-		ammo_data[ball_name]["cashPerHit"] = s["cashPerHit"]
-	if s.has("brickWeakening"):
-		ammo_data[ball_name]["brickWeakening"] = s["brickWeakening"]
+
+	if s.has("diamondAffinity"):
+		ammo_data[ball_name]["diamondAffinity"] = s["diamondAffinity"]
+	if s.has("royalWeakness"):
+		ammo_data[ball_name]["royalWeakness"] = s["royalWeakness"]
+
+	if s.has("knockback_hits"):
+		ammo_data[ball_name]["knockback_hits"] = s["knockback_hits"]
+	if s.has("knockback_force"):
+		ammo_data[ball_name]["knockback_force"] = s["knockback_force"]
+
+	if s.has("tube_duration"):
+		ammo_data[ball_name]["tube_duration"] = s["tube_duration"]
+	if s.has("tube_fire_rate"):
+		ammo_data[ball_name]["tube_fire_rate"] = s["tube_fire_rate"]
+
+	# Store future stats for later systems
 	if s.has("fireDamage"):
 		ammo_data[ball_name]["fireDamage"] = s["fireDamage"]
 	if s.has("fireSpread"):
 		ammo_data[ball_name]["fireSpread"] = s["fireSpread"]
 	if s.has("projectileCount"):
-		ammo_data[ball_name]["projectileCount"] = s["projectileCount"]
-	if s.has("laveResist"):
-		ammo_data[ball_name]["lavaResist"] = s["laveResist"]
-	if s.has("knockbackAbility"):
-		ammo_data[ball_name]["knockbackAbility"] = s["knockbackAbility"]
+		ammo_data[ball_name]["projectileCount"] = s["projectileCount"] 
 	if s.has("shrapnel"):
 		ammo_data[ball_name]["shrapnel"] = s["shrapnel"]
 	if s.has("fireCannonEffect"):
@@ -600,8 +737,6 @@ func apply_upgrade_stats(ball_name: String, path_key: String, tier: int):
 		ammo_data[ball_name]["fireSpreadEffect"] = s["fireSpreadEffect"]
 	if s.has("hellFireAbility"):
 		ammo_data[ball_name]["hellFireAbility"] = s["hellFireAbility"]
-	if s.has("brickWeakening"):
-		ammo_data[ball_name]["brickWeakening"] = s["brickWeakening"]
 
 	# Store the current upgrade icon so cannon can apply it to spawned balls
 	ammo_data[ball_name]["currentIcon"] = upgrade_data[ball_name][path_key][tier]["icon"]
@@ -651,9 +786,9 @@ func reset_upgrades(ball_name: String) -> bool:
 	# Restore base stats from original values
 	var base = {
 		"Basic Ball":  {"damage": 1, "bounces": 5, "speed": 800.0, "size": 1.0, "shootSpeed": 0.5},
-		"Ice Ball":    {"damage": 1, "bounces": 5, "speed": 800.0, "size": 1.0, "shootSpeed": 1.0},
+		"Ice Ball":    {"damage": 2, "bounces": 5, "speed": 800.0, "size": 1.0, "shootSpeed": 1.0, "freezeDuration": 2.0, "freezeStrength": 4, "freezeRadius": 0.0, "lavaResist": true},
 		"Cannon Ball": {"damage": 4, "bounces": 1, "speed": 600.0, "size": 1.25, "shootSpeed": 2.0},
-		"Beach Ball":  {"damage": 1, "bounces": 15, "speed": 400.0, "size": 2.0, "shootSpeed": 3.0},
+		"Beach Ball":  {"damage": 1, "bounces": 15, "speed": 500.0, "size": 2.0, "shootSpeed": 3.0},
 		"Tennis Ball": {"damage": 1, "bounces": 7, "speed": 1200.0, "size": 0.5, "shootSpeed": 0.667},
 	}
 
@@ -664,10 +799,130 @@ func reset_upgrades(ball_name: String) -> bool:
 	# Clear upgrade icon so ball goes back to base texture
 	ammo_data[ball_name].erase("currentIcon")
 
-	# Emit so cannon picks up restored shoot speed
+# Clear ability state if this ball had one
+	if ball_name == ammo_name:
+		ability_name = ""
+		ability_active = false
+		ability_timer = 0.0
+		ability_cooldown_timer = 0.0
+		buildup_duration = 10.0
+		buildup_per_bounce = 1
+
+	# Restore base icon on ammo_icon so UI and cannon reflect reset
+	ammo_icon = ammo_data[ball_name]["icon"]
+
+	# Apply to any currently active balls in the scene
+	for ball in get_tree().get_nodes_in_group("ball"):
+		ball.buildup_active = false
+		ball.buildup_bonus = 0
+		ball.buildup_per_bounce = 1
+
+# Emit so cannon picks up restored shoot speed and icon
 	ammo_type_changed.emit(ammo_name, ammo_icon)
+	
+	ammo_data[ball_name].erase("ability")
+	ammo_data[ball_name].erase("buildup_duration")
+	ammo_data[ball_name].erase("buildup_per_bounce")
 
 	return true
+
+
+func restart_game():
+	reset_game()
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://scenes/levelWithUI/levelWithUi.tscn")
+
+
+func reset_game():
+	hp = 100
+	currency = 20000
+	round_current = 1
+
+	ability_active = false
+	ability_timer = 0.0
+	ability_cooldown_timer = 0.0
+	ability_name = ""
+
+	chosen_paths.clear()
+	purchased_tiers.clear()
+
+	# RESET OWNED AMMO
+	owned_ammo.clear()
+	owned_ammo["Basic Ball"] = true
+
+	# RESET AMMO DATA COMPLETELY
+	ammo_data = {
+		"Basic Ball": {
+			"scene": preload("res://scenes/ballsCollision/basicBallCollision.tscn"),
+			"icon": preload("res://assets/spritesArt/ball/ball.png"),
+			"price": 0,
+			"damage": 1,
+			"bounces": 5,
+			"speed": 800.0, 
+			"size": 1.0, 
+			"shootSpeed": 0.5
+		},
+		"Ice Ball": {
+			"scene": preload("res://scenes/ballsCollision/iceBallCollision.tscn"),
+			"icon": preload("res://assets/spritesArt/ball/iceball.png"),
+			"price": 1000,
+			"damage": 2,
+			"bounces": 5,
+			"speed": 800.0, 
+			"size": 1.0, 
+			"shootSpeed": 1.0,
+			"freezeDuration": 2.0,
+			"freezeStrength": 4,
+			"freezeRadius": 0.0,
+			"lavaResist": true,
+			"slowEffect": true
+		},
+		"Cannon Ball": {
+			"scene": preload("res://scenes/ballsCollision/cannonBallCollision.tscn"),
+			"icon": preload("res://assets/spritesArt/ball/Cannon_Ball_Big.png"),
+			"price": 800,
+			"damage": 4,
+			"bounces": 1,
+			"speed": 600.0,
+			"size": 1.25,
+			"shootSpeed": 2.0
+		},
+		"Beach Ball": {
+			"scene": preload("res://scenes/ballsCollision/beachBallCollision.tscn"),
+			"icon": preload("res://assets/spritesArt/ball/BeachBall.png"),
+			"price": 250,
+			"damage": 1,
+			"bounces": 15,
+			"speed": 500.0,
+			"size": 2.0,
+			"shootSpeed": 3.0
+		},
+		"Tennis Ball": {
+			"scene": preload("res://scenes/ballsCollision/tennisBallCollision.tscn"),
+			"icon": preload("res://assets/spritesArt/ball/tennisBall.png"),
+			"price": 625,
+			"damage": 1,
+			"bounces": 7,
+			"speed": 1200.0,
+			"size": 0.5,
+			"shootSpeed": 0.667
+		}
+	}
+
+	# RESET CURRENT BALL
+	ammo_name = "Basic Ball"
+	ammo_icon = ammo_data["Basic Ball"]["icon"]
+	ammo_scene = ammo_data["Basic Ball"]["scene"]
+
+	is_game_over = false
+
+	hp_changed.emit(hp)
+	currency_changed.emit(currency)
+	ammo_type_changed.emit(ammo_name, ammo_icon)
+	
+	for ball in ammo_data.keys():
+		if ammo_data[ball].has("currentIcon"):
+			ammo_data[ball].erase("currentIcon")
 
 
 func buy_ammo(ammo_name_str: String):
@@ -692,5 +947,29 @@ func set_ammo_type(ammo_name_str: String):
 	ammo_name = ammo_name_str
 	ammo_scene = ammo_data[ammo_name_str]["scene"]
 	ammo_icon = ammo_data[ammo_name_str]["icon"]
+
+	# RESET ONLY ACTIVE STATE (not cooldown)
+	ability_active = false
+	ability_timer = 0.0
+
+	# LOAD ability for THIS ball only
+	if ammo_data[ammo_name_str].has("ability"):
+		ability_name = ammo_data[ammo_name_str]["ability"]
+	else:
+		ability_name = ""
+
+	# 🔥 LOAD cooldown from this ball
+	ability_cooldown_timer = ammo_data[ammo_name_str].get("ability_cooldown_timer", 0.0)
+
+	# Load buildup values if they exist
+	if ammo_data[ammo_name_str].has("buildup_duration"):
+		buildup_duration = ammo_data[ammo_name_str]["buildup_duration"]
+	else:
+		buildup_duration = 10.0
+
+	if ammo_data[ammo_name_str].has("buildup_per_bounce"):
+		buildup_per_bounce = ammo_data[ammo_name_str]["buildup_per_bounce"]
+	else:
+		buildup_per_bounce = 1
 
 	ammo_type_changed.emit(ammo_name, ammo_icon)

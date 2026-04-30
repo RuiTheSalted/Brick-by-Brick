@@ -213,6 +213,7 @@ func shoot():
 # ICE BALL ABILITIES
 	cannonBall.ignore_lava = ammo_stats.get("lavaResist", false)
 	cannonBall.slow_effect = ammo_stats.get("slowEffect", false)
+	cannonBall.weakening_effect = ammo_stats.get("royalWeakness", false)
 
 	get_parent().add_child(cannonBall)
 	cannonBall.global_position = cannonBall_spawn.global_position

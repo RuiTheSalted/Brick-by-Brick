@@ -1,5 +1,7 @@
 extends Control
 
+@export var ball_info_scene: PackedScene
+
 # BALL ITEM FORMAT WE MADE
 @export var ball_item_scene: PackedScene
 
@@ -24,8 +26,10 @@ var balls: Array[Dictionary] = [
 	{"id":"beach",  "name":"Beach Ball",  "tex":"res://assets/spritesArt/ball/BeachBall.png"},
 ]
 
+
 var selected_index: int = 0 # WHICH BALL IS CURRENTLY CENTERED
 var slot_nodes: Array[TextureButton] = [] # THE VISIBLE SLOT INCREASES
+
 
 # RUNS WHEN LOADED
 func _ready() -> void:
@@ -55,6 +59,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 			_move(1)
 
+
 # MOVE CAROUSEL LEFT/RIGHT
 func _move(dir: int) -> void:
 	if balls.is_empty():
@@ -64,6 +69,7 @@ func _move(dir: int) -> void:
 # ALLOWS FOR LOOPING & UPDATE WITH ANIMATION
 	selected_index = wrapi(selected_index + dir, 0, balls.size())
 	_update_slots(true)
+
 
 # SPAWN VISIBLE SLOTS
 func _spawn_slots() -> void:
@@ -85,6 +91,7 @@ func _spawn_slots() -> void:
 		carousel_root.add_child(item)
 		slot_nodes.append(item)
 
+
 # WHEN A BALL IS CLICKED
 func _on_slot_pressed(slot_i: int) -> void:
 	if balls.is_empty():
@@ -103,6 +110,7 @@ func _on_slot_pressed(slot_i: int) -> void:
 	# CLICKED CENTER BALL -> WILL CHANGE SCREEN (later, not rn)
 	var b: Dictionary = balls[selected_index]
 	print("Clicked centered:", b["id"], "-", b["name"])
+
 
 # UPDATE BALL SLOTS
 func _update_slots(animated: bool) -> void:
@@ -162,6 +170,7 @@ func _update_slots(animated: bool) -> void:
 			node.position = target_pos
 			node.scale = Vector2.ONE * target_scale
 
+
 # EXIT TO MAIN SCREEN
 func _on_exit_button_pressed() -> void:
 	# Audio
@@ -178,8 +187,15 @@ func add_hover_effect(btn: BaseButton):
 		btn.modulate = Color(1, 1, 1, 1)
 	)
 
+
 func _apply_hover_to_all_buttons(node):
 	for child in node.get_children():
 		if child is BaseButton:
 			add_hover_effect(child)
 		_apply_hover_to_all_buttons(child)
+
+
+func _on_info_button_pressed():
+	var stats = get_tree().get_first_node_in_group("gamestats")
+	stats.info_target_ball = balls[selected_index]["name"]
+	get_tree().change_scene_to_file("res://scenes/ballInfoScreen/ballInfoScreen.tscn")

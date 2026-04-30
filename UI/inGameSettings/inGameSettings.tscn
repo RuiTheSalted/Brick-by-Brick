@@ -292,4 +292,5 @@ stretch_mode = 6
 
 [connection signal="gui_input" from="dim" to="." method="_on_dim_gui_input"]
 [connection signal="pressed" from="centerSettings/backgroundPanel/content/settingsVbox/buttonsRow/homeRow/homeButton" to="." method="_on_home_button_pressed"]
+[connection signal="pressed" from="centerSettings/backgroundPanel/content/settingsVbox/buttonsRow/restartRow/restartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="centerSettings/backgroundPanel/content/settingsVbox/buttonsRow/continueRow/continueButton" to="." method="_on_continue_button_pressed"]

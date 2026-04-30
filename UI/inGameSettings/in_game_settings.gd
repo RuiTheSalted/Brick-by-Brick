@@ -1,27 +1,3 @@
-#extends Control
-
-
-#func _on_home_button_pressed() -> void:
-#	get_tree().paused = false
-#	get_tree().change_scene_to_file("res://menus/titleScreen/mainScreen.tscn")
-
-#func _on_continue_button_pressed() -> void:
-#	get_tree().paused = false
-#	hide()
-
-
-#func _on_dim_gui_input(event: InputEvent) -> void:
-#	if event is InputEventMouseButton and event.pressed:
-#		get_tree().paused = false
-#		hide()
-
-
-#make restart button work
-
-
-
-
-
 extends Control
 
 @onready var music_slider = $centerSettings/backgroundPanel/content/settingsVbox/musicRow/musicSlider
@@ -41,6 +17,11 @@ func _on_sfx_slider_changed(value: float) -> void:
 
 func _on_home_button_pressed() -> void:
 	AudioManager.play_ui_click()
+
+	var stats = get_tree().get_first_node_in_group("gamestats")
+	if stats:
+		stats.reset_game()
+
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://menus/titleScreen/mainScreen.tscn")
 
@@ -53,3 +34,9 @@ func _on_dim_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed:
 		get_tree().paused = false
 		hide()
+
+
+func _on_restart_button_pressed():
+	var stats = get_tree().get_first_node_in_group("gamestats")
+	get_tree().paused = false
+	stats.restart_game()

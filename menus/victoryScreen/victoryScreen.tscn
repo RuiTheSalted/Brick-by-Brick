@@ -198,3 +198,4 @@ ignore_texture_size = true
 stretch_mode = 6
 
 [connection signal="pressed" from="center/Panel/VBoxContainer/buttonsRow/homeButton" to="." method="_on_home_button_pressed"]
+[connection signal="pressed" from="center/Panel/VBoxContainer/buttonsRow/restartButton" to="." method="_on_restart_button_pressed"]

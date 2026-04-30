@@ -35,15 +35,27 @@ var slow_timer: float = 0.0
 var slow_duration: float = 2.0 #ICEBALL SLOW DURATION
 var slow_multiplier: float = 0.5 #SLOWS BRICKS TO HALF SPEED
 
+var is_weakened: bool = false
+var weak_timer: float = 0.0
+var weak_duration: float = 20.0
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	add_to_group("bricks")	# Add brick to group for easy detection
 	_update_visuals()
 	_update_label()
-	
+
+
 func take_damage(amount: int) -> void:
 	if brick_type == BrickType.Unbreakable:
 		return
+	var stats = get_tree().get_first_node_in_group("gamestats")
+	if is_slowed:
+		if stats and stats.ammo_data[stats.ammo_name].get("frozenDamageBonus", false):
+			amount *= 2
+	if is_weakened:
+		amount *= 2
+
 	health -= amount
 	
 	# Plays break sound if dying, damage sound if surviviing
@@ -52,12 +64,13 @@ func take_damage(amount: int) -> void:
 	else:
 		AudioManager.play_sfx(SoundBank.BRICK_DAMAGE, true)
 	
-	var stats = get_tree().get_first_node_in_group("gamestats")
 	if stats:
+		var cash_multiplier = stats.ammo_data[stats.ammo_name].get("diamondAffinity", 1)
+		var base_currency = amount * cash_multiplier
 		if brick_type == BrickType.Lava:
-			stats.add_currency(amount * 2)
+			stats.add_currency(base_currency * 2)
 		else:
-			stats.add_currency(amount)
+			stats.add_currency(base_currency)
 	else:
 		push_error("Gamestats not found in group 'gamestats'")
 
@@ -67,6 +80,7 @@ func take_damage(amount: int) -> void:
 	else:
 		_update_visuals()
 		_update_label()
+
 
 func _update_visuals() -> void:
 	if not has_node("Sprite2D"):
@@ -99,12 +113,14 @@ func _update_visuals() -> void:
 	
 	$Sprite2D.texture = brickTextures[index]
 
+
 func _update_label() -> void:
 	if has_node("HealthLabel"):
 		if brick_type == BrickType.Unbreakable:
 			$HealthLabel.text = ""
 		else:
 			$HealthLabel.text = str(health)
+
 
 func _physics_process(delta):
 	if is_slowed:
@@ -114,6 +130,20 @@ func _physics_process(delta):
 
 	if is_slowed:
 		$Sprite2D.modulate = Color(0.6, 0.8, 1.0)
+	else:
+		$Sprite2D.modulate = Color(1, 1, 1)
+
+	if is_weakened:
+		weak_timer -= delta
+		if weak_timer <= 0:
+			is_weakened = false
+	
+	if is_slowed and is_weakened:
+		$Sprite2D.modulate = Color(0.7, 0.5, 1.0)  # purple-blue mix
+	elif is_slowed:
+		$Sprite2D.modulate = Color(0.6, 0.8, 1.0)  # blue
+	elif is_weakened:
+		$Sprite2D.modulate = Color(0.8, 0.4, 1.0)  # purple
 	else:
 		$Sprite2D.modulate = Color(1, 1, 1)
 
@@ -139,11 +169,28 @@ func _physics_process(delta):
 		died.emit()
 		path_follow.queue_free()
 
+
 func is_lava():
 	return brick_type == BrickType.Lava
 
-func apply_slow():
+
+func apply_slow(duration: float = -1.0, strength: float = -1.0):
 	if brick_type == BrickType.Unbreakable:
 		return
 	is_slowed = true
-	slow_timer = slow_duration
+	if duration < 0:
+		slow_timer = INF
+	else:
+		# Only replace timer if new duration is longer
+		slow_timer = max(slow_timer, duration)
+	if strength >= 0:
+		slow_multiplier = clamp(1.0 - (strength * 0.1), 0.05, 1.0)
+	else:
+		slow_multiplier = 0.5
+
+
+func apply_weakness() -> void:
+	if brick_type == BrickType.Unbreakable:
+		return
+	is_weakened = true
+	weak_timer = weak_duration

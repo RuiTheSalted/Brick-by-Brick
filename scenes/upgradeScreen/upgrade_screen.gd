@@ -10,8 +10,8 @@ var selected_upgrade: Dictionary = {}
 var selected_path_key: String = ""
 var selected_tier: int = -1
 
-# Placeholder locked texture — replace with your real one later
-var locked_texture = preload("res://assets/spritesArt/bricks/placeholderBrick.png")
+# Locked Texture
+var locked_texture = preload("res://assets/spritesArt/buttonArt/Locked Path.png")
 
 # POPUPS
 @onready var confirmResetPopup = $confirmReset
@@ -99,7 +99,6 @@ func load_upgrade_nodes():
 				# Assign the upgrade icon to the TextureButton
 				var upgrade = path_data[i]
 				var is_purchased = (path_key == chosen_path and i < purchased_tier)
-				var is_locked_tier = (path_key == chosen_path and i > 0 and i >= purchased_tier + 1 and purchased_tier == 0) or (path_key == chosen_path and i > purchased_tier)
 				
 				if is_locked_path:
 					# Wrong path — show locked texture and disable
@@ -223,12 +222,17 @@ func _on_buy_button_pressed():
 		print("Already purchased")
 		return
 
+	# Check if player can afford it before attempting
+	if stats.currency < selected_upgrade["cost"]:
+		print("Not enough currency")
+		return
+
 	stats.purchase_upgrade(ball_name, selected_path_key, selected_tier)
 
-	# Refresh UI
+# Refresh UI
 	load_upgrade_nodes()
 
-	# Update button
+# Update button
 	buyButtonText.text = "Purchased"
 	buyButton.disabled = true
 
