@@ -21,9 +21,10 @@ extends Control
 
 # REPLACE WITH "/map/mapNumber.png" & BOOLEAN NOT T/F. 
 # MAPS GO HERE NOT IN NODE TREE, ADD THE MAPS HERE.
+#{"preview": preload("res://assets/spritesArt/mapPreviewImgs/map1Thumbnail.png"), "completed": false, "scene": "res://scenes/levelWithUi.tscn"}
 var maps := [
-	{"preview": preload("res://assets/spritesArt/mapPreviewImgs/map1Thumbnail.png"), "completed": false, "scene": "res://scenes/levelWithUi.tscn"},
-	{"preview": preload("res://assets/spritesArt/bricks/placeholderBrick.png"), "completed": true},
+	{"preview": preload("res://assets/spritesArt/mapPreviewImgs/map1Thumbnail.png"), "completed": false, "scene": "res://scenes/levelWithUI/levelWithUi.tscn"},
+	{"preview": preload("res://assets/spritesArt/bricks/placeholderBrick.png"), "completed": false, "scene": "res://scenes/levelWithUI/levelWithUi.tscn", "map": "res://maps/specialMaps/spiralLevel/scenes/spiral_level.tscn"},
 	{"preview": preload("res://assets/spritesArt/bricks/placeholderBrick.png"), "completed": false},
 	{"preview": preload("res://assets/spritesArt/bricks/placeholderBrick.png"), "completed": true},
 	{"preview": preload("res://assets/spritesArt/bricks/placeholderBrick.png"), "completed": false},
@@ -122,8 +123,15 @@ func _on_tile_gui_input(tile_index: int, event: InputEvent) -> void:
 
 		var scene_path: String = map_data["scene"]
 		print("Loading map:", selected_map_index, "->", scene_path)
-
-		get_tree().change_scene_to_file("res://scenes/levelWithUI/levelWithUi.tscn")
+		
+		# Store the inner map path in GameStats so levelWithUI can read it
+		if map_data.has("map"):
+			GameStats.selected_map = map_data["map"]
+		else:
+			GameStats.selected_map = ""
+		#get_tree().change_scene_to_file("res://scenes/levelWithUI/levelWithUi.tscn")
+		#get_tree().change_scene_to_file(scene_path)
+		get_tree().change_scene_to_file(map_data["scene"])
 
 # WHEN LEFT ARROW CLICKED, GO LEFT
 func _on_left_arrow_pressed() -> void:

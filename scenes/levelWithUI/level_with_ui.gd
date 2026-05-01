@@ -23,20 +23,24 @@ var current_level_path: String = ""
 
 
 func _ready() -> void:
-	# audio
+	# Reset game state so HP and round start fresh on every new level
+	GameStats.reset_for_new_level()
+	# Audio
 	AudioManager.play_music(SoundBank.MUSIC_LEVEL_FOREST_1)
 	# Basic safety checks
 	if game_frame == null:
 		push_error("LevelWithUi: Missing node at '%s' (your center frame)." % GAME_FRAME_PATH)
 	if game_viewport_node == null:
 		push_warning("LevelWithUi: Missing node at '%s' (will try to auto-find one)." % GAME_VIEWPORT_PATH)
-
 	# Make sure viewport renders at the correct size before loading anything
 	_update_viewport_size()
-
-	# Auto-load a map so you can immediately test layout
-	if default_map_path != "":
-		load_map(default_map_path)
+	# Use selected_map from GameStats if set, otherwise fall back to default
+	var map_to_load = default_map_path
+	if GameStats.selected_map != "":
+		map_to_load = GameStats.selected_map
+		GameStats.selected_map = ""  # Clear after reading
+	if map_to_load != "":
+		load_map(map_to_load)
 
 
 func _notification(what: int) -> void:

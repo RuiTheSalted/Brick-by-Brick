@@ -504,6 +504,9 @@ var currency: int = 20000
 var round_current: int = 1
 var round_total: int = 40
 
+# Stores which inner map to load - set by map selection screen
+var selected_map: String = ""
+
 var ammo_name: String = "Basic Ball"
 var ammo_icon: Texture2D = ammo_data["Basic Ball"]["icon"]
 var ammo_scene: PackedScene = ammo_data["Basic Ball"]["scene"]
@@ -977,3 +980,11 @@ func set_ammo_type(ammo_name_str: String):
 		buildup_per_bounce = 1
 
 	ammo_type_changed.emit(ammo_name, ammo_icon)
+
+# Reset all match state for a fresh level start
+func reset_for_new_level() -> void:
+	hp = 100
+	is_game_over = false
+	round_current = 1
+	hp_changed.emit(hp)
+	round_changed.emit(round_current, round_total)

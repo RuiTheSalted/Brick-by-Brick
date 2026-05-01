@@ -44,4 +44,4 @@ vertical_alignment = 1
 [node name="Node2D" type="Node2D" parent="." unique_id=1151986515]
 
 [node name="Cannon" parent="Node2D" unique_id=855465672 instance=ExtResource("6_fefrp")]
-position = Vector2(640, 680)
+position = Vector2(445, 660)

@@ -21,16 +21,17 @@ var current_wave := 1
 var bricks_alive := 0
 
 func _ready() -> void:
-	# Get node references safely - relative to Spawner's parent (SpiralLevel root)
-	path = get_node_or_null("../SpiralPath")
-	wave_label = get_node_or_null("../CanvasLayer/WaveLabel")
+	# When loaded inside levelWithUI SubViewport, relative paths don't work
+	# Use get_parent() to find SpiralPath relative to spawner's parent
+	var parent = get_parent()
+	path = parent.get_node_or_null("SpiralPath")
+	wave_label = parent.get_node_or_null("CanvasLayer/WaveLabel")
 
-	# Safety checks - these will show clear errors instead of cryptic null crashes
 	if path == null:
-		push_error("SpiralSpawner: Could not find SpiralPath - check node name matches exactly")
+		push_error("SpiralSpawner: Could not find SpiralPath")
 		return
 	if wave_label == null:
-		push_error("SpiralSpawner: Could not find WaveLabel - check CanvasLayer/WaveLabel exists")
+		push_error("SpiralSpawner: Could not find WaveLabel")
 		return
 	if brick_scene == null:
 		push_error("SpiralSpawner: brick_scene not assigned in Inspector")
