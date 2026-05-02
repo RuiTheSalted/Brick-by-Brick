@@ -11,8 +11,8 @@ extends Node2D
 signal ball_escaped(position: Vector2, direction: Vector2)
 
 # Court dimensions in pixels
-const COURT_W := 120.0
-const COURT_H := 80.0
+const COURT_W := 180.0
+const COURT_H := 120.0
 const BALL_RADIUS := 4.0
 const PADDLE_W := 6.0
 const PADDLE_H := 22.0

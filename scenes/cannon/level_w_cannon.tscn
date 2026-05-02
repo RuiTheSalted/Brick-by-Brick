@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bw4ud1fe1noyl"]
 
-[ext_resource type="Texture2D" uid="uid://cjm36a8ysgf4b" path="res://maps/easyMaps/mapsSprites/grassLevelOne/GrassBackground.png" id="1_7ah08"]
+[ext_resource type="Texture2D" uid="uid://dl045exidth5e" path="res://maps/easyMaps/mapsSprites/grassLevelOne/GrassBackground.png" id="1_7ah08"]
 [ext_resource type="Texture2D" uid="uid://eemue63q7n5x" path="res://maps/easyMaps/mapsSprites/grassLevelOne/pineTree.png" id="2_q2rll"]
 [ext_resource type="Texture2D" uid="uid://c0h23gn43txwl" path="res://maps/easyMaps/mapsSprites/grassLevelOne/Grass.png" id="3_uf7n0"]
 [ext_resource type="Texture2D" uid="uid://dvqguhd5is4im" path="res://maps/easyMaps/mapsSprites/grassLevelOne/rockWithGrass.png" id="4_8gwyt"]
