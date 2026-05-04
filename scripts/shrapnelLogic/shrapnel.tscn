@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cuulsqppiwg7s"]
+
+[ext_resource type="Script" uid="uid://ccajxa8w2w8sv" path="res://scripts/shrapnelLogic/shrapnel.gd" id="1_boxrb"]
+[ext_resource type="Texture2D" uid="uid://yv6rismvaicr" path="res://assets/spritesArt/upgradeBallArt/cannonBall/Shrapnel.png" id="2_boxrb"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sqsne"]
+radius = 6.0
+height = 21.0
+
+[node name="Shrapnel" type="Area2D" unique_id=1480336208]
+script = ExtResource("1_boxrb")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=921591648]
+texture = ExtResource("2_boxrb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1394679375]
+rotation = 0.80881435
+shape = SubResource("CapsuleShape2D_sqsne")
