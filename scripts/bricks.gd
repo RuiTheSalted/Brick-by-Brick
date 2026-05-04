@@ -39,6 +39,13 @@ var is_weakened: bool = false
 var weak_timer: float = 0.0
 var weak_duration: float = 20.0
 
+var is_burning: bool = false
+var burn_timer: float = 0.0
+var burn_damage: float = 1.0
+# Burn tick system
+var burn_tick_timer: float = 0.0
+var burn_tick_rate: float = 1.0 # damage every second
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	add_to_group("bricks")	# Add brick to group for easy detection
@@ -56,17 +63,20 @@ func take_damage(amount: int) -> void:
 	if is_weakened:
 		amount *= 2
 
-	health -= amount
-	
-	# Plays break sound if dying, damage sound if surviviing
+	# Calculate actual damage dealt BEFORE modifying health
+	var actual_damage = min(amount, health)
+
+	health -= actual_damage
+
+	# Plays break sound if dying, damage sound if surviving
 	if health <= 0:
 		AudioManager.play_sfx(SoundBank.BRICK_BREAK)
 	else:
 		AudioManager.play_sfx(SoundBank.BRICK_DAMAGE, true)
-	
+
 	if stats:
 		var cash_multiplier = stats.ammo_data[stats.ammo_name].get("diamondAffinity", 1)
-		var base_currency = amount * cash_multiplier
+		var base_currency = actual_damage * cash_multiplier
 		if brick_type == BrickType.Lava:
 			stats.add_currency(base_currency * 2)
 		else:
@@ -137,7 +147,18 @@ func _physics_process(delta):
 		weak_timer -= delta
 		if weak_timer <= 0:
 			is_weakened = false
-	
+
+	if is_burning:
+		$Sprite2D.modulate = Color(1.0, 0.429, 0.177, 1.0)
+		burn_timer -= delta
+		burn_tick_timer -= delta
+		if burn_timer <= 0:
+			is_burning = false
+		else:
+			if burn_tick_timer <= 0:
+				take_damage(int(burn_damage))
+				burn_tick_timer = burn_tick_rate
+
 	if is_slowed and is_weakened:
 		$Sprite2D.modulate = Color(0.7, 0.5, 1.0)  # purple-blue mix
 	elif is_slowed:
@@ -194,3 +215,14 @@ func apply_weakness() -> void:
 		return
 	is_weakened = true
 	weak_timer = weak_duration
+
+
+func apply_burn(duration: float, damage: float):
+	if brick_type == BrickType.Unbreakable:
+		return
+
+	is_burning = true
+
+# Always apply new burn values
+	burn_timer = duration
+	burn_damage = damage

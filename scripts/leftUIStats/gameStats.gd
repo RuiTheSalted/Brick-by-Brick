@@ -23,7 +23,11 @@ var knockback_hits_remaining: int = 0
 
 var tube_original_fire_rate: float = 0.0
 
+var placing_hellfire: bool = false
+
 var ability_name: String = ""
+
+const LAVA_SCENE = preload("res://scenes/lavaTile/lavaTile.tscn")
 
 # TYPES OF AMMO
 var ammo_data := {
@@ -456,7 +460,7 @@ var upgrade_data := {
 				"cost": 4100,
 				"reset_cost": 1010,
 				"icon": preload("res://assets/spritesArt/upgradeBallArt/cannonBall/Cannon Ball 3-3.png"),
-				"stats": {"damage": 14, "shrapnel": true} #will need to make shrapnel
+				"stats": {"damage": 14, "shrapnel": true}
 			},
 		],
 		"path3": [
@@ -466,15 +470,15 @@ var upgrade_data := {
 				"cost": 1200,
 				"reset_cost": 140,
 				"icon": preload("res://assets/spritesArt/upgradeBallArt/cannonBall/Cannon Ball 1-1.png"),
-				"stats": {"fireCannonEffect": true} #this will have to be made
+				"stats": {"burnEffect": true, "burn_damage": 1, "burn_duration": 3.0}
 			},
 			{
 				"name": "Blazing Balls",
-				"desc": "Lit balls are so hot that hit bricks spread the flame.",
+				"desc": "Lit balls are so hot that hit bricks spread the flame. Gains small fire rate buff.",
 				"cost": 2900,
 				"reset_cost": 500,
 				"icon": preload("res://assets/spritesArt/upgradeBallArt/cannonBall/Cannon Ball 1-2.png"),
-				"stats": {"fireCannonEffect": true, "fireSpreadEffect": true} #this will have to be made
+				"stats": {"burnEffect": true, "fireSpreadEffect": true, "speed": 750, "shootSpeed": 1.7, "burn_damage": 1, "burn_duration": 5.0, "fire_spread_radius": 120}
 			},
 			{
 				"name": "Hellfire",
@@ -482,7 +486,7 @@ var upgrade_data := {
 				"cost": 4000,
 				"reset_cost": 970,
 				"icon": preload("res://assets/spritesArt/upgradeBallArt/cannonBall/Cannon Ball 1-3.png"),
-				"stats": {"fireCannonEffect": true, "fireSpreadEffect": true, "hellFireAbility": true} #this will have to be made
+				"stats": {"burnEffect": true, "fireSpreadEffect": true, "ability": "hellFire", "speed": 825, "shootSpeed": 1.55, "burn_damage": 3, "burn_duration": 3.0, "fire_spread_radius": 200} 
 			},
 		],
 	}
@@ -609,6 +613,10 @@ func activate_ability():
 
 			# Apply rapid fire
 			ammo_data[ammo_name]["shootSpeed"] = ammo_data[ammo_name].get("tube_fire_rate", 0.2)
+			
+		"hellFire":
+			placing_hellfire = true
+			print("Hellfire placement mode ON")
 
 	ammo_type_changed.emit(ammo_name, ammo_icon)
 
@@ -730,18 +738,23 @@ func apply_upgrade_stats(ball_name: String, path_key: String, tier: int):
 	if s.has("keep_base_texture"):
 		ammo_data[ball_name]["keep_base_texture"] = s["keep_base_texture"]
 
-
-	# Store future stats for later systems
-	if s.has("fireDamage"):
-		ammo_data[ball_name]["fireDamage"] = s["fireDamage"]
-	if s.has("fireSpread"):
-		ammo_data[ball_name]["fireSpread"] = s["fireSpread"]
 	if s.has("shrapnel"):
 		ammo_data[ball_name]["shrapnel"] = s["shrapnel"]
-	if s.has("fireCannonEffect"):
-		ammo_data[ball_name]["fireCannonEffect"] = s["fireCannonEffect"]
+
+
+	if s.has("burnEffect"):
+		ammo_data[ball_name]["burnEffect"] = s["burnEffect"]
+	if s.has("burn_damage"):
+		ammo_data[ball_name]["burn_damage"] = s["burn_damage"]
+	if s.has("burn_duration"):
+		ammo_data[ball_name]["burn_duration"] = s["burn_duration"]
 	if s.has("fireSpreadEffect"):
 		ammo_data[ball_name]["fireSpreadEffect"] = s["fireSpreadEffect"]
+	if s.has("fire_spread_radius"):
+		ammo_data[ball_name]["fire_spread_radius"] = s["fire_spread_radius"]
+
+
+	# Store future stats for later systems
 	if s.has("hellFireAbility"):
 		ammo_data[ball_name]["hellFireAbility"] = s["hellFireAbility"]
 
@@ -793,11 +806,13 @@ func reset_upgrades(ball_name: String) -> bool:
 	# Restore base stats from original values
 	var base = {
 		"Basic Ball":  {"damage": 1, "bounces": 5, "speed": 800.0, "size": 1.0, "shootSpeed": 0.5},
-		"Ice Ball":    {"damage": 2, "bounces": 5, "speed": 800.0, "size": 1.0, "shootSpeed": 1.0, "freezeDuration": 2.0, "freezeStrength": 4, "freezeRadius": 0.0, "lavaResist": true},
+		"Ice Ball":    {"damage": 2, "bounces": 5, "speed": 800.0, "size": 1.0, "shootSpeed": 1.0, "freezeDuration": 2.0, "freezeStrength": 4, "freezeRadius": 0.0, "lavaResist": true, "slowEffect": true},
 		"Cannon Ball": {"damage": 4, "bounces": 1, "speed": 600.0, "size": 1.25, "shootSpeed": 2.0},
 		"Beach Ball":  {"damage": 1, "bounces": 15, "speed": 500.0, "size": 2.0, "shootSpeed": 3.0},
 		"Tennis Ball": {"damage": 1, "bounces": 7, "speed": 1200.0, "size": 0.5, "shootSpeed": 0.667},
 	}
+
+
 
 	if base.has(ball_name):
 		for stat_key in base[ball_name].keys():
@@ -830,6 +845,18 @@ func reset_upgrades(ball_name: String) -> bool:
 	ammo_data[ball_name].erase("ability")
 	ammo_data[ball_name].erase("buildup_duration")
 	ammo_data[ball_name].erase("buildup_per_bounce")
+	ammo_data[ball_name].erase("projectiles")
+	ammo_data[ball_name].erase("keep_base_texture")
+	ammo_data[ball_name].erase("shrapnel")
+	ammo_data[ball_name].erase("shrapnel_count")
+	ammo_data[ball_name].erase("shrapnel_damage")
+	ammo_data[ball_name].erase("knockback_hits")
+	ammo_data[ball_name].erase("knockback_force")
+	ammo_data[ball_name].erase("burnEffect")
+	ammo_data[ball_name].erase("burn_damage")
+	ammo_data[ball_name].erase("burn_duration")
+	ammo_data[ball_name].erase("fireSpreadEffect")
+	ammo_data[ball_name].erase("fire_spread_radius")
 
 	return true
 
@@ -859,61 +886,61 @@ func reset_game():
 
 	# RESET AMMO DATA COMPLETELY
 	ammo_data = {
-		"Basic Ball": {
-			"scene": preload("res://scenes/ballsCollision/basicBallCollision.tscn"),
-			"icon": preload("res://assets/spritesArt/ball/ball.png"),
-			"price": 0,
-			"damage": 1,
-			"bounces": 5,
-			"speed": 800.0, 
-			"size": 1.0, 
-			"shootSpeed": 0.5
-		},
-		"Ice Ball": {
-			"scene": preload("res://scenes/ballsCollision/iceBallCollision.tscn"),
-			"icon": preload("res://assets/spritesArt/ball/iceball.png"),
-			"price": 1000,
-			"damage": 2,
-			"bounces": 5,
-			"speed": 800.0, 
-			"size": 1.0, 
-			"shootSpeed": 1.0,
-			"freezeDuration": 2.0,
-			"freezeStrength": 4,
-			"freezeRadius": 0.0,
-			"lavaResist": true,
-			"slowEffect": true
-		},
-		"Cannon Ball": {
-			"scene": preload("res://scenes/ballsCollision/cannonBallCollision.tscn"),
-			"icon": preload("res://assets/spritesArt/ball/Cannon_Ball_Big.png"),
-			"price": 800,
-			"damage": 4,
-			"bounces": 1,
-			"speed": 600.0,
-			"size": 1.25,
-			"shootSpeed": 2.0
-		},
-		"Beach Ball": {
-			"scene": preload("res://scenes/ballsCollision/beachBallCollision.tscn"),
-			"icon": preload("res://assets/spritesArt/ball/BeachBall.png"),
-			"price": 250,
-			"damage": 1,
-			"bounces": 15,
-			"speed": 500.0,
-			"size": 2.0,
-			"shootSpeed": 3.0
-		},
-		"Tennis Ball": {
-			"scene": preload("res://scenes/ballsCollision/tennisBallCollision.tscn"),
-			"icon": preload("res://assets/spritesArt/ball/tennisBall.png"),
-			"price": 625,
-			"damage": 1,
-			"bounces": 7,
-			"speed": 1200.0,
-			"size": 0.5,
-			"shootSpeed": 0.667
-		}
+	"Basic Ball": {
+		"scene": preload("res://scenes/ballsCollision/basicBallCollision.tscn"),
+		"icon": preload("res://assets/spritesArt/ball/ball.png"),
+		"price": 0,
+		"damage": 1,
+		"bounces": 5,
+		"speed": 800.0, 
+		"size": 1.0, 
+		"shootSpeed": 0.5
+	},
+	"Ice Ball": {
+		"scene": preload("res://scenes/ballsCollision/iceBallCollision.tscn"),
+		"icon": preload("res://assets/spritesArt/ball/iceball.png"),
+		"price": 1000,
+		"damage": 2,
+		"bounces": 5,
+		"speed": 800.0, 
+		"size": 1.0, 
+		"shootSpeed": 1.0,
+		"freezeDuration": 2.0,
+		"freezeStrength": 4,
+		"freezeRadius": 0.0,
+		"lavaResist": true,
+		"slowEffect": true
+	},
+	"Cannon Ball": {
+		"scene": preload("res://scenes/ballsCollision/cannonBallCollision.tscn"),
+		"icon": preload("res://assets/spritesArt/ball/Cannon_Ball_Big.png"),
+		"price": 800,
+		"damage": 4,
+		"bounces": 1,
+		"speed": 600.0,
+		"size": 1.25,
+		"shootSpeed": 2.0
+	},
+	"Beach Ball": {
+		"scene": preload("res://scenes/ballsCollision/beachBallCollision.tscn"),
+		"icon": preload("res://assets/spritesArt/ball/BeachBall.png"),
+		"price": 250,
+		"damage": 1,
+		"bounces": 15,
+		"speed": 500.0,
+		"size": 2.0,
+		"shootSpeed": 3.0
+	},
+	"Tennis Ball": {
+		"scene": preload("res://scenes/ballsCollision/tennisBallCollision.tscn"),
+		"icon": preload("res://assets/spritesArt/ball/tennisBall.png"),
+		"price": 715,
+		"damage": 1,
+		"bounces": 7,
+		"speed": 1200.0, 
+		"size": 0.5,
+		"shootSpeed": 0.667
+	}
 	}
 
 	# RESET CURRENT BALL
@@ -981,6 +1008,7 @@ func set_ammo_type(ammo_name_str: String):
 
 	ammo_type_changed.emit(ammo_name, ammo_icon)
 
+
 # Reset all match state for a fresh level start
 func reset_for_new_level() -> void:
 	hp = 100
@@ -988,3 +1016,21 @@ func reset_for_new_level() -> void:
 	round_current = 1
 	hp_changed.emit(hp)
 	round_changed.emit(round_current, round_total)
+
+
+func _spawn_hellfire(pos: Vector2):
+	print("SPAWNING LAVA AT:", pos)
+	var lava = LAVA_SCENE.instantiate()
+	# Find the level viewport and add lava there
+	var level = get_tree().get_nodes_in_group("bricks")
+	if level.size() > 0:
+		var parent = level[0].get_parent()
+		while parent != null and not parent is SubViewport:
+			parent = parent.get_parent()
+		if parent:
+			lava.global_position = pos
+			parent.add_child(lava)
+			return
+	# Fallback
+	get_tree().get_root().add_child(lava)
+	lava.global_position = pos

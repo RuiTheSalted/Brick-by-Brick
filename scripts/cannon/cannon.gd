@@ -228,6 +228,13 @@ func shoot():
 		cannonBall.ignore_lava = ammo_stats.get("lavaResist", false)
 		cannonBall.slow_effect = ammo_stats.get("slowEffect", false)
 		cannonBall.weakening_effect = ammo_stats.get("royalWeakness", false)
+		# FIRE EFFECTS (STEP 2)
+		cannonBall.burn_effect = ammo_stats.get("burnEffect", false)
+		cannonBall.fire_spread_effect = ammo_stats.get("fireSpreadEffect", false)
+		cannonBall.fire_spread_radius = ammo_stats.get("fire_spread_radius", 0.0)
+		if ammo_stats.get("shrapnel", false):
+			cannonBall.has_shrapnel = true
+			cannonBall.shrapnel_damage = max(1, ammo_stats["damage"] / 2)
 
 		get_parent().add_child(cannonBall)
 		cannonBall.global_position = cannonBall_spawn.global_position

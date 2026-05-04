@@ -168,9 +168,21 @@ func load_map(path: String) -> void:
 
 # CODE TO TAKE SCREENSHOT WITH "T" AND STORED IN PROJECT -> OPEN USER DATA FOLDER
 func _input(event):
-	# Trigger the screenshot when the 'screenshot' action is pressed
+# Screenshot
 	if event.is_action_pressed("screenshot"):
 		take_screenshot()
+
+	var stats = get_tree().get_first_node_in_group("gamestats")
+
+	if stats and stats.placing_hellfire and event.is_action_pressed("ui_select"):
+		var mouse_pos = get_global_mouse_position()
+
+		stats._spawn_hellfire(mouse_pos)
+		stats.placing_hellfire = false
+
+		# start cooldown AFTER placement
+		stats.ability_cooldown = 35.0
+		stats.ability_cooldown_timer = stats.ability_cooldown
 
 func take_screenshot():
 	# It is recommended to wait for the frame to finish rendering to ensure a complete capture

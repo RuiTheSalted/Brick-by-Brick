@@ -23,6 +23,13 @@ var weakening_effect: bool = false
 
 var ignore_other_balls: bool = false
 
+var has_shrapnel: bool = false
+var shrapnel_damage: int = 1
+var shrapnel_scene: PackedScene = preload("res://scripts/shrapnelLogic/shrapnel.tscn")
+
+var fire_spread_effect: bool = false
+var burn_effect: bool = false
+var fire_spread_radius: float = 0.0
 
 @onready var sprite = $Sprite2D
 
@@ -67,8 +74,30 @@ func _physics_process(delta: float) -> void:
 			# Apply damage once
 			brick.take_damage(total_damage)
 
-			var stats = get_tree().get_first_node_in_group("gamestats")
+			if burn_effect:
+				if brick.has_method("apply_burn"):
+					var dmg = 1
+					var dur = 3.0
 
+					# OPTIONAL: you can still pull these once at spawn instead
+					var stats = get_tree().get_first_node_in_group("gamestats")
+					if stats:
+						dmg = stats.ammo_data[ball_type].get("burn_damage", 1)
+						dur = stats.ammo_data[ball_type].get("burn_duration", 3.0)
+
+					brick.apply_burn(dur, dmg)
+
+					# FIRE SPREAD
+					if fire_spread_effect:
+						for other in get_tree().get_nodes_in_group("bricks"):
+							if other == brick:
+								continue
+							if not other.has_method("apply_burn"):
+								continue
+							if brick.global_position.distance_to(other.global_position) <= fire_spread_radius:
+								other.apply_burn(dur * 0.5, dmg)
+
+			var stats = get_tree().get_first_node_in_group("gamestats")
 			# Apply freeze effect
 			if slow_effect and brick.has_method("apply_slow") and stats:
 				var duration = stats.ammo_data[stats.ammo_name].get("freezeDuration", 2.0)
@@ -103,13 +132,16 @@ func _physics_process(delta: float) -> void:
 
 			# Lava check AFTER everything
 			if brick.is_lava() and not ignore_lava:
+				if has_shrapnel:
+					_spawn_shrapnel()
 				ball_died.emit()
 				queue_free()
 				return
 
 		bounce_count += 1
-
 		if bounce_count >= max_bounces:
+			if has_shrapnel:
+				_spawn_shrapnel()
 			ball_died.emit()
 			queue_free()
 			return
@@ -144,3 +176,16 @@ func _apply_freeze_radius(hit_brick: Node, duration: float, strength: float) -> 
 		var distance = hit_brick.global_position.distance_to(other_brick.global_position)
 		if distance <= radius:
 			other_brick.apply_slow(duration, strength)
+
+
+func _spawn_shrapnel() -> void:
+	var count = 6
+	for i in range(count):
+		var angle = (TAU / count) * i
+		var dir = Vector2(cos(angle), sin(angle))
+
+		var piece = shrapnel_scene.instantiate()
+		piece.global_position = global_position
+		piece.direction = dir
+		piece.damage = shrapnel_damage
+		get_parent().add_child(piece)
