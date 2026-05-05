@@ -24,9 +24,9 @@ extends Control
 #{"preview": preload("res://assets/spritesArt/mapPreviewImgs/map1Thumbnail.png"), "completed": false, "scene": "res://scenes/levelWithUi.tscn"}
 var maps := [
 	{"preview": preload("res://assets/spritesArt/mapPreviewImgs/map1Thumbnail.png"), "completed": false, "scene": "res://scenes/levelWithUI/levelWithUi.tscn"},
-	{"preview": preload("res://assets/spritesArt/bricks/placeholderBrick.png"), "completed": false, "scene": "res://scenes/levelWithUI/levelWithUi.tscn", "map": "res://maps/specialMaps/spiralLevel/scenes/spiral_level.tscn"},
-	{"preview": preload("res://assets/spritesArt/bricks/placeholderBrick.png"), "completed": false},
-	{"preview": preload("res://assets/spritesArt/bricks/placeholderBrick.png"), "completed": true},
+	{"preview": preload("res://assets/spritesArt/bricks/placeholderBrick.png"), "completed": false, "scene": "res://scenes/levelWithUI/levelWithUi.tscn", "map": "res://scenes/regularLevels/map1-2.tscn"},
+	{"preview": preload("res://assets/spritesArt/bricks/placeholderBrick.png"), "completed": false, "scene": "res://scenes/levelWithUI/levelWithUi.tscn", "map": "res://scenes/regularLevels/map1-3.tscn"},
+	{"preview": preload("res://assets/spritesArt/bricks/placeholderBrick.png"), "completed": true, "scene": "res://scenes/levelWithUI/levelWithUi.tscn", "map": "res://scenes/regularLevels/spiralLevel.tscn"},
 	{"preview": preload("res://assets/spritesArt/bricks/placeholderBrick.png"), "completed": false},
 	{"preview": preload("res://assets/spritesArt/bricks/placeholderBrick.png"), "completed": true},
 	{"preview": preload("res://assets/spritesArt/bricks/placeholderBrick.png"), "completed": false},

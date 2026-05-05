@@ -6,7 +6,8 @@ extends Node
 @export var bricks_per_wave := 10
 @export var time_between_bricks := 0.75
 @export var time_between_waves := 2.0
-@onready var wave_label = $"../CanvasLayer/WaveLabel"
+#@onready var wave_label = $"../CanvasLayer/WaveLabel"
+@onready var wave_label = get_parent().get_node_or_null("CanvasLayer/WaveLabel")
 var current_wave := 1
 var bricks_alive := 0
 
@@ -108,21 +109,15 @@ func _ready() -> void:
 	start_wave()
 
 func show_wave_text(wave_num):
-	if GameStats.is_game_over:
+	if GameStats.is_game_over or get_tree() == null:
 		return
-		
-	if get_tree() == null:
+	if wave_label == null:
 		return
-		
 	wave_label.text = "Wave " + str(wave_num)
 	wave_label.visible = true
-	
 	await get_tree().create_timer(1.5).timeout
-	
-	if get_tree() == null:
-		return
-	
-	wave_label.visible = false
+	if get_tree() != null:
+		wave_label.visible = false
 	
 func _on_brick_removed():
 	bricks_alive -= 1
