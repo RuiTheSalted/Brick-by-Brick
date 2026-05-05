@@ -15,9 +15,8 @@
 [ext_resource type="Script" uid="uid://ckj4i78vxpe1v" path="res://scenes/spawningAndPathing/brick_spawner.gd" id="13_t83bs"]
 [ext_resource type="Texture2D" uid="uid://dpgav0n5cg4mv" path="res://maps/easyMaps/mapsSprites/spiralMapSprites/snowBalls.png" id="14_4aklt"]
 [ext_resource type="Texture2D" uid="uid://dkle6yidg4a1e" path="res://maps/easyMaps/mapsSprites/spiralMapSprites/snowTree2.png" id="16_wjiuh"]
-[ext_resource type="PackedScene" uid="uid://glhkx6n8km3q" path="res://scenes/ballsCollision/basicBallCollision.tscn" id="17_wjiuh"]
+[ext_resource type="PackedScene" uid="uid://c45kb77sh2kav" path="res://scenes/brickCollision/greenBrickCollision.tscn" id="17_4aklt"]
 [ext_resource type="Texture2D" uid="uid://dere5epcfjl2h" path="res://maps/easyMaps/mapsSprites/spiralMapSprites/snowLog.png" id="18_4aklt"]
-[ext_resource type="PackedScene" uid="uid://dbnyejadik2n4" path="res://scenes/brickCollision/unbreakableBrickCollision.tscn" id="18_562ws"]
 [ext_resource type="Texture2D" uid="uid://6fppxen02pkx" path="res://maps/easyMaps/mapsSprites/spiralMapSprites/snowBallSingle.png" id="19_t02bf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w7c3h"]
@@ -753,10 +752,9 @@ scale = Vector2(0.6339381, 1.0382512)
 curve = SubResource("Curve2D_arp2o")
 script = ExtResource("12_8r6bj")
 
-[node name="Brick_spawner" type="Node2D" parent="." unique_id=235322567]
+[node name="Brick_spawner" type="Node2D" parent="." unique_id=69078022]
 script = ExtResource("13_t83bs")
-brick_scene = ExtResource("17_wjiuh")
-unbreakable_brick_scene = ExtResource("18_562ws")
+brick_scene = ExtResource("17_4aklt")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=576465206]
 
