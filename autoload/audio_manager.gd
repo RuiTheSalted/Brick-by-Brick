@@ -69,3 +69,12 @@ func play_ui_click(index: int = -1) -> void:
 		play_sfx(sounds[index])  # Play specific sound
 	else:
 		play_sfx(sounds[randi() % sounds.size()])  # Random
+
+# Play music from a stream directly - used when music is assigned via @export
+func play_music_stream(stream: AudioStream) -> void:
+	if stream == null:
+		return
+	if _music_player.stream == stream and _music_player.playing:
+		return  # Already playing this track, dont restart
+	_music_player.stream = stream
+	_music_player.play()

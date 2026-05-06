@@ -597,6 +597,9 @@ script = ExtResource("15_xckoj")
 script = ExtResource("16_uuqg7")
 brick_scene = ExtResource("17_830qo")
 unbreakable_brick_scene = ExtResource("18_metal")
+bricks_per_wave = 0
+time_between_bricks = 0.0
+time_between_waves = 0.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=397611104]
 

@@ -9,6 +9,9 @@ extends Control
 # Set this in the Inspector to whichever map/level scene you want to test.
 @export var default_map_path: String = "res://scenes/regularLevels/level.tscn"
 
+# Assign music for this level in the Inspector - drag and drop the mp3 file
+@export var level_music: AudioStream
+
 # Paths inside LevelWithUi.tscn (rename these constants if your node names differ)
 const GAME_FRAME_PATH := "mainRow/centerMap/gameFrame"
 const GAME_VIEWPORT_PATH := GAME_FRAME_PATH + "/gameViewport"
@@ -26,7 +29,10 @@ func _ready() -> void:
 	# Reset game state so HP and round start fresh on every new level
 	GameStats.reset_for_new_level()
 	# Audio
-	AudioManager.play_music(SoundBank.MUSIC_LEVEL_FOREST_1)
+	if level_music:
+		AudioManager.play_music_stream(level_music)
+	else:
+		AudioManager.play_music(SoundBank.MUSIC_LEVEL_FOREST_1)  # Fallback
 	# Basic safety checks
 	if game_frame == null:
 		push_error("LevelWithUi: Missing node at '%s' (your center frame)." % GAME_FRAME_PATH)

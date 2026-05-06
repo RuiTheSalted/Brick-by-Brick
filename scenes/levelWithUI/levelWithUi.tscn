@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c8drerf6w3g" path="res://scenes/levelWithUI/level_with_ui.gd" id="1_1ssft"]
 [ext_resource type="Script" uid="uid://c3ggoua7psjp6" path="res://scripts/leftUIStats/gameStats.gd" id="2_7gsb2"]
+[ext_resource type="AudioStream" uid="uid://bbalv5hf07utd" path="res://assets/audio/music/forest2.mp3" id="2_h3n8v"]
 [ext_resource type="PackedScene" uid="uid://dhghar4nt373f" path="res://UI/inGameHud/leftHud.tscn" id="3_h3n8v"]
 [ext_resource type="PackedScene" uid="uid://nysbtbtjs8ba" path="res://UI/inGameHud/rightHud.tscn" id="4_yxso7"]
 
@@ -13,6 +14,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1ssft")
+level_music = ExtResource("2_h3n8v")
 
 [node name="gameStatsNode" type="Node" parent="." unique_id=2117539876]
 script = ExtResource("2_7gsb2")
