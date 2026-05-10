@@ -6,16 +6,747 @@
 [ext_resource type="PackedScene" uid="uid://c45kb77sh2kav" path="res://scenes/brickCollision/greenBrickCollision.tscn" id="4_l4vqh"]
 [ext_resource type="PackedScene" uid="uid://dbnyejadik2n4" path="res://scenes/brickCollision/unbreakableBrickCollision.tscn" id="5_p6efe"]
 [ext_resource type="PackedScene" uid="uid://dwqqquosf3rgt" path="res://scenes/cannon/cannon.tscn" id="6_fefrp"]
+[ext_resource type="Texture2D" uid="uid://402jr1hx2jks" path="res://maps/easyMaps/mapsSprites/spiralMapSprites/iceBackground.png" id="7_egw5h"]
+[ext_resource type="Texture2D" uid="uid://ned5c821342r" path="res://maps/easyMaps/mapsSprites/spiralMapSprites/icePath.png" id="8_aj0xa"]
+[ext_resource type="Texture2D" uid="uid://elbkqyyq8tg8" path="res://maps/easyMaps/mapsSprites/spiralMapSprites/iceCurve.png" id="9_yybiq"]
+[ext_resource type="Texture2D" uid="uid://ddulgskce2xjx" path="res://maps/easyMaps/mapsSprites/spiralMapSprites/snowPileShadow.png" id="10_p0t3m"]
+[ext_resource type="Texture2D" uid="uid://dpgav0n5cg4mv" path="res://maps/easyMaps/mapsSprites/spiralMapSprites/snowBalls.png" id="11_37lcp"]
+[ext_resource type="Texture2D" uid="uid://dkle6yidg4a1e" path="res://maps/easyMaps/mapsSprites/spiralMapSprites/snowTree2.png" id="12_t6km6"]
+[ext_resource type="Texture2D" uid="uid://bvfof4nvwvqew" path="res://maps/easyMaps/mapsSprites/spiralMapSprites/snowTreeLights1.png" id="13_ar4gs"]
+[ext_resource type="Texture2D" uid="uid://wgydqlawyu4f" path="res://maps/easyMaps/mapsSprites/spiralMapSprites/snowTreeLights2.png" id="14_maf6a"]
+[ext_resource type="Texture2D" uid="uid://bc7m4hhfoxadk" path="res://maps/easyMaps/mapsSprites/spiralMapSprites/smallSnowPile.png" id="15_8k0sb"]
+[ext_resource type="Texture2D" uid="uid://y5dduc63as7g" path="res://maps/easyMaps/mapsSprites/spiralMapSprites/snowGrass.png" id="16_6dry0"]
+[ext_resource type="Texture2D" uid="uid://dere5epcfjl2h" path="res://maps/easyMaps/mapsSprites/spiralMapSprites/snowLog.png" id="17_pl1hl"]
+[ext_resource type="Texture2D" uid="uid://6fppxen02pkx" path="res://maps/easyMaps/mapsSprites/spiralMapSprites/snowBallSingle.png" id="18_iidlx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qdbv7"]
+size = Vector2(215, 733)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lllhv"]
+size = Vector2(211, 733)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i78bg"]
+size = Vector2(1300, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_teu5l"]
+size = Vector2(1280.5, 22)
 
 [sub_resource type="Curve2D" id="Curve2D_80ysh"]
 
 [node name="SpiralLevel" type="Node2D" unique_id=189045333]
 script = ExtResource("1_o774y")
 
+[node name="gameView" type="Node2D" parent="." unique_id=202212655]
+
+[node name="Background" type="Sprite2D" parent="gameView" unique_id=32979489]
+position = Vector2(644, 360)
+texture = ExtResource("7_egw5h")
+
+[node name="Dirt" type="Sprite2D" parent="gameView/Background" unique_id=1681366290]
+position = Vector2(-374.688, 268.312)
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Dirt2" type="Sprite2D" parent="gameView/Background" unique_id=2119462320]
+position = Vector2(-374.688, 331.312)
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Dirt3" type="Sprite2D" parent="gameView/Background" unique_id=883514832]
+position = Vector2(-374.688, 204.312)
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Dirt4" type="Sprite2D" parent="gameView/Background" unique_id=2002571415]
+position = Vector2(-374.688, 140.312)
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Dirt5" type="Sprite2D" parent="gameView/Background" unique_id=62456088]
+position = Vector2(-374.688, 76.312)
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Dirt6" type="Sprite2D" parent="gameView/Background" unique_id=1636827510]
+position = Vector2(-374.688, 12.311996)
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Dirt7" type="Sprite2D" parent="gameView/Background" unique_id=1742902491]
+position = Vector2(-373.688, -51.688004)
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Dirt8" type="Sprite2D" parent="gameView/Background" unique_id=1925317127]
+position = Vector2(-373.688, -115.688)
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Dirt9" type="Sprite2D" parent="gameView/Background" unique_id=962918506]
+position = Vector2(-372.688, -179.688)
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Curve" type="Sprite2D" parent="gameView/Background" unique_id=636672626]
+position = Vector2(-366, -316)
+rotation = -1.5707964
+texture = ExtResource("9_yybiq")
+
+[node name="Dirt10" type="Sprite2D" parent="gameView/Background" unique_id=1376674593]
+position = Vector2(-233.99997, -313)
+rotation = 1.5707964
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Dirt11" type="Sprite2D" parent="gameView/Background" unique_id=478746040]
+position = Vector2(-168, -313)
+rotation = 1.5707964
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Dirt12" type="Sprite2D" parent="gameView/Background" unique_id=205755986]
+position = Vector2(-101.999985, -313)
+rotation = 1.5707964
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Dirt13" type="Sprite2D" parent="gameView/Background" unique_id=1381290553]
+position = Vector2(-35.99997, -313)
+rotation = 1.5707964
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Dirt14" type="Sprite2D" parent="gameView/Background" unique_id=1940544602]
+position = Vector2(29.999977, -313)
+rotation = 1.5707964
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Dirt15" type="Sprite2D" parent="gameView/Background" unique_id=890067289]
+position = Vector2(95.999985, -313)
+rotation = 1.5707964
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Dirt16" type="Sprite2D" parent="gameView/Background" unique_id=1337706738]
+position = Vector2(162, -313)
+rotation = 1.5707964
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Dirt17" type="Sprite2D" parent="gameView/Background" unique_id=373369422]
+position = Vector2(227.99994, -313)
+rotation = 1.5707964
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Dirt18" type="Sprite2D" parent="gameView/Background" unique_id=1530523492]
+position = Vector2(293.99994, -313)
+rotation = 1.5707964
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Curve2" type="Sprite2D" parent="gameView/Background" unique_id=1028209945]
+position = Vector2(363.99997, -307)
+rotation = 6.2831855
+texture = ExtResource("9_yybiq")
+
+[node name="Dirt23" type="Sprite2D" parent="gameView/Background" unique_id=484359520]
+position = Vector2(365.31207, 77.312)
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Dirt24" type="Sprite2D" parent="gameView/Background" unique_id=898498680]
+position = Vector2(365.31207, 13.311996)
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Dirt25" type="Sprite2D" parent="gameView/Background" unique_id=133727099]
+position = Vector2(366.31207, -50.688004)
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Dirt26" type="Sprite2D" parent="gameView/Background" unique_id=142139595]
+position = Vector2(366.31207, -114.688)
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Dirt27" type="Sprite2D" parent="gameView/Background" unique_id=1874026591]
+position = Vector2(367.31207, -178.688)
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Curve3" type="Sprite2D" parent="gameView/Background" unique_id=2079109393]
+position = Vector2(354, 151)
+rotation = 1.5707964
+texture = ExtResource("9_yybiq")
+
+[node name="Dirt20" type="Sprite2D" parent="gameView/Background" unique_id=1404817703]
+position = Vector2(-170, 152)
+rotation = 1.5707964
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Dirt21" type="Sprite2D" parent="gameView/Background" unique_id=818402832]
+position = Vector2(-103.999985, 152)
+rotation = 1.5707964
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Dirt22" type="Sprite2D" parent="gameView/Background" unique_id=965168083]
+position = Vector2(-37.99997, 153)
+rotation = 1.5707964
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Dirt28" type="Sprite2D" parent="gameView/Background" unique_id=919844190]
+position = Vector2(27.999977, 153.99997)
+rotation = 1.5707964
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Dirt29" type="Sprite2D" parent="gameView/Background" unique_id=2095544484]
+position = Vector2(93.999985, 154.99997)
+rotation = 1.5707964
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Dirt30" type="Sprite2D" parent="gameView/Background" unique_id=905117771]
+position = Vector2(160, 155)
+rotation = 1.5707964
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Dirt31" type="Sprite2D" parent="gameView/Background" unique_id=1679737143]
+position = Vector2(225.99994, 155)
+rotation = 1.5707964
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Dirt32" type="Sprite2D" parent="gameView/Background" unique_id=1382645096]
+position = Vector2(291.99994, 154.99997)
+rotation = 1.5707964
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Curve4" type="Sprite2D" parent="gameView/Background" unique_id=225050083]
+position = Vector2(-309, 141)
+rotation = 3.1415927
+texture = ExtResource("9_yybiq")
+
+[node name="Dirt19" type="Sprite2D" parent="gameView/Background" unique_id=2047614877]
+position = Vector2(-305.99997, 73.999985)
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Dirt33" type="Sprite2D" parent="gameView/Background" unique_id=1716997567]
+position = Vector2(-305.99997, 7.9999843)
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Dirt34" type="Sprite2D" parent="gameView/Background" unique_id=1060868962]
+position = Vector2(-304.99997, -58.000015)
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Dirt35" type="Sprite2D" parent="gameView/Background" unique_id=2042543323]
+position = Vector2(-303.99997, -123.999985)
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Curve5" type="Sprite2D" parent="gameView/Background" unique_id=744724649]
+position = Vector2(-299, -254)
+rotation = -1.5707964
+texture = ExtResource("9_yybiq")
+
+[node name="Dirt36" type="Sprite2D" parent="gameView/Background" unique_id=1133522257]
+position = Vector2(-166, -250.99997)
+rotation = 1.5707964
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Dirt37" type="Sprite2D" parent="gameView/Background" unique_id=1881590060]
+position = Vector2(-99.999985, -250.99997)
+rotation = 1.5707964
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Dirt38" type="Sprite2D" parent="gameView/Background" unique_id=1066486753]
+position = Vector2(-33.99997, -251)
+rotation = 1.5707964
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Dirt39" type="Sprite2D" parent="gameView/Background" unique_id=1065012646]
+position = Vector2(30.999977, -251)
+rotation = 1.5707964
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Dirt40" type="Sprite2D" parent="gameView/Background" unique_id=2081827369]
+position = Vector2(96.999985, -251)
+rotation = 1.5707964
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Dirt41" type="Sprite2D" parent="gameView/Background" unique_id=1858126740]
+position = Vector2(163, -251)
+rotation = 1.5707964
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Dirt42" type="Sprite2D" parent="gameView/Background" unique_id=1157055145]
+position = Vector2(228.99994, -251)
+rotation = 1.5707964
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Curve6" type="Sprite2D" parent="gameView/Background" unique_id=358387666]
+position = Vector2(299, -245)
+rotation = 6.2831855
+texture = ExtResource("9_yybiq")
+
+[node name="Dirt44" type="Sprite2D" parent="gameView/Background" unique_id=1139922118]
+position = Vector2(301, 15.999985)
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Dirt45" type="Sprite2D" parent="gameView/Background" unique_id=97979726]
+position = Vector2(301, -50.000015)
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Dirt46" type="Sprite2D" parent="gameView/Background" unique_id=1030956542]
+position = Vector2(302, -115.999985)
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Curve7" type="Sprite2D" parent="gameView/Background" unique_id=492100176]
+position = Vector2(288, 89)
+rotation = 1.5707964
+texture = ExtResource("9_yybiq")
+
+[node name="Dirt47" type="Sprite2D" parent="gameView/Background" unique_id=1311234830]
+position = Vector2(-104.999985, 92.99999)
+rotation = 1.5707964
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Dirt48" type="Sprite2D" parent="gameView/Background" unique_id=1656355279]
+position = Vector2(-38.99997, 93.99999)
+rotation = 1.5707964
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Dirt49" type="Sprite2D" parent="gameView/Background" unique_id=1599319688]
+position = Vector2(26.999977, 94.99999)
+rotation = 1.5707964
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Dirt50" type="Sprite2D" parent="gameView/Background" unique_id=1642416261]
+position = Vector2(92.999985, 94.99999)
+rotation = 1.5707964
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Dirt51" type="Sprite2D" parent="gameView/Background" unique_id=461684123]
+position = Vector2(159, 94.99999)
+rotation = 1.5707964
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Dirt52" type="Sprite2D" parent="gameView/Background" unique_id=1538499531]
+position = Vector2(224.99994, 93.99999)
+rotation = 1.5707964
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Curve8" type="Sprite2D" parent="gameView/Background" unique_id=168149017]
+position = Vector2(-245, 82)
+rotation = 3.1415927
+texture = ExtResource("9_yybiq")
+
+[node name="Dirt43" type="Sprite2D" parent="gameView/Background" unique_id=1562337259]
+position = Vector2(-241.99997, 14.999985)
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Dirt53" type="Sprite2D" parent="gameView/Background" unique_id=144442796]
+position = Vector2(-242, -50.688004)
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Dirt78" type="Sprite2D" parent="gameView/Background" unique_id=853620056]
+position = Vector2(-171.00002, -24.000002)
+scale = Vector2(1.0439371, 0.73925)
+texture = ExtResource("8_aj0xa")
+
+[node name="Curve9" type="Sprite2D" parent="gameView/Background" unique_id=306344076]
+position = Vector2(-235, -187)
+rotation = -1.5707964
+texture = ExtResource("9_yybiq")
+
+[node name="Dirt54" type="Sprite2D" parent="gameView/Background" unique_id=2138302414]
+position = Vector2(-101.999985, -182.99998)
+rotation = 1.5707964
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Dirt55" type="Sprite2D" parent="gameView/Background" unique_id=87765308]
+position = Vector2(-35.99997, -182.99998)
+rotation = 1.5707964
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Dirt56" type="Sprite2D" parent="gameView/Background" unique_id=1212082183]
+position = Vector2(29.999977, -182.99998)
+rotation = 1.5707964
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Dirt57" type="Sprite2D" parent="gameView/Background" unique_id=1444415310]
+position = Vector2(94.999985, -182.99998)
+rotation = 1.5707964
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Dirt58" type="Sprite2D" parent="gameView/Background" unique_id=366220840]
+position = Vector2(161, -182.99998)
+rotation = 1.5707964
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Curve10" type="Sprite2D" parent="gameView/Background" unique_id=314766789]
+position = Vector2(230, -177)
+rotation = 6.2831855
+texture = ExtResource("9_yybiq")
+
+[node name="Dirt59" type="Sprite2D" parent="gameView/Background" unique_id=635827360]
+position = Vector2(-299.99997, -313)
+rotation = 1.5707964
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Dirt60" type="Sprite2D" parent="gameView/Background" unique_id=732716173]
+position = Vector2(-231.99997, -250.99997)
+rotation = 1.5707964
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Dirt61" type="Sprite2D" parent="gameView/Background" unique_id=180345180]
+position = Vector2(-235.99997, 152)
+rotation = 1.5707964
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Dirt62" type="Sprite2D" parent="gameView/Background" unique_id=641546801]
+position = Vector2(-168, -183.99998)
+rotation = 1.5707964
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Dirt63" type="Sprite2D" parent="gameView/Background" unique_id=1219767258]
+position = Vector2(-171, 92.99999)
+rotation = 1.5707964
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Dirt64" type="Sprite2D" parent="gameView/Background" unique_id=10065491]
+position = Vector2(237, -53.000015)
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Curve11" type="Sprite2D" parent="gameView/Background" unique_id=759600782]
+position = Vector2(226, 20)
+rotation = 1.5707964
+texture = ExtResource("9_yybiq")
+
+[node name="Dirt65" type="Sprite2D" parent="gameView/Background" unique_id=1995586968]
+position = Vector2(-372.99997, -245.99997)
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Dirt66" type="Sprite2D" parent="gameView/Background" unique_id=350956248]
+position = Vector2(367.99994, -244.99997)
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Dirt67" type="Sprite2D" parent="gameView/Background" unique_id=357702534]
+position = Vector2(-303.99997, -183.99998)
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Dirt68" type="Sprite2D" parent="gameView/Background" unique_id=1650279059]
+position = Vector2(301.99994, -181.99998)
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Dirt69" type="Sprite2D" parent="gameView/Background" unique_id=1898516346]
+position = Vector2(-241.99997, -116.999985)
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Dirt70" type="Sprite2D" parent="gameView/Background" unique_id=645585945]
+position = Vector2(234, -117.99999)
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Dirt71" type="Sprite2D" parent="gameView/Background" unique_id=1708432939]
+position = Vector2(-100.999985, 24.000015)
+rotation = 1.5707964
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Dirt72" type="Sprite2D" parent="gameView/Background" unique_id=2071026337]
+position = Vector2(-34.99997, 24.000015)
+rotation = 1.5707964
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Dirt73" type="Sprite2D" parent="gameView/Background" unique_id=1965781780]
+position = Vector2(30.999977, 24.000015)
+rotation = 1.5707964
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Dirt74" type="Sprite2D" parent="gameView/Background" unique_id=257936059]
+position = Vector2(96.999985, 24.000015)
+rotation = 1.5707964
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Dirt75" type="Sprite2D" parent="gameView/Background" unique_id=1247965695]
+position = Vector2(163, 24.000015)
+rotation = 1.5707964
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Curve12" type="Sprite2D" parent="gameView/Background" unique_id=51811307]
+position = Vector2(-175, 12)
+rotation = 3.1415927
+texture = ExtResource("9_yybiq")
+
+[node name="Curve13" type="Sprite2D" parent="gameView/Background" unique_id=120152351]
+position = Vector2(-166, -79)
+rotation = -1.5707964
+texture = ExtResource("9_yybiq")
+
+[node name="Dirt76" type="Sprite2D" parent="gameView/Background" unique_id=1749832302]
+position = Vector2(-98.999985, -75.99999)
+rotation = 1.5707964
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="Dirt77" type="Sprite2D" parent="gameView/Background" unique_id=43173223]
+position = Vector2(-32.999977, -75.99999)
+rotation = 1.5707964
+scale = Vector2(1.041, 1.041)
+texture = ExtResource("8_aj0xa")
+
+[node name="SnowPileShadow" type="Sprite2D" parent="gameView/Background" unique_id=41396656]
+position = Vector2(368, 197)
+texture = ExtResource("10_p0t3m")
+
+[node name="SnowBalls" type="Sprite2D" parent="gameView/Background" unique_id=1073338325]
+position = Vector2(229, 225)
+texture = ExtResource("11_37lcp")
+
+[node name="SnowTree2" type="Sprite2D" parent="gameView/Background" unique_id=1908638488]
+position = Vector2(396, 229)
+scale = Vector2(2.672, 2.74)
+texture = ExtResource("12_t6km6")
+
+[node name="SnowBalls2" type="Sprite2D" parent="gameView/Background" unique_id=1254711834]
+position = Vector2(-175, -128)
+texture = ExtResource("11_37lcp")
+
+[node name="SnowTree3" type="Sprite2D" parent="gameView/Background" unique_id=119131607]
+position = Vector2(410, -440)
+scale = Vector2(2.672, 2.74)
+texture = ExtResource("12_t6km6")
+
+[node name="SnowPileShadow2" type="Sprite2D" parent="gameView/Background" unique_id=1223580619]
+position = Vector2(171, 280)
+texture = ExtResource("10_p0t3m")
+
+[node name="SnowPileShadow3" type="Sprite2D" parent="gameView/Background" unique_id=1978493606]
+position = Vector2(-430, -185)
+scale = Vector2(0.8125, 0.734375)
+texture = ExtResource("10_p0t3m")
+
+[node name="SnowTreeLights1" type="Sprite2D" parent="gameView/Background" unique_id=1657392343]
+z_index = 4
+position = Vector2(334, 222)
+scale = Vector2(2.672, 2.74)
+texture = ExtResource("13_ar4gs")
+
+[node name="SnowTreeLights2" type="Sprite2D" parent="gameView/Background" unique_id=962259566]
+position = Vector2(-296.99997, 221)
+scale = Vector2(2.672, 2.74)
+texture = ExtResource("14_maf6a")
+
+[node name="SmallSnowPile" type="Sprite2D" parent="gameView/Background" unique_id=706924429]
+position = Vector2(247, -212)
+scale = Vector2(0.890625, 0.828125)
+texture = ExtResource("15_8k0sb")
+
+[node name="SmallSnowPile2" type="Sprite2D" parent="gameView/Background" unique_id=355569914]
+position = Vector2(-328, -274)
+scale = Vector2(0.890625, 0.828125)
+texture = ExtResource("15_8k0sb")
+
+[node name="SnowGrass2" type="Sprite2D" parent="gameView/Background" unique_id=733527141]
+position = Vector2(-164, 229)
+scale = Vector2(0.65625, 0.703125)
+texture = ExtResource("16_6dry0")
+
+[node name="SnowLog" type="Sprite2D" parent="gameView/Background" unique_id=1935972563]
+position = Vector2(-167.00003, 278)
+scale = Vector2(1.824218, 1.6328126)
+texture = ExtResource("17_pl1hl")
+
+[node name="SmallSnowPile3" type="Sprite2D" parent="gameView/Background" unique_id=1163576709]
+position = Vector2(441, 48)
+texture = ExtResource("15_8k0sb")
+
+[node name="SnowBallSingle" type="Sprite2D" parent="gameView/Background" unique_id=1380661450]
+position = Vector2(412, -153)
+texture = ExtResource("18_iidlx")
+
+[node name="SnowBalls3" type="Sprite2D" parent="gameView/Background" unique_id=1594614053]
+position = Vector2(-442, 275)
+texture = ExtResource("11_37lcp")
+
+[node name="SmallSnowPile4" type="Sprite2D" parent="gameView/Background" unique_id=1640416394]
+position = Vector2(-442, 160)
+texture = ExtResource("15_8k0sb")
+
+[node name="SnowGrass" type="Sprite2D" parent="gameView/Background" unique_id=1292498450]
+position = Vector2(-71, -141)
+scale = Vector2(0.65625, 0.703125)
+texture = ExtResource("16_6dry0")
+
+[node name="SnowGrass3" type="Sprite2D" parent="gameView/Background" unique_id=467287508]
+position = Vector2(-130, 217)
+scale = Vector2(0.65625, 0.703125)
+texture = ExtResource("16_6dry0")
+
+[node name="SnowGrass4" type="Sprite2D" parent="gameView/Background" unique_id=88837523]
+position = Vector2(-250, 331)
+scale = Vector2(0.65625, 0.703125)
+texture = ExtResource("16_6dry0")
+
+[node name="SnowGrass5" type="Sprite2D" parent="gameView/Background" unique_id=266791801]
+position = Vector2(281, 338)
+scale = Vector2(0.65625, 0.703125)
+texture = ExtResource("16_6dry0")
+
+[node name="SnowGrass6" type="Sprite2D" parent="gameView/Background" unique_id=354143567]
+position = Vector2(238, 276)
+scale = Vector2(0.65625, 0.703125)
+texture = ExtResource("16_6dry0")
+
+[node name="SnowGrass7" type="Sprite2D" parent="gameView/Background" unique_id=822122728]
+position = Vector2(406, 95)
+scale = Vector2(0.65625, 0.703125)
+texture = ExtResource("16_6dry0")
+
+[node name="SnowGrass8" type="Sprite2D" parent="gameView/Background" unique_id=2132786250]
+position = Vector2(429, -82)
+scale = Vector2(0.65625, 0.703125)
+texture = ExtResource("16_6dry0")
+
+[node name="SnowGrass9" type="Sprite2D" parent="gameView/Background" unique_id=744479483]
+position = Vector2(361, -352)
+scale = Vector2(0.65625, 0.703125)
+texture = ExtResource("16_6dry0")
+
+[node name="SnowGrass10" type="Sprite2D" parent="gameView/Background" unique_id=5984579]
+position = Vector2(-418, -275)
+scale = Vector2(0.65625, 0.703125)
+texture = ExtResource("16_6dry0")
+
+[node name="SnowGrass11" type="Sprite2D" parent="gameView/Background" unique_id=781512316]
+position = Vector2(-427, 121)
+scale = Vector2(0.65625, 0.703125)
+texture = ExtResource("16_6dry0")
+
+[node name="SnowGrass12" type="Sprite2D" parent="gameView/Background" unique_id=884546818]
+position = Vector2(-245, 204.00002)
+scale = Vector2(0.65625, 0.703125)
+texture = ExtResource("16_6dry0")
+
+[node name="SnowGrass13" type="Sprite2D" parent="gameView/Background" unique_id=45266718]
+position = Vector2(-125, -40)
+scale = Vector2(0.65625, 0.703125)
+texture = ExtResource("16_6dry0")
+
+[node name="SnowGrass14" type="Sprite2D" parent="gameView/Background" unique_id=506982621]
+position = Vector2(-44, -21)
+scale = Vector2(0.65625, 0.703125)
+texture = ExtResource("16_6dry0")
+
+[node name="SnowGrass15" type="Sprite2D" parent="gameView/Background" unique_id=963929915]
+position = Vector2(138, 209.00002)
+scale = Vector2(0.65625, 0.703125)
+texture = ExtResource("16_6dry0")
+
+[node name="SnowGrass16" type="Sprite2D" parent="gameView/Background" unique_id=1634760815]
+position = Vector2(-78, 334)
+scale = Vector2(0.65625, 0.703125)
+texture = ExtResource("16_6dry0")
+
+[node name="SnowGrass17" type="Sprite2D" parent="gameView/Background" unique_id=1958167844]
+position = Vector2(99, 314)
+scale = Vector2(0.65625, 0.703125)
+texture = ExtResource("16_6dry0")
+
+[node name="SnowLog2" type="Sprite2D" parent="gameView/Background" unique_id=967227574]
+position = Vector2(-438.00003, -342.00003)
+rotation = -6.2831855
+scale = Vector2(1.824218, 1.6328126)
+texture = ExtResource("17_pl1hl")
+
+[node name="SnowTreeLights3" type="Sprite2D" parent="gameView/Background" unique_id=376193749]
+position = Vector2(-451, -49)
+scale = Vector2(2.672, 2.74)
+texture = ExtResource("14_maf6a")
+
+[node name="SnowGrass18" type="Sprite2D" parent="gameView/Background" unique_id=282155410]
+position = Vector2(429, -289)
+scale = Vector2(0.65625, 0.703125)
+texture = ExtResource("16_6dry0")
+
+[node name="Camera2D" type="Camera2D" parent="gameView" unique_id=839457134]
+position = Vector2(639, 360)
+
+[node name="Walls" type="StaticBody2D" parent="gameView" unique_id=1993849260]
+
+[node name="Left Wall" type="CollisionShape2D" parent="gameView/Walls" unique_id=1142456144]
+position = Vector2(87.5, 357)
+shape = SubResource("RectangleShape2D_qdbv7")
+
+[node name="Right Wall" type="CollisionShape2D" parent="gameView/Walls" unique_id=1607292310]
+position = Vector2(1190.5, 363)
+shape = SubResource("RectangleShape2D_lllhv")
+
+[node name="Ceiling" type="CollisionShape2D" parent="gameView/Walls" unique_id=1214168419]
+position = Vector2(647, -6)
+shape = SubResource("RectangleShape2D_i78bg")
+
+[node name="Floor" type="CollisionShape2D" parent="gameView/Walls" unique_id=720553784]
+position = Vector2(641, 732)
+shape = SubResource("RectangleShape2D_teu5l")
+
 [node name="SpiralPath" type="Path2D" parent="." unique_id=1245635545]
 curve = SubResource("Curve2D_80ysh")
 
-[node name="TennisCourt" type="Node2D" parent="." unique_id=1158307378]
+[node name="TennisCourt" type="Node2D" parent="." unique_id=1076093830]
+position = Vector2(729, 276)
+script = ExtResource("2_wxwsp")
+
+[node name="TennisCourt 1" type="Node2D" parent="." unique_id=1158307378]
 script = ExtResource("2_wxwsp")
 
 [node name="Spawner" type="Node" parent="." unique_id=496854973]
@@ -44,4 +775,4 @@ vertical_alignment = 1
 [node name="Node2D" type="Node2D" parent="." unique_id=1151986515]
 
 [node name="Cannon" parent="Node2D" unique_id=855465672 instance=ExtResource("6_fefrp")]
-position = Vector2(445, 660)
+position = Vector2(639, 644)
