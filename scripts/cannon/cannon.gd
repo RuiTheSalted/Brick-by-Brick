@@ -14,7 +14,7 @@ var current_balls: int = 0
 @export var cannonBall_spawn: Node2D
 
 # Sound + Animation
-@export var cannon_sound: AudioStreamPlayer2D
+#@export var cannon_sound: AudioStreamPlayer2D
 @export var anim_player: AnimationPlayer
 
 # Trajectory Preview
@@ -188,10 +188,11 @@ func shoot():
 	if not cannonBall_spawn:
 		push_warning("Cannot shoot: cannonBall_spawn is not assigned!")
 		return
-
-	if cannon_sound:
-		cannon_sound.pitch_scale = randf_range(0.95, 1.05)
-		cannon_sound.play()
+	
+	#if cannon_sound:
+	#	cannon_sound.pitch_scale = randf_range(0.95, 1.05)
+	#	cannon_sound.play()
+	AudioManager.play_sfx(SoundBank.CANNON_FIRE, true, 0.95, 1.05)
 
 	if anim_player:
 		anim_player.play("shake")

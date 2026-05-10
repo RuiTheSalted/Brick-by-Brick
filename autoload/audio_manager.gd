@@ -33,12 +33,12 @@ func stop_music() -> void:
 	_music_player.stop()
 
 # ── SFX ────────────────────────────────────────────────
-func play_sfx(stream: AudioStream, pitch_variance: bool = false) -> void:
+func play_sfx(stream: AudioStream, pitch_variance: bool = false, pitch_min: float = 0.9, pitch_max: float = 1.1) -> void:
 	if stream == null:
 		return
 	var player := _get_next_player()
 	player.stream = stream
-	player.pitch_scale = randf_range(0.9, 1.1) if pitch_variance else 1.0
+	player.pitch_scale = randf_range(pitch_min, pitch_max) if pitch_variance else 1.0
 	player.play()
 
 # ── HELPERS ────────────────────────────────────────────
