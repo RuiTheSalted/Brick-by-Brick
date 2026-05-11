@@ -130,6 +130,7 @@ func _on_tile_gui_input(tile_index: int, event: InputEvent) -> void:
 			GameStats.current_map = map_data["map"]
 		else:
 			GameStats.selected_map = ""
+			GameStats.current_map = ""
 		
 		# Store the music for this map so levelWithUI can play it
 		if map_data.has("music"):
