@@ -599,6 +599,7 @@ brick_scene = ExtResource("17_830qo")
 unbreakable_brick_scene = ExtResource("18_metal")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=397611104]
+visible = false
 
 [node name="WaveLabel" type="Label" parent="CanvasLayer" unique_id=1044275834]
 anchors_preset = 8

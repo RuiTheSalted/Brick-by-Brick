@@ -497,6 +497,7 @@ script = ExtResource("13_a5a1n")
 brick_scene = ExtResource("14_ti2ya")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=790681065]
+visible = false
 
 [node name="WaveLabel" type="Label" parent="CanvasLayer" unique_id=2099423281]
 anchors_preset = 8
