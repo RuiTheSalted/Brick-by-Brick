@@ -29,6 +29,8 @@ var placing_hellfire: bool = false
 
 var ability_name: String = ""
 
+var current_map: String = ""
+
 const LAVA_SCENE = preload("res://scenes/lavaTile/lavaTile.tscn")
 
 # TYPES OF AMMO
@@ -866,8 +868,8 @@ func reset_upgrades(ball_name: String) -> bool:
 func restart_game():
 	reset_game()
 	get_tree().paused = false
+	selected_map = current_map
 	get_tree().change_scene_to_file("res://scenes/levelWithUI/levelWithUi.tscn")
-
 
 func reset_game():
 	hp = 100

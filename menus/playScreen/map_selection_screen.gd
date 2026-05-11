@@ -24,11 +24,11 @@ extends Control
 #{"preview": preload("res://assets/spritesArt/mapPreviewImgs/map1Thumbnail.png"), "completed": false, "scene": "res://scenes/levelWithUi.tscn"}
 var maps := [
 	{"preview": preload("res://assets/spritesArt/mapPreviewImgs/map1Thumbnail.png"), "completed": false, "scene": "res://scenes/levelWithUI/levelWithUi.tscn", "music": preload("res://assets/audio/music/forest1.mp3")},
-	{"preview": preload("res://maps/easyMaps/mapsSprites/grassLevel2/map1-2background.png"), "completed": false, "scene": "res://scenes/levelWithUI/levelWithUi.tscn", "map": "res://scenes/regularLevels/map1-2.tscn", "music": preload("res://assets/audio/music/forest2.mp3")},
-	{"preview": preload("res://maps/easyMaps/mapsSprites/map3/map1-3.png"), "completed": false, "scene": "res://scenes/levelWithUI/levelWithUi.tscn", "map": "res://scenes/regularLevels/map1-3.tscn", "music": preload("res://assets/audio/music/forest3.mp3")},
-	{"preview": preload("res://maps/easyMaps/mapsSprites/spiralMapSprites/iceBackground.png"), "completed": true, "scene": "res://scenes/levelWithUI/levelWithUi.tscn", "map": "res://scenes/regularLevels/spiralLevel.tscn", "music": preload("res://assets/audio/music/ice1.mp3")},
+	{"preview": preload("res://assets/spritesArt/mapPreviewImgs/map2Thumbnail.png"), "completed": false, "scene": "res://scenes/levelWithUI/levelWithUi.tscn", "map": "res://scenes/regularLevels/map1-2.tscn", "music": preload("res://assets/audio/music/forest2.mp3")},
+	{"preview": preload("res://assets/spritesArt/mapPreviewImgs/map3Thumbnail.png"), "completed": false, "scene": "res://scenes/levelWithUI/levelWithUi.tscn", "map": "res://scenes/regularLevels/map1-3.tscn", "music": preload("res://assets/audio/music/forest3.mp3")},
+	{"preview": preload("res://assets/spritesArt/mapPreviewImgs/map4Thumbnail.png"), "completed": false, "scene": "res://scenes/levelWithUI/levelWithUi.tscn", "map": "res://scenes/regularLevels/spiralLevel.tscn", "music": preload("res://assets/audio/music/ice1.mp3")},
 	{"preview": preload("res://assets/spritesArt/bricks/placeholderBrick.png"), "completed": false},
-	{"preview": preload("res://assets/spritesArt/bricks/placeholderBrick.png"), "completed": true},
+	{"preview": preload("res://assets/spritesArt/bricks/placeholderBrick.png"), "completed": false},
 	{"preview": preload("res://assets/spritesArt/bricks/placeholderBrick.png"), "completed": false},
 	{"preview": preload("res://assets/spritesArt/bricks/placeholderBrick.png"), "completed": true},
 ]
@@ -127,6 +127,7 @@ func _on_tile_gui_input(tile_index: int, event: InputEvent) -> void:
 		# Store the inner map path in GameStats so levelWithUI can read it
 		if map_data.has("map"):
 			GameStats.selected_map = map_data["map"]
+			GameStats.current_map = map_data["map"]
 		else:
 			GameStats.selected_map = ""
 		

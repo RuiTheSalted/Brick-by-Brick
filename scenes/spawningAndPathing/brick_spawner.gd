@@ -7,7 +7,7 @@ extends Node
 @export var time_between_bricks := 0.75
 @export var time_between_waves := 2.0
 #@onready var wave_label = $"../CanvasLayer/WaveLabel"
-@onready var wave_label = get_parent().get_node_or_null("CanvasLayer/WaveLabel")
+#@onready var wave_label = get_parent().get_node_or_null("CanvasLayer/WaveLabel")
 var current_wave := 1
 var bricks_alive := 0
 
@@ -75,8 +75,8 @@ func spawn_brick():
 	brick._update_visuals()
 
 	path_follow.add_child(brick)
-	
-	
+
+
 func start_wave():
 	bricks_alive = 0
 	
@@ -90,12 +90,19 @@ func start_wave():
 		if GameStats == null or GameStats.is_game_over:
 			return
 
+
 func start_next_wave():
 	if GameStats.is_game_over:
 		return
 	current_wave += 1
-	
-	await show_wave_text(current_wave)
+
+	# UPDATE LEFT UI THROUGH GAMESTATS
+	var stats = get_tree().get_first_node_in_group("gamestats")
+	if stats:
+		stats.round_current = current_wave
+		stats.round_changed.emit(stats.round_current, stats.round_total)
+
+	#await show_wave_text(current_wave)
 	
 	if GameStats.is_game_over:
 		return
@@ -104,21 +111,28 @@ func start_next_wave():
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	await get_tree().create_timer(1.5).timeout
 	randomize()
-	await show_wave_text(current_wave)
+	# SET INITIAL WAVE IN UI
+	var stats = get_tree().get_first_node_in_group("gamestats")
+	if stats:
+		stats.round_current = current_wave
+		stats.round_changed.emit(stats.round_current, stats.round_total)
+	
+	#await show_wave_text(current_wave)
 	start_wave()
 
-func show_wave_text(wave_num):
-	if GameStats.is_game_over or get_tree() == null:
-		return
-	if wave_label == null:
-		return
-	wave_label.text = "Wave " + str(wave_num)
-	wave_label.visible = true
-	await get_tree().create_timer(1.5).timeout
-	if get_tree() != null:
-		wave_label.visible = false
-	
+#func show_wave_text(wave_num):
+	#if GameStats.is_game_over or get_tree() == null:
+		#return
+	#if wave_label == null:
+		#return
+	#wave_label.text = "Wave " + str(wave_num)
+	#wave_label.visible = true
+	#await get_tree().create_timer(1.5).timeout
+	#if get_tree() != null:
+		#wave_label.visible = false
+
 func _on_brick_removed():
 	bricks_alive -= 1
 	
