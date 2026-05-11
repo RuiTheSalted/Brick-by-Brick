@@ -42,11 +42,11 @@ func _load_sounds() -> void:
 	
 	# Balls - keys match stats.ammo_name exactly
 	BALL_SOUNDS = {
-		"Basic Ball":  _try_load("res://assets/audio/sfx/basicball.mp3"),
-		"Beach Ball":  _try_load("res://assets/audio/sfx/beachball.mp3"),
-		"Ice Ball":    _try_load("res://assets/audio/sfx/iceball.mp3"),
-		"Tennis Ball": _try_load("res://assets/audio/sfx/tennisball.mp3"),
-		"Cannon Ball": _try_load("res://assets/audio/sfx/cannonball.mp3"),
+		"Basic Ball":  _try_load("res://assets/audio/sfx/basicball_edit.mp3"),
+		"Beach Ball":  _try_load("res://assets/audio/sfx/beachball_edit.mp3"),
+		"Ice Ball":    _try_load("res://assets/audio/sfx/iceball_edit.mp3"),
+		"Tennis Ball": _try_load("res://assets/audio/sfx/tennisball_edit.mp3"),
+		"Cannon Ball": _try_load("res://assets/audio/sfx/cannonball_edit.mp3"),
 		# Use losescreen as the ball lost sound since you don't have a separate file
 	}
 
@@ -55,7 +55,7 @@ func _load_sounds() -> void:
 	BRICK_BREAK  = _try_load("res://assets/audio/sfx/brickbreak.mp3")
 
 	# Cannon
-	CANNON_FIRE = _try_load("res://assets/audio/sfx/cannonfire.mp3")
+	CANNON_FIRE = _try_load("res://assets/audio/sfx/cannon_shot.mp3")
 
 	# UI clicks - picked randomly at runtime
 	UI_CLICK = [
