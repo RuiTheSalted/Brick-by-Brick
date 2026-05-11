@@ -29,10 +29,15 @@ func _ready() -> void:
 	# Reset game state so HP and round start fresh on every new level
 	GameStats.reset_for_new_level()
 	# Audio
-	if level_music:
+	# Play music - priority: selected_music from map selection > level_music export > fallback
+	if GameStats.selected_music:
+		AudioManager.play_music_stream(GameStats.selected_music)
+		GameStats.selected_music = null  # Clear after reading
+	elif level_music:
 		AudioManager.play_music_stream(level_music)
 	else:
-		AudioManager.play_music(SoundBank.MUSIC_LEVEL_FOREST_1)  # Fallback
+		AudioManager.play_music(SoundBank.MUSIC_LEVEL_FOREST_1)
+	
 	# Basic safety checks
 	if game_frame == null:
 		push_error("LevelWithUi: Missing node at '%s' (your center frame)." % GAME_FRAME_PATH)

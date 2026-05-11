@@ -6,6 +6,8 @@ signal currency_changed(value)
 signal round_changed(current, total)
 signal ammo_type_changed(name, icon)
 
+var selected_music: AudioStream = null
+
 var is_game_over: bool = false
 var info_target_ball: String = ""
 

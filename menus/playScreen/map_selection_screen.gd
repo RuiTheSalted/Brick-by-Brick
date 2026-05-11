@@ -23,10 +23,10 @@ extends Control
 # MAPS GO HERE NOT IN NODE TREE, ADD THE MAPS HERE.
 #{"preview": preload("res://assets/spritesArt/mapPreviewImgs/map1Thumbnail.png"), "completed": false, "scene": "res://scenes/levelWithUi.tscn"}
 var maps := [
-	{"preview": preload("res://assets/spritesArt/mapPreviewImgs/map1Thumbnail.png"), "completed": false, "scene": "res://scenes/levelWithUI/levelWithUi.tscn"},
-	{"preview": preload("res://maps/easyMaps/mapsSprites/grassLevel2/map1-2background.png"), "completed": false, "scene": "res://scenes/levelWithUI/levelWithUi.tscn", "map": "res://scenes/regularLevels/map1-2.tscn"},
-	{"preview": preload("res://maps/easyMaps/mapsSprites/map3/map1-3.png"), "completed": false, "scene": "res://scenes/levelWithUI/levelWithUi.tscn", "map": "res://scenes/regularLevels/map1-3.tscn"},
-	{"preview": preload("res://maps/easyMaps/mapsSprites/spiralMapSprites/iceBackground.png"), "completed": true, "scene": "res://scenes/levelWithUI/levelWithUi.tscn", "map": "res://scenes/regularLevels/spiralLevel.tscn"},
+	{"preview": preload("res://assets/spritesArt/mapPreviewImgs/map1Thumbnail.png"), "completed": false, "scene": "res://scenes/levelWithUI/levelWithUi.tscn", "music": preload("res://assets/audio/music/forest1.mp3")},
+	{"preview": preload("res://maps/easyMaps/mapsSprites/grassLevel2/map1-2background.png"), "completed": false, "scene": "res://scenes/levelWithUI/levelWithUi.tscn", "map": "res://scenes/regularLevels/map1-2.tscn", "music": preload("res://assets/audio/music/forest2.mp3")},
+	{"preview": preload("res://maps/easyMaps/mapsSprites/map3/map1-3.png"), "completed": false, "scene": "res://scenes/levelWithUI/levelWithUi.tscn", "map": "res://scenes/regularLevels/map1-3.tscn", "music": preload("res://assets/audio/music/forest3.mp3")},
+	{"preview": preload("res://maps/easyMaps/mapsSprites/spiralMapSprites/iceBackground.png"), "completed": true, "scene": "res://scenes/levelWithUI/levelWithUi.tscn", "map": "res://scenes/regularLevels/spiralLevel.tscn", "music": preload("res://assets/audio/music/ice1.mp3")},
 	{"preview": preload("res://assets/spritesArt/bricks/placeholderBrick.png"), "completed": false},
 	{"preview": preload("res://assets/spritesArt/bricks/placeholderBrick.png"), "completed": true},
 	{"preview": preload("res://assets/spritesArt/bricks/placeholderBrick.png"), "completed": false},
@@ -129,6 +129,13 @@ func _on_tile_gui_input(tile_index: int, event: InputEvent) -> void:
 			GameStats.selected_map = map_data["map"]
 		else:
 			GameStats.selected_map = ""
+		
+		# Store the music for this map so levelWithUI can play it
+		if map_data.has("music"):
+			GameStats.selected_music = map_data["music"]
+		else:
+			GameStats.selected_music = null
+		
 		#get_tree().change_scene_to_file("res://scenes/levelWithUI/levelWithUi.tscn")
 		#get_tree().change_scene_to_file(scene_path)
 		get_tree().change_scene_to_file(map_data["scene"])
