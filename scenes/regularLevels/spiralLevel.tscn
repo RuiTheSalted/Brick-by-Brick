@@ -43,7 +43,7 @@ script = ExtResource("1_j5yrn")
 [node name="gameView" type="Node2D" parent="." unique_id=518620017]
 
 [node name="Background" type="Sprite2D" parent="gameView" unique_id=394307397]
-position = Vector2(644, 360)
+position = Vector2(640, 362)
 texture = ExtResource("2_kc8ps")
 
 [node name="Dirt" type="Sprite2D" parent="gameView/Background" unique_id=1207063667]
