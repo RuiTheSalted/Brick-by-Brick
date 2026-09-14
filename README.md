@@ -1,5 +1,5 @@
 # Brick-by-Brick
-Idle Breakout inspired, idle clicker game!
+
 
 We have five main folders; assets, maps, menus, scripts, & ui.
 Below is an explanation on what goes on in each. 
